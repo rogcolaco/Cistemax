@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Report">
+    <children>
+        <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" text="Vender Ingresso" />
+                <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" text="Gerenciar Filmes" />
+                <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" text="Gerenciar Salas" />
+                <Button fx:id="btnGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
+                <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" text="Gerenciar Preços" />
+                <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" text="Gerenciar Sessões" />
+                <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" text="Cancelar Vendas" />
+                <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
+            </items>
+        </ToolBar>
+        <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
+      <DatePicker fx:id="calDateStartReport" layoutX="378.0" layoutY="63.0" />
+      <DatePicker fx:id="calDateEndReport" layoutX="378.0" layoutY="122.0" />
+      <Button fx:id="btnRequestReport" layoutX="416.0" layoutY="216.0" mnemonicParsing="false" text="Emitir Relatório" />
+      <Label layoutX="272.0" layoutY="67.0" text="Data Início" />
+      <Label layoutX="272.0" layoutY="126.0" text="Data Fim" />
+      <Button fx:id="btnCancelOp" layoutX="272.0" layoutY="216.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" />
+
+    </children>
+
+</AnchorPane>

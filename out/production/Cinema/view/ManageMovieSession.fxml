@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="599.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovieSession">
+
+    <children>
+        <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" text="Vender Ingresso" />
+                <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" text="Gerenciar Filmes" />
+                <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" text="Gerenciar Salas" />
+                <Button fx:id="btnGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
+                <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" text="Gerenciar Preços" />
+                <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" text="Gerenciar Sessões" />
+                <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" text="Cancelar Vendas" />
+                <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
+            </items>
+        </ToolBar>
+        <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
+        <Button fx:id="btnCancelOp" layoutX="554.0" layoutY="217.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" />
+      <Button layoutX="537.0" layoutY="49.0" mnemonicParsing="false" text="Alterar Sessão" />
+      <Button layoutX="531.0" layoutY="149.0" mnemonicParsing="false" text="Remover Sessão" />
+      <Button layoutX="501.0" layoutY="525.0" mnemonicParsing="false" text="Cadastrar Sessão" />
+      <ChoiceBox layoutX="256.0" layoutY="27.0" prefWidth="150.0" />
+      <Label layoutX="147.0" layoutY="31.0" text="Selecione a Sala:" />
+      <TableView layoutX="147.0" layoutY="61.0" prefHeight="200.0" prefWidth="363.0">
+        <columns>
+          <TableColumn prefWidth="116.0" text="Nome do Filme" />
+          <TableColumn prefWidth="64.0" text="Diretor" />
+            <TableColumn prefWidth="75.0" text="Gênero" />
+            <TableColumn prefWidth="106.0" text="Tipo da Sessão" />
+        </columns>
+      </TableView>
+      <Label layoutX="157.0" layoutY="294.0" text="Nome do Filme:" />
+      <Separator layoutX="130.0" layoutY="269.0" prefHeight="3.0" prefWidth="532.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="1.0" />
+      <ComboBox layoutX="256.0" layoutY="290.0" prefWidth="150.0" />
+      <DatePicker layoutX="169.0" layoutY="348.0" />
+      <DatePicker layoutX="423.0" layoutY="348.0" />
+      <Label layoutX="228.0" layoutY="324.0" text="Data Início" />
+      <Label layoutX="486.0" layoutY="324.0" text="Data Fim" />
+      <CheckBox layoutX="197.0" layoutY="431.0" mnemonicParsing="false" text="Segunda-Feira" />
+      <CheckBox layoutX="328.0" layoutY="431.0" mnemonicParsing="false" text="Terça- Feira" />
+      <CheckBox layoutX="449.0" layoutY="431.0" mnemonicParsing="false" text="Quarta-Feira" />
+      <CheckBox layoutX="187.0" layoutY="467.0" mnemonicParsing="false" text="Quinta-Feira" />
+      <CheckBox layoutX="292.0" layoutY="467.0" mnemonicParsing="false" text="Sexta-Feira" />
+      <CheckBox layoutX="394.0" layoutY="467.0" mnemonicParsing="false" text="Sábado" />
+      <CheckBox layoutX="474.0" layoutY="467.0" mnemonicParsing="false" text="Domingo" />
+      <Label layoutX="304.0" layoutY="395.0" text="Periodicidade">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="173.0" layoutY="529.0" text="Tipo da Sessão" />
+      <ChoiceBox layoutX="275.0" layoutY="525.0" prefWidth="150.0" />
+      <CheckBox layoutX="473.0" layoutY="294.0" mnemonicParsing="false" text="Sessão Promocional" />
+    </children>
+
+</AnchorPane>
