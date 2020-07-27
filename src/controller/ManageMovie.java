@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.ParentalControl;
 import util.SwitcherDisplay;
 
 import java.io.IOException;
@@ -43,12 +44,12 @@ public class ManageMovie {
     @FXML private TextField txtDirName;
 
 
-    private ObservableList<String> obsParentalControl = FXCollections.observableArrayList();
-
-
     @FXML
     public void initialize(){
-        cbParentalControl.setItems(loadParentalControl());
+
+        /*Preeche o Choice Box da Classificação indicativa*/
+        ParentalControl pc = new ParentalControl();
+        cbParentalControl.setItems(pc.loadParentalControl());
     }
 
     public void newSale(ActionEvent actionEvent) {
@@ -61,7 +62,6 @@ public class ManageMovie {
         Stage stage = (Stage)btnSale.getScene().getWindow();
         SwitcherDisplay display = new SwitcherDisplay();
         display.show("/view/ManageMovie.fxml", stage, "Cistemax - Gerenciar Filmes",btnSale.getScene().getWidth(), btnSale.getScene().getHeight());
-        this.loadParentalControl();
     }
 
     public void mngTheater(ActionEvent actionEvent) {
@@ -107,19 +107,5 @@ public class ManageMovie {
         lbMovieFieldTitle.setText("Alterar Filme");
         btnConfirmMovie.setText("Confirma Alteração");
     }
-
-
-    public ObservableList<String>  loadParentalControl(){
-
-        obsParentalControl.add(new String("Livre"));
-        obsParentalControl.add(new String("+12 (doze) anos"));
-        obsParentalControl.add(new String("+14 (catorze) anos"));
-        obsParentalControl.add(new String("+16 (dezesseis) anos"));
-        obsParentalControl.add(new String("+18 (dezoito) anos"));
-
-        return obsParentalControl;
-
-    }
-
 
 }
