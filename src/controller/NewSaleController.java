@@ -29,7 +29,8 @@ public class NewSaleController {
     /*Verificar Classes*/
     @FXML private TableView<Session> tableSeats;
     @FXML private TableColumn<Session, Integer> cSeat;
-    @FXML private TableColumn<Session, Boolean> cStatus; 
+    @FXML private TableColumn<Session, Boolean> cStatus;
+
 
 
     public void newSale(ActionEvent actionEvent) {
