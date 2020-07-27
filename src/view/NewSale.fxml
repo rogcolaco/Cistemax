@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewSaleController">
    <children>
@@ -18,13 +19,21 @@
         </items>
       </ToolBar>
       <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
-      <Label layoutX="165.0" layoutY="27.0" text="Sessões:" />
-      <ChoiceBox fx:id="droplistSessionSale" layoutX="219.0" layoutY="23.0" prefHeight="25.0" prefWidth="357.0" />
-      <Label layoutX="173.0" layoutY="192.0" text="Total de ingressos Promocionais:" />
-      <ChoiceBox fx:id="droplistPromoTickets" layoutX="363.0" layoutY="188.0" prefHeight="25.0" prefWidth="133.0" />
-      <Label layoutX="370.0" layoutY="238.0" text="Valor Total:" />
-      <Label fx:id="lbTotal" layoutX="440.0" layoutY="238.0" text="\$$$" />
-      <Button fx:id="btnSetSale" layoutX="424.0" layoutY="290.0" mnemonicParsing="false" text="Efetuar Venda" />
-      <Button fx:id="btnCancelOp" layoutX="260.0" layoutY="290.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" />
+      <Label layoutX="165.0" layoutY="27.0" text="Sessões:" AnchorPane.leftAnchor="165.0" AnchorPane.topAnchor="27.0" />
+      <ChoiceBox fx:id="cbSessionSale" layoutX="219.0" layoutY="23.0" prefHeight="25.0" prefWidth="357.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="23.0" />
+      <Label layoutX="149.0" layoutY="271.0" text="Total de ingressos Promocionais:" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="149.0" />
+      <ChoiceBox fx:id="cbPromoTickets" layoutX="336.0" layoutY="267.0" prefHeight="25.0" prefWidth="58.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="336.0" />
+      <Label fx:id="lbTotal" layoutX="154.0" layoutY="324.0" text="Valor Total:" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="149.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Button fx:id="btnSetSale" layoutX="476.0" layoutY="348.0" mnemonicParsing="false" text="Efetuar Venda" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="33.0" />
+      <Button fx:id="btnCancelOp" layoutX="398.0" layoutY="348.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="144.0" />
+      <TableView fx:id="tableSeats" layoutX="136.0" layoutY="58.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="142.0" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="58.0">
+        <columns>
+          <TableColumn fx:id="cSeat" prefWidth="75.0" text="N° Assento" />
+          <TableColumn fx:id="cStatus" prefWidth="124.0" text="Disponibilidade" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
