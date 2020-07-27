@@ -19,34 +19,34 @@
             </items>
         </ToolBar>
         <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
-      <Button fx:id="btnCancelOp" layoutX="634.0" layoutY="187.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" />
-      <Button fx:id="btnUpdateMovie" layoutX="620.0" layoutY="47.0" mnemonicParsing="false" onAction="#updateMovie" text="Alterar Filme" />
-      <Button layoutX="615.0" layoutY="120.0" mnemonicParsing="false" text="Remover Filme" />
-      <Button fx:id="btnConfirmMovie" layoutX="560.0" layoutY="519.0" mnemonicParsing="false" text="Cadastrar Filme" />
-      <CheckBox layoutX="572.0" layoutY="390.0" mnemonicParsing="false" text="Em Cartaz" />
-      <ChoiceBox layoutX="357.0" layoutY="386.0" prefWidth="150.0" />
+      <Button fx:id="btnCancelOp" layoutX="630.0" layoutY="208.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="208.0" />
+      <Button fx:id="btnUpdateMovie" layoutX="617.0" layoutY="39.0" mnemonicParsing="false" onAction="#updateMovie" text="Alterar Filme" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="39.0" />
+      <Button layoutX="611.0" layoutY="135.0" mnemonicParsing="false" text="Remover Filme" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="135.0" />
+      <Button fx:id="btnConfirmMovie" layoutX="560.0" layoutY="519.0" mnemonicParsing="false" text="Cadastrar Filme" AnchorPane.bottomAnchor="43.0" AnchorPane.rightAnchor="73.0" />
+      <CheckBox fx:id="checkCartaz" layoutX="572.0" layoutY="390.0" mnemonicParsing="false" text="Em Cartaz" AnchorPane.leftAnchor="572.0" AnchorPane.topAnchor="390.0" />
+      <ChoiceBox fx:id="cbGenre" layoutX="357.0" layoutY="386.0" prefWidth="150.0" AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="386.0" />
       <Label fx:id="lbMovieFieldTitle" layoutX="338.0" layoutY="327.0" text="Cadastrar Filme">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <TableView layoutX="141.0" layoutY="20.0" prefHeight="280.0" prefWidth="455.0">
+      <TableView fx:id="tableMovie" layoutX="141.0" layoutY="20.0" prefHeight="280.0" prefWidth="455.0" AnchorPane.leftAnchor="141.0" AnchorPane.topAnchor="20.0">
         <columns>
-          <TableColumn prefWidth="191.0" text="Nome do Filme" />
-          <TableColumn minWidth="8.0" prefWidth="68.0" text="Diretor" />
-            <TableColumn prefWidth="115.0" text="Gênero" />
-            <TableColumn prefWidth="71.0" text="Cartaz" />
+          <TableColumn fx:id="cMovieName" prefWidth="191.0" text="Nome do Filme" />
+          <TableColumn fx:id="cDirMovie" minWidth="8.0" prefWidth="68.0" text="Diretor" />
+            <TableColumn fx:id="cGenre" prefWidth="115.0" text="Gênero" />
+            <TableColumn fx:id="cCartaz" prefWidth="71.0" text="Cartaz" />
         </columns>
       </TableView>
       <Separator layoutX="132.0" layoutY="313.0" prefHeight="3.0" prefWidth="599.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="0.0" />
-      <ChoiceBox layoutX="357.0" layoutY="452.0" prefWidth="150.0" />
-      <Label layoutX="201.0" layoutY="365.0" text="Nome do Filme:" />
-      <Label layoutX="225.0" layoutY="428.0" text="Diretor:" />
-      <Label layoutX="374.0" layoutY="428.0" text="Clasificação Indicativa" />
-      <Label layoutX="400.0" layoutY="365.0" text="Gênero" />
-      <TextField layoutX="170.0" layoutY="386.0" />
-      <TextField layoutX="169.0" layoutY="452.0" />
-      <Label layoutX="597.0" layoutY="428.0" text="Tipo" />
-      <ComboBox layoutX="534.0" layoutY="452.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="cbParentalControl" layoutX="357.0" layoutY="452.0" prefWidth="150.0" AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="452.0" />
+      <Label layoutX="201.0" layoutY="365.0" text="Nome do Filme:" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="365.0" />
+      <Label layoutX="225.0" layoutY="428.0" text="Diretor:" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="428.0" />
+      <Label layoutX="374.0" layoutY="428.0" text="Clasificação Indicativa" AnchorPane.leftAnchor="374.0" AnchorPane.topAnchor="428.0" />
+      <Label layoutX="413.0" layoutY="365.0" text="Gênero" AnchorPane.leftAnchor="413.0" AnchorPane.topAnchor="365.0" />
+      <TextField fx:id="txtMovieName" layoutX="170.0" layoutY="386.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="386.0" />
+      <TextField fx:id="txtDirName" layoutX="169.0" layoutY="452.0" AnchorPane.leftAnchor="169.0" AnchorPane.topAnchor="452.0" />
+      <Label layoutX="597.0" layoutY="428.0" text="Tipo" AnchorPane.leftAnchor="597.0" AnchorPane.topAnchor="428.0" />
+      <ChoiceBox fx:id="cbType" layoutX="534.0" layoutY="452.0" prefWidth="150.0" AnchorPane.leftAnchor="534.0" AnchorPane.topAnchor="452.0" />
     </children>
 
 </AnchorPane>
