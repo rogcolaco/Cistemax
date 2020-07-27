@@ -4,19 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.ParentalControl;
 import util.SwitcherDisplay;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 
 public class ManageMovie {
 
@@ -33,15 +25,31 @@ public class ManageMovie {
     @FXML private Button btnUpdateMovie;
     @FXML private Button btnConfirmMovie;
     @FXML private Label lbMovieFieldTitle;
-    //@FXML private ComboBox<ParentalControl> cbParentalControl;
+    @FXML private ChoiceBox<String> cbParentalControl;
 
-    private List<ParentalControl> parentalControl = new ArrayList<>();
-    private ObservableList<ParentalControl> obsParentalControl;
+    /*Verificar Classes*/
+    @FXML private TableView<String> tableMovie;
+    @FXML private TableColumn<String,String> cMovieName;
+    @FXML private TableColumn<String,String> cDirMovie;
+    @FXML private TableColumn<String,String> cGenre;
+    @FXML private TableColumn<String,String> cCartaz;
 
-    /*@FXML
+    /*Verificar Classes*/
+    @FXML private ChoiceBox<String> cbType;
+    @FXML private ChoiceBox<String> cbGenre;
+
+    @FXML private CheckBox checkCartaz;
+    @FXML private TextField txtMovieName;
+    @FXML private TextField txtDirName;
+
+
+    private ObservableList<String> obsParentalControl = FXCollections.observableArrayList();
+
+
+    @FXML
     public void initialize(){
-        loadParentalControl();
-    }*/
+        cbParentalControl.setItems(loadParentalControl());
+    }
 
     public void newSale(ActionEvent actionEvent) {
         Stage stage = (Stage)btnSale.getScene().getWindow();
@@ -53,6 +61,7 @@ public class ManageMovie {
         Stage stage = (Stage)btnSale.getScene().getWindow();
         SwitcherDisplay display = new SwitcherDisplay();
         display.show("/view/ManageMovie.fxml", stage, "Cistemax - Gerenciar Filmes",btnSale.getScene().getWidth(), btnSale.getScene().getHeight());
+        this.loadParentalControl();
     }
 
     public void mngTheater(ActionEvent actionEvent) {
@@ -100,21 +109,17 @@ public class ManageMovie {
     }
 
 
-    /*public void  loadParentalControl(){
+    public ObservableList<String>  loadParentalControl(){
 
+        obsParentalControl.add(new String("Livre"));
+        obsParentalControl.add(new String("+12 (doze) anos"));
+        obsParentalControl.add(new String("+14 (catorze) anos"));
+        obsParentalControl.add(new String("+16 (dezesseis) anos"));
+        obsParentalControl.add(new String("+18 (dezoito) anos"));
 
-        //Classificação indicativa de acordo com a Portaria Nº 1.189, de 03 de agosto de 2018 do Ministério da Justiça
-        parentalControl.add(new ParentalControl("Livre"));
-        parentalControl.add(new ParentalControl("+12 (doze) anos"));
-        parentalControl.add(new ParentalControl("+14 (catorze) anos"));
-        parentalControl.add(new ParentalControl("+16 (dezesseis) anos"));
-        parentalControl.add(new ParentalControl("+18 (dezoito) anos"));
+        return obsParentalControl;
 
-        obsParentalControl = FXCollections.observableArrayList();
-
-        cbParentalControl.setItems(obsParentalControl);
-
-    }*/
+    }
 
 
 }
