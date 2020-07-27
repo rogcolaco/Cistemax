@@ -24,6 +24,7 @@ public class Report {
     @FXML private DatePicker calDateStartReport;
     @FXML private DatePicker calDateEndReport;
     @FXML private Button btnRequestReport;
+    @FXML private Button btnCancelOp;
 
     public void newSale(ActionEvent actionEvent) {
         Stage stage = (Stage)btnSale.getScene().getWindow();
