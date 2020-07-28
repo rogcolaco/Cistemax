@@ -19,23 +19,23 @@
             </items>
         </ToolBar>
         <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
-        <Button fx:id="btnCancelOp" layoutX="404.0" layoutY="200.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" />
-      <TableView layoutX="156.0" layoutY="28.0" prefHeight="200.0" prefWidth="133.0">
+        <Button fx:id="btnCancelOp" layoutX="404.0" layoutY="188.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="404.0" AnchorPane.topAnchor="188.0" />
+      <TableView fx:id="tableGenre" layoutX="156.0" layoutY="28.0" prefHeight="200.0" prefWidth="133.0" AnchorPane.leftAnchor="156.0" AnchorPane.topAnchor="28.0">
         <columns>
-          <TableColumn prefWidth="125.0" text="Gênero" />
+          <TableColumn fx:id="cGenre" prefWidth="125.0" text="Gênero" />
         </columns>
       </TableView>
-      <Button fx:id="btnUpdateGenre" layoutX="386.0" layoutY="52.0" mnemonicParsing="false" onAction="#updateGenre" text="Alterar Gênero" />
-      <Button layoutX="380.0" layoutY="128.0" mnemonicParsing="false" text="Remover Gênero" />
+      <Button fx:id="btnUpdateGenre" layoutX="386.0" layoutY="52.0" mnemonicParsing="false" onAction="#updateGenre" text="Alterar Gênero" AnchorPane.leftAnchor="386.0" AnchorPane.topAnchor="52.0" />
+      <Button fx:id="btnRemoveGenre" layoutX="380.0" layoutY="116.0" mnemonicParsing="false" text="Remover Gênero" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="116.0" />
       <Separator layoutX="132.0" layoutY="262.0" prefHeight="3.0" prefWidth="468.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="0.0" />
       <Label fx:id="lbGenreFieldTitle" layoutX="289.0" layoutY="273.0" text="Cadastrar Gênero">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="164.0" layoutY="316.0" text="Nome do gênero:" />
-      <Button fx:id="btnConfirmGenre" layoutX="453.0" layoutY="312.0" mnemonicParsing="false" text="Confirmar Cadastro" />
-      <TextField layoutX="272.0" layoutY="312.0" />
+      <Label layoutX="164.0" layoutY="316.0" text="Nome do gênero:" AnchorPane.leftAnchor="164.0" AnchorPane.topAnchor="316.0" />
+      <Button fx:id="btnConfirmGenre" layoutX="453.0" layoutY="312.0" mnemonicParsing="false" text="Confirmar Cadastro" AnchorPane.leftAnchor="453.0" AnchorPane.topAnchor="312.0" />
+      <TextField fx:id="txtGenreName" layoutX="272.0" layoutY="312.0" AnchorPane.leftAnchor="272.0" AnchorPane.topAnchor="312.0" />
     </children>
 
 </AnchorPane>

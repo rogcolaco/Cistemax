@@ -2,7 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import util.SwitcherDisplay;
 
@@ -19,6 +19,33 @@ public class ManageMovieSession {
     @FXML private Button btnMovieSession;
     @FXML private Button btnCancelSale;
     @FXML private Button btnReport;
+
+    @FXML private Button btnRemoveSession;
+    @FXML private Button btnConfirmSession;
+    @FXML private Button btnUpdateSession;
+    @FXML private Label lbSessionFieldTitle;
+    @FXML private CheckBox checkPromo;
+    @FXML private CheckBox checkMon;
+    @FXML private CheckBox checkTue;
+    @FXML private CheckBox checkWed;
+    @FXML private CheckBox checkThu;
+    @FXML private CheckBox checkFri;
+    @FXML private CheckBox checkSat;
+    @FXML private CheckBox checkSun;
+    @FXML private TextField txtHour;
+    @FXML private TextField txtMin;
+
+    /*Verificar Classe*/
+    @FXML private ChoiceBox<String> cbTheater;
+    @FXML private ChoiceBox<String> cbSession;
+    @FXML private ChoiceBox<String> cbMovieSession;
+
+    /*Verificar Classe*/
+    @FXML private TableView<String> tableSession;
+    @FXML private TableColumn<String,String> cMovieSession;
+    @FXML private TableColumn<String, String> cDirMovieSession;
+    @FXML private TableColumn<String,String> cGenre;
+    @FXML private TableColumn<String,String> cSessionType;
 
     public void newSale(ActionEvent actionEvent) {
         Stage stage = (Stage)btnSale.getScene().getWindow();
@@ -70,5 +97,10 @@ public class ManageMovieSession {
 
     public void CancelOp(ActionEvent actionEvent) {
         this.newSale(actionEvent);
+    }
+
+    public void updateSession(ActionEvent actionEvent) {
+        lbSessionFieldTitle.setText("Alterar Sala");
+        btnConfirmSession.setText("Confirma Alteração");
     }
 }

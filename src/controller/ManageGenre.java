@@ -2,8 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import util.SwitcherDisplay;
 
@@ -25,6 +24,12 @@ public class ManageGenre {
     @FXML private Button btnUpdateGenre;
     @FXML private Button btnConfirmGenre;
     @FXML private Label lbGenreFieldTitle;
+    @FXML private Button btnRemoveGenre;
+    @FXML private TextField txtGenreName;
+
+    /*Confirmar Classes*/
+    @FXML private TableView<String> tableGenre;
+    @FXML private TableColumn<String, String> cGenre;
 
     public void newSale(ActionEvent actionEvent) {
         Stage stage = (Stage)btnSale.getScene().getWindow();

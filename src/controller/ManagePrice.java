@@ -2,8 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import util.SwitcherDisplay;
 
@@ -24,6 +23,14 @@ public class ManagePrice {
     @FXML private Button btnConfirmPrice;
     @FXML private Button btnUpdatePrice;
     @FXML private Label lbPriceFieldTitle;
+    @FXML private Button btnRemoveSession;
+    @FXML private TextField txtSessionType;
+    @FXML private TextField txtSessionPrice;
+
+    /*Verificar Classes*/
+    @FXML private TableView<String> tableSession;
+    @FXML private TableColumn<String, String> cSessionType;
+    @FXML private TableColumn<String, String> cSessionPrice;
 
 
     public void newSale(ActionEvent actionEvent) {

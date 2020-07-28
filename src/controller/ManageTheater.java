@@ -2,8 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import util.SwitcherDisplay;
 
@@ -23,6 +22,14 @@ public class ManageTheater {
     @FXML private Button btnUpdateTheater;
     @FXML private Button btnConfirmTheater;
     @FXML private Label lbTheaterFieldTitle;
+    @FXML private Button btnRemoveTheater;
+    @FXML private TextField txtTheaterName;
+    @FXML private TextField txtQtdSeats;
+
+    /*Verificar Classes*/
+    @FXML private TableView<String> tableTheater;
+    @FXML private TableColumn<String, String> cTheaterName;
+    @FXML private TableColumn<String,String> cQtdSeats;
 
     public void newSale(ActionEvent actionEvent) {
         Stage stage = (Stage)btnSale.getScene().getWindow();
