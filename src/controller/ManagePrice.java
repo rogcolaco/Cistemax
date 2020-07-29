@@ -3,7 +3,10 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.ParentalControl;
+import model.Ticket;
 import util.SwitcherDisplay;
 
 import java.io.IOException;
@@ -28,9 +31,23 @@ public class ManagePrice {
     @FXML private TextField txtSessionPrice;
 
     /*Verificar Classes*/
-    @FXML private TableView<String> tableSession;
-    @FXML private TableColumn<String, String> cSessionType;
-    @FXML private TableColumn<String, String> cSessionPrice;
+    @FXML private TableView<Ticket> tableSession;
+    @FXML private TableColumn<Ticket, String> cSessionType;
+    @FXML private TableColumn<Ticket, Double> cSessionPrice;
+
+    private Ticket t = new Ticket();
+
+    @FXML
+    public void initialize(){
+        fill();
+    }
+
+    public void fill(){
+
+            cSessionType.setCellValueFactory(new PropertyValueFactory<>("type"));
+            cSessionPrice.setCellValueFactory(new PropertyValueFactory<>("value"));
+            tableSession.setItems(t.loadTable());
+    }
 
 
     public void newSale(ActionEvent actionEvent) {
@@ -88,5 +105,15 @@ public class ManagePrice {
     public void updatePrice(ActionEvent actionEvent) {
         lbPriceFieldTitle.setText("Alterar Preço da Sessão");
         btnConfirmPrice.setText("Confirma Alteração");
+    }
+
+    public void confirm(ActionEvent actionEvent) {
+        Ticket ticket = new Ticket();
+        ticket.setType(txtSessionType.getText());
+        ticket.setValue(Double.parseDouble(txtSessionPrice.getText()));
+        t.addTicket(ticket);
+        tableSession.setItems(t.loadTable());
+        txtSessionType.clear();
+        txtSessionPrice.clear();
     }
 }
