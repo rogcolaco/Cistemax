@@ -105,6 +105,11 @@ public class ManagePrice {
     public void updatePrice(ActionEvent actionEvent) {
         lbPriceFieldTitle.setText("Alterar Preço da Sessão");
         btnConfirmPrice.setText("Confirma Alteração");
+
+        Ticket ticket=tableSession.getSelectionModel().getSelectedItem();
+        txtSessionType.setText(ticket.getType());
+        txtSessionPrice.setText(String.valueOf(ticket.getValue()));
+
     }
 
     public void confirm(ActionEvent actionEvent) {
@@ -115,5 +120,16 @@ public class ManagePrice {
         tableSession.setItems(t.loadTable());
         txtSessionType.clear();
         txtSessionPrice.clear();
+
+        if(btnConfirmPrice.getText().equals("Confirma Alteração")){
+            t.removeTicket(tableSession.getSelectionModel().getSelectedItem());
+            lbPriceFieldTitle.setText("Cadastrar Novo Tipo de Sessão");
+            btnConfirmPrice.setText("Confirmar");
+        }
+    }
+
+    public void remove(ActionEvent actionEvent) {
+        t.removeTicket(tableSession.getSelectionModel().getSelectedItem());
+        tableSession.setItems(t.loadTable());
     }
 }

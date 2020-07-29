@@ -4,11 +4,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Ticket;
 
 import java.io.IOException;
 
 public class Main extends Application {
     private Stage stage;
+
 
     public static void main(String[] args) {
         launch(args);

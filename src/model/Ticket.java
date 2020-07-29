@@ -53,4 +53,8 @@ public class Ticket {
         //return obsTicket;
     }
 
+    public void removeTicket(Ticket t){
+        obsTicket.remove(t);
+    }
+
 }
