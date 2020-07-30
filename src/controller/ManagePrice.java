@@ -109,31 +109,37 @@ public class ManagePrice {
 
     public void updatePrice(ActionEvent actionEvent) {
         lbPriceFieldTitle.setText("Alterar Preço da Sessão");
-        btnConfirmPrice.setText("Confirma Alteração");
+        btnConfirmPrice.setText("Alterar");
 
         Ticket ticket=tableSession.getSelectionModel().getSelectedItem();
         txtSessionType.setText(ticket.getType());
         txtSessionPrice.setText(String.valueOf(ticket.getValue()));
-
     }
 
     public void confirm(ActionEvent actionEvent) throws SQLException {
         Ticket ticket = new Ticket();
+        TicketDAO dao = new TicketDAO();
         ticket.setType(txtSessionType.getText());
         ticket.setValue(Double.parseDouble(txtSessionPrice.getText()));
-        TicketDAO dao = new TicketDAO();
-        int max = dao.MaxId();
-        ticket.setId(max);
-        dao.save(ticket);
-        tableSession.setItems(dao.readAll());
-        txtSessionType.clear();
-        txtSessionPrice.clear();
 
-        if(btnConfirmPrice.getText().equals("Confirma Alteração")){
+        /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
+        if(btnConfirmPrice.getText().equals("Alterar")){
+            ticket.setId(tableSession.getSelectionModel().getSelectedItem().getId());
+            dao.update(ticket);
+            tableSession.setItems(dao.readAll());
             //t.removeTicket(tableSession.getSelectionModel().getSelectedItem());
             lbPriceFieldTitle.setText("Cadastrar Novo Tipo de Sessão");
             btnConfirmPrice.setText("Confirmar");
+
+        /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
+        } else {
+            int max = dao.MaxId();
+            ticket.setId(max);
+            dao.save(ticket);
+            tableSession.setItems(dao.readAll());
         }
+        txtSessionType.clear();
+        txtSessionPrice.clear();
     }
 
     public void remove(ActionEvent actionEvent) throws SQLException {

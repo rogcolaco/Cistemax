@@ -50,4 +50,8 @@ public class Ticket {
     public Ticket() {
     }
 
+    @Override
+    public String toString() {
+        return this.type;
+    }
 }

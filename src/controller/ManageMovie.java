@@ -46,7 +46,6 @@ public class ManageMovie {
 
     @FXML
     public void initialize(){
-
         /*Preeche o Choice Box da Classificação indicativa*/
         ParentalControl pc = new ParentalControl();
         cbParentalControl.setItems(pc.loadParentalControl());

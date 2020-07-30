@@ -1,9 +1,14 @@
 package controller;
 
+import dao.TicketDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Ticket;
 import util.SwitcherDisplay;
 
 import java.io.IOException;
@@ -37,7 +42,7 @@ public class ManageMovieSession {
 
     /*Verificar Classe*/
     @FXML private ChoiceBox<String> cbTheater;
-    @FXML private ChoiceBox<String> cbSession;
+    @FXML private ChoiceBox<Ticket> cbSession;
     @FXML private ChoiceBox<String> cbMovieSession;
 
     /*Verificar Classe*/
@@ -46,6 +51,22 @@ public class ManageMovieSession {
     @FXML private TableColumn<String, String> cDirMovieSession;
     @FXML private TableColumn<String,String> cGenre;
     @FXML private TableColumn<String,String> cSessionType;
+
+    @FXML
+    public void initialize(){
+        fill();
+    }
+
+    private ObservableList<Ticket> listTicket = FXCollections.observableArrayList();
+
+
+    public void fill(){
+
+        /*Preenche o choice box com dados dos tipos de sessão cadastrados*/
+        TicketDAO daoTicket = new TicketDAO();
+        listTicket = daoTicket.readAll();;
+        cbSession.setItems(listTicket);
+    }
 
     public void newSale(ActionEvent actionEvent) {
         Stage stage = (Stage)btnSale.getScene().getWindow();
