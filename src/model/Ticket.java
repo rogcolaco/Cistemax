@@ -5,9 +5,9 @@ import javafx.collections.ObservableList;
 
 public class Ticket {
 
+    private int id;
     private double value;
     private String type;
-    private ObservableList<Ticket> obsTicket = FXCollections.observableArrayList();
 
     public String getType() {
         return type;
@@ -29,32 +29,25 @@ public class Ticket {
         this.value = value;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public double DiscountApply(){
         return this.getValue() * 0.5;
     }
 
-    public Ticket(double value, String type) {
+    public Ticket(int id, double value, String type) {
+        this.id= id;
         this.value = value;
         this.type = type;
     }
 
     public Ticket() {
-    }
-
-    public ObservableList<Ticket> loadTable(){
-        //ObservableList<Ticket> obsTicket = FXCollections.observableArrayList();
-        //Ticket t = new Ticket(this.getValue(),this.getType());
-        //obsTicket.add(t);
-        return obsTicket;
-    }
-
-    public void addTicket(Ticket t){
-        obsTicket.add(t);
-        //return obsTicket;
-    }
-
-    public void removeTicket(Ticket t){
-        obsTicket.remove(t);
     }
 
 }

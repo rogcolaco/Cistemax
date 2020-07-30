@@ -1,5 +1,9 @@
 package controller;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+import dao.TicketDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,6 +14,9 @@ import model.Ticket;
 import util.SwitcherDisplay;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManagePrice {
 
@@ -30,12 +37,10 @@ public class ManagePrice {
     @FXML private TextField txtSessionType;
     @FXML private TextField txtSessionPrice;
 
-    /*Verificar Classes*/
     @FXML private TableView<Ticket> tableSession;
     @FXML private TableColumn<Ticket, String> cSessionType;
     @FXML private TableColumn<Ticket, Double> cSessionPrice;
 
-    private Ticket t = new Ticket();
 
     @FXML
     public void initialize(){
@@ -43,10 +48,10 @@ public class ManagePrice {
     }
 
     public void fill(){
-
-            cSessionType.setCellValueFactory(new PropertyValueFactory<>("type"));
-            cSessionPrice.setCellValueFactory(new PropertyValueFactory<>("value"));
-            tableSession.setItems(t.loadTable());
+        TicketDAO dao = new TicketDAO();
+        cSessionType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        cSessionPrice.setCellValueFactory(new PropertyValueFactory<>("value"));
+        tableSession.setItems(dao.readAll());
     }
 
 
@@ -112,24 +117,28 @@ public class ManagePrice {
 
     }
 
-    public void confirm(ActionEvent actionEvent) {
+    public void confirm(ActionEvent actionEvent) throws SQLException {
         Ticket ticket = new Ticket();
         ticket.setType(txtSessionType.getText());
         ticket.setValue(Double.parseDouble(txtSessionPrice.getText()));
-        t.addTicket(ticket);
-        tableSession.setItems(t.loadTable());
+        TicketDAO dao = new TicketDAO();
+        int max = dao.MaxId();
+        ticket.setId(max);
+        dao.save(ticket);
+        tableSession.setItems(dao.readAll());
         txtSessionType.clear();
         txtSessionPrice.clear();
 
         if(btnConfirmPrice.getText().equals("Confirma Alteração")){
-            t.removeTicket(tableSession.getSelectionModel().getSelectedItem());
+            //t.removeTicket(tableSession.getSelectionModel().getSelectedItem());
             lbPriceFieldTitle.setText("Cadastrar Novo Tipo de Sessão");
             btnConfirmPrice.setText("Confirmar");
         }
     }
 
-    public void remove(ActionEvent actionEvent) {
-        t.removeTicket(tableSession.getSelectionModel().getSelectedItem());
-        tableSession.setItems(t.loadTable());
+    public void remove(ActionEvent actionEvent) throws SQLException {
+        TicketDAO dao = new TicketDAO();
+        dao.delete(tableSession.getSelectionModel().getSelectedItem());
+        tableSession.setItems(dao.readAll());
     }
 }

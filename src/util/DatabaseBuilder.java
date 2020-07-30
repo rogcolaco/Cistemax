@@ -24,22 +24,28 @@ public class DatabaseBuilder {
 
     private static void build(){
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database.db");
-             Statement stmt = conn.createStatement()) {
+            Statement stmt = conn.createStatement()) {
             StringBuilder sql = new StringBuilder();
+
             sql.append("CREATE TABLE genre (\n" +
                     "\tid INTEGER NOT NULL PRIMARY KEY,\n" +
                     "\tname TEXT\n);\n" +
 
-                    "CREATE TABLE movie" +
-                    "id INTEGER NOT NULL PRIMARY KEY,\n" +
+                    "CREATE TABLE movie (\n" +
+                    "\tid INTEGER NOT NULL PRIMARY KEY,\n" +
                     "\tname TEXT,\n" +
                     "\tdirector TEXT,\n" +
                     "\tinTheaters BOOLEAN,\n" +
                     "\tduration INTEGER,\n" +
                     "\tgenre INTEGER,\n" +
-                    "\tgenre INTEGER,\n" +
-                    "\tFOREIGN KEY('genre') REFERENCES 'genre'('id')\n);");
-            stmt.execute(sql.toString());
+                    "\tFOREIGN KEY('genre') REFERENCES 'genre'('id')\n);\n" +
+
+                    "CREATE TABLE ticket (\n " +
+                    "\tid integer not null primary key, \n" +
+                    "\ttype TEXT not null, \n" +
+                    "\tprice number not null \n);\n");
+
+            stmt.executeUpdate(sql.toString());
 
             System.out.println("Database has been created ...");
         } catch (SQLException e) {
