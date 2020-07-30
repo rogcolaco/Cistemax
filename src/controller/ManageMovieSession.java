@@ -1,5 +1,6 @@
 package controller;
 
+import dao.TheaterDAO;
 import dao.TicketDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Theater;
 import model.Ticket;
 import util.SwitcherDisplay;
 
@@ -41,7 +43,7 @@ public class ManageMovieSession {
     @FXML private TextField txtMin;
 
     /*Verificar Classe*/
-    @FXML private ChoiceBox<String> cbTheater;
+    @FXML private ChoiceBox<Theater> cbTheater;
     @FXML private ChoiceBox<Ticket> cbSession;
     @FXML private ChoiceBox<String> cbMovieSession;
 
@@ -58,6 +60,7 @@ public class ManageMovieSession {
     }
 
     private ObservableList<Ticket> listTicket = FXCollections.observableArrayList();
+    private ObservableList<Theater> listTheater = FXCollections.observableArrayList();
 
 
     public void fill(){
@@ -66,6 +69,11 @@ public class ManageMovieSession {
         TicketDAO daoTicket = new TicketDAO();
         listTicket = daoTicket.readAll();;
         cbSession.setItems(listTicket);
+
+        /*Preenche o choice box com dados das salas cadastradas*/
+        TheaterDAO daoTheater = new TheaterDAO();
+        listTheater = daoTheater.readAll();;
+        cbTheater.setItems(listTheater);
     }
 
     public void newSale(ActionEvent actionEvent) {

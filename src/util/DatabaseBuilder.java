@@ -43,7 +43,12 @@ public class DatabaseBuilder {
                     "CREATE TABLE ticket (\n " +
                     "\tid integer not null primary key, \n" +
                     "\ttype TEXT not null, \n" +
-                    "\tprice number not null \n);\n");
+                    "\tprice number not null \n);\n" +
+
+                    "CREATE TABLE theater (\n" +
+                    "\tid integer not null primary key, \n" +
+                    "\tname TEXT not null, \n" +
+                    "\tqtdSeats number not null \n);\n");
 
             stmt.executeUpdate(sql.toString());
 

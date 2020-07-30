@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="471.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageTheater">
+<AnchorPane prefHeight="471.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageTheater">
     <children>
         <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
@@ -26,9 +26,9 @@
         </columns>
       </TableView>
         <Button fx:id="btnCancelOp" layoutX="505.0" layoutY="178.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="505.0" AnchorPane.topAnchor="178.0" />
-      <Button fx:id="btnConfirmTheater" layoutX="463.0" layoutY="374.0" mnemonicParsing="false" text="Confirmar Dados" AnchorPane.leftAnchor="463.0" AnchorPane.topAnchor="374.0" />
+      <Button fx:id="btnConfirmTheater" layoutX="463.0" layoutY="374.0" mnemonicParsing="false" onAction="#confirm" text="Confirmar Dados" AnchorPane.leftAnchor="463.0" AnchorPane.topAnchor="374.0" />
       <Button fx:id="btnUpdateTheater" layoutX="495.0" layoutY="64.0" mnemonicParsing="false" onAction="#updateTheater" text="Alterar Sala" AnchorPane.leftAnchor="495.0" AnchorPane.topAnchor="64.0" />
-      <Button fx:id="btnRemoveTheater" layoutX="496.0" layoutY="121.0" mnemonicParsing="false" text="Excluir Sala" AnchorPane.leftAnchor="495.0" AnchorPane.topAnchor="121.0" />
+      <Button fx:id="btnRemoveTheater" layoutX="496.0" layoutY="121.0" mnemonicParsing="false" onAction="#remove" text="Excluir Sala" AnchorPane.leftAnchor="495.0" AnchorPane.topAnchor="121.0" />
       <Label fx:id="lbTheaterFieldTitle" layoutX="296.0" layoutY="314.0" text="Cadastrar Nova Sala">
          <font>
             <Font name="System Bold" size="15.0" />
