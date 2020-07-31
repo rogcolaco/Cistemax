@@ -121,9 +121,16 @@ public class ManagePrice {
         TicketDAO dao = new TicketDAO();
         try {
             ticket.setType(txtSessionType.getText());
-            ticket.setValue(Double.parseDouble(txtSessionPrice.getText().replace(",",".")));
+            String s = new String(txtSessionPrice.getText().replace(",","."));
+            if(this.isNumber(s)) {
+                ticket.setValue(Double.parseDouble(s));
 
-            /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
+            } else {
+                /*Desvia para tratamento de exceção caso não seja aceito pelo regex*/
+                ticket.setValue(Double.parseDouble("Erro"));
+            }
+
+                /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
                 if(btnConfirmPrice.getText().equals("Alterar")){
                     ticket.setId(tableSession.getSelectionModel().getSelectedItem().getId());
                     dao.update(ticket);
@@ -151,5 +158,9 @@ public class ManagePrice {
         TicketDAO dao = new TicketDAO();
         dao.delete(tableSession.getSelectionModel().getSelectedItem());
         tableSession.setItems(dao.readAll());
+    }
+
+    public boolean isNumber(String s){
+        return s.matches("\\d+\\.\\d{0,2}") || s.matches("\\.\\d{0,2}");
     }
 }
