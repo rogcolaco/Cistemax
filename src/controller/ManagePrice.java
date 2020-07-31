@@ -116,30 +116,35 @@ public class ManagePrice {
         txtSessionPrice.setText(String.valueOf(ticket.getValue()));
     }
 
-    public void confirm(ActionEvent actionEvent) throws SQLException {
+    public void confirm(ActionEvent actionEvent) throws SQLException{
         Ticket ticket = new Ticket();
         TicketDAO dao = new TicketDAO();
-        ticket.setType(txtSessionType.getText());
-        ticket.setValue(Double.parseDouble(txtSessionPrice.getText()));
+        try {
+            ticket.setType(txtSessionType.getText());
+            ticket.setValue(Double.parseDouble(txtSessionPrice.getText().replace(",",".")));
 
-        /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
-        if(btnConfirmPrice.getText().equals("Alterar")){
-            ticket.setId(tableSession.getSelectionModel().getSelectedItem().getId());
-            dao.update(ticket);
-            tableSession.setItems(dao.readAll());
-            //t.removeTicket(tableSession.getSelectionModel().getSelectedItem());
-            lbPriceFieldTitle.setText("Cadastrar Novo Tipo de Sessão");
-            btnConfirmPrice.setText("Confirmar");
+            /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
+                if(btnConfirmPrice.getText().equals("Alterar")){
+                    ticket.setId(tableSession.getSelectionModel().getSelectedItem().getId());
+                    dao.update(ticket);
+                    tableSession.setItems(dao.readAll());
+                    lbPriceFieldTitle.setText("Cadastrar Novo Tipo de Sessão");
+                    btnConfirmPrice.setText("Confirmar");
 
-        /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
-        } else {
-            int max = dao.MaxId();
-            ticket.setId(max);
-            dao.save(ticket);
-            tableSession.setItems(dao.readAll());
+                /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
+                } else {
+                    int max = dao.MaxId();
+                    ticket.setId(max);
+                    dao.save(ticket);
+                    tableSession.setItems(dao.readAll());
+                }
+            txtSessionType.clear();
+            txtSessionPrice.clear();
+
+        } catch (NumberFormatException n){
+            MsgErro msg = new MsgErro();
+            msg.show();
         }
-        txtSessionType.clear();
-        txtSessionPrice.clear();
     }
 
     public void remove(ActionEvent actionEvent) throws SQLException {

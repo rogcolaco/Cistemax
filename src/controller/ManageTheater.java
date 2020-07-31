@@ -113,27 +113,31 @@ public class ManageTheater {
     public void confirm(ActionEvent actionEvent) throws SQLException {
         Theater theater = new Theater();
         TheaterDAO dao = new TheaterDAO();
-        theater.setName(txtTheaterName.getText());
-        theater.setQtdSeats(Integer.parseInt(txtQtdSeats.getText()));
+        try {
+            theater.setName(txtTheaterName.getText());
+            theater.setQtdSeats(Integer.parseInt(txtQtdSeats.getText()));
 
-        /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
-        if(btnConfirmTheater.getText().equals("Alterar")){
-            theater.setId(tableTheater.getSelectionModel().getSelectedItem().getId());
-            dao.update(theater);
-            tableTheater.setItems(dao.readAll());
-            //t.removeTicket(tableSession.getSelectionModel().getSelectedItem());
-            lbTheaterFieldTitle.setText("Cadastrar Nova Sala");
-            btnConfirmTheater.setText("Confirmar");
+            /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
+            if (btnConfirmTheater.getText().equals("Alterar")) {
+                theater.setId(tableTheater.getSelectionModel().getSelectedItem().getId());
+                dao.update(theater);
+                tableTheater.setItems(dao.readAll());
+                lbTheaterFieldTitle.setText("Cadastrar Nova Sala");
+                btnConfirmTheater.setText("Confirmar");
 
-            /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
-        } else {
-            int max = dao.MaxId();
-            theater.setId(max);
-            dao.save(theater);
-            tableTheater.setItems(dao.readAll());
+                /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
+            } else {
+                int max = dao.MaxId();
+                theater.setId(max);
+                dao.save(theater);
+                tableTheater.setItems(dao.readAll());
+            }
+            txtTheaterName.clear();
+            txtQtdSeats.clear();
+        } catch (NumberFormatException n){
+            MsgErro msg = new MsgErro();
+            msg.show();
         }
-        txtTheaterName.clear();
-        txtQtdSeats.clear();
     }
 
     public void remove(ActionEvent actionEvent) throws SQLException {
