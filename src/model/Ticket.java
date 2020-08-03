@@ -50,6 +50,10 @@ public class Ticket {
     public Ticket() {
     }
 
+    public boolean isDouble(String s){
+        return s.matches("\\d+\\.\\d{0,2}") || s.matches("\\.\\d{0,2}");
+    }
+
     @Override
     public String toString() {
         return this.type;

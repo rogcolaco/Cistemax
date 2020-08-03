@@ -122,7 +122,7 @@ public class ManagePrice {
         try {
             ticket.setType(txtSessionType.getText());
             String s = new String(txtSessionPrice.getText().replace(",","."));
-            if(this.isNumber(s)) {
+            if(ticket.isDouble(s)) {
                 ticket.setValue(Double.parseDouble(s));
 
             } else {
@@ -160,7 +160,4 @@ public class ManagePrice {
         tableSession.setItems(dao.readAll());
     }
 
-    public boolean isNumber(String s){
-        return s.matches("\\d+\\.\\d{0,2}") || s.matches("\\.\\d{0,2}");
-    }
 }
