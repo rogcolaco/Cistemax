@@ -26,7 +26,7 @@
         </columns>
       </TableView>
       <Button fx:id="btnUpdateGenre" layoutX="386.0" layoutY="52.0" mnemonicParsing="false" onAction="#updateGenre" text="Alterar Gênero" AnchorPane.leftAnchor="386.0" AnchorPane.topAnchor="52.0" />
-      <Button fx:id="btnRemoveGenre" layoutX="380.0" layoutY="116.0" mnemonicParsing="false" text="Remover Gênero" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="116.0" />
+      <Button fx:id="btnRemoveGenre" layoutX="380.0" layoutY="116.0" mnemonicParsing="false" onAction="#removeGenre" text="Remover Gênero" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="116.0" />
       <Separator layoutX="132.0" layoutY="262.0" prefHeight="3.0" prefWidth="468.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="0.0" />
       <Label fx:id="lbGenreFieldTitle" layoutX="289.0" layoutY="273.0" text="Cadastrar Gênero">
          <font>
@@ -34,7 +34,7 @@
          </font>
       </Label>
       <Label layoutX="164.0" layoutY="316.0" text="Nome do gênero:" AnchorPane.leftAnchor="164.0" AnchorPane.topAnchor="316.0" />
-      <Button fx:id="btnConfirmGenre" layoutX="453.0" layoutY="312.0" mnemonicParsing="false" text="Confirmar Cadastro" AnchorPane.leftAnchor="453.0" AnchorPane.topAnchor="312.0" />
+      <Button fx:id="btnConfirmGenre" layoutX="453.0" layoutY="312.0" mnemonicParsing="false" onAction="#addGenre" text="Confirmar Cadastro" AnchorPane.leftAnchor="453.0" AnchorPane.topAnchor="312.0" />
       <TextField fx:id="txtGenreName" layoutX="272.0" layoutY="312.0" AnchorPane.leftAnchor="272.0" AnchorPane.topAnchor="312.0" />
     </children>
 

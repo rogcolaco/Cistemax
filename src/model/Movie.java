@@ -7,6 +7,9 @@ public class Movie {
     boolean inTheaters;
     Genre genre;
 
+    public Movie(){
+    }
+
     public Movie(int id, int duration, String name, String director, String parentalRating, boolean inTheaters, Genre genre) {
         this.id = id;
         this.duration = duration;
@@ -57,7 +60,7 @@ public class Movie {
         this.parentalRating = parentalRating;
     }
 
-    public boolean isInTheaters() {
+    public boolean getInTheaters() {
         return inTheaters;
     }
 

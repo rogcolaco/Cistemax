@@ -35,9 +35,10 @@ public class DatabaseBuilder {
                     "\tid INTEGER NOT NULL PRIMARY KEY,\n" +
                     "\tname TEXT,\n" +
                     "\tdirector TEXT,\n" +
-                    "\tinTheaters BOOLEAN,\n" +
+                    "\tparentalRating TEXT,\n" +
                     "\tduration INTEGER,\n" +
                     "\tgenre INTEGER,\n" +
+                    "\tinTheaters BOOLEAN,\n" +
                     "\tFOREIGN KEY('genre') REFERENCES 'genre'('id')\n);\n" +
 
                     "CREATE TABLE ticket (\n " +
