@@ -71,6 +71,8 @@ public class MovieDAO implements DAO <Movie>{
         public void save(Movie f) throws SQLException {
             Connection conn = ConnectionFactory.createConnection();
             conn.setAutoCommit(false);
+            System.out.println(f.getId());
+            System.out.println(f.getName());
             try {
                 int id = this.MaxId();
                 String sql = "insert into movie (id, duration, name, director, parentalRating, genre, inTheaters) " +

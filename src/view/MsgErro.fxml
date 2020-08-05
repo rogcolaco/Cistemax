@@ -4,10 +4,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="212.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MsgErro">
+<AnchorPane prefHeight="212.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MsgErro">
    <children>
       <Button fx:id="btnOk" layoutX="229.0" layoutY="129.0" mnemonicParsing="false" onAction="#confirm" text="OK" AnchorPane.leftAnchor="229.0" AnchorPane.topAnchor="129.0" />
-      <Label layoutX="108.0" layoutY="71.0" text="Por Favor Informe Valores Válidos " AnchorPane.leftAnchor="108.0" AnchorPane.topAnchor="71.0">
+      <Label layoutX="108.0" layoutY="71.0" text="Por Favor, Informe Dados Válidos !" AnchorPane.leftAnchor="108.0" AnchorPane.topAnchor="71.0">
          <font>
             <Font size="18.0" />
          </font>

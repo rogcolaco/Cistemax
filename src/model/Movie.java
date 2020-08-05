@@ -1,5 +1,9 @@
 package model;
 
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TableColumn;
+import javafx.util.Callback;
+
 public class Movie {
 
     int id, duration;
@@ -60,7 +64,7 @@ public class Movie {
         this.parentalRating = parentalRating;
     }
 
-    public boolean getInTheaters() {
+    public Boolean getInTheaters() {
         return inTheaters;
     }
 

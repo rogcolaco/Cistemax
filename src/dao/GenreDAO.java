@@ -1,5 +1,6 @@
 package dao;
 
+import controller.MsgErro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Genre;
@@ -67,7 +68,6 @@ public class GenreDAO implements DAO <Genre>{
         } finally {
             conn.close();
         }
-
     }
 
     @Override

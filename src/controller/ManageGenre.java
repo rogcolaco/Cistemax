@@ -45,39 +45,48 @@ public class ManageGenre extends MenuPrincipal{
 
 
     public void updateGenre(ActionEvent actionEvent) {
-        lbGenreFieldTitle.setText("Alterar Gênero");
-        btnConfirmGenre.setText("Alterar");
+        if (tableGenre.getSelectionModel().getSelectedItem() != null){
+            lbGenreFieldTitle.setText("Alterar Gênero");
+            btnConfirmGenre.setText("Alterar");
 
-        Genre genre = tableGenre.getSelectionModel().getSelectedItem();
-        txtGenreName.setText((genre.getName()));
+            Genre genre = tableGenre.getSelectionModel().getSelectedItem();
+            txtGenreName.setText((genre.getName()));
+        }
     }
 
     public void removeGenre(ActionEvent actionEvent) throws SQLException {
         GenreDAO dao = new GenreDAO();
-        dao.delete(tableGenre.getSelectionModel().getSelectedItem());
-        tableGenre.setItems(dao.readAll());
+        if (tableGenre.getSelectionModel().getSelectedItem() != null) {
+            dao.delete(tableGenre.getSelectionModel().getSelectedItem());
+            tableGenre.setItems(dao.readAll());
+        } else { return;}
     }
 
     public void addGenre(ActionEvent actionEvent) throws SQLException {
         Genre genre = new Genre();
         GenreDAO dao = new GenreDAO();
-
         genre.setName(txtGenreName.getText());
-        /*Caso o botão de confirmação seja utilizado para alterar um gênero*/
-        if (btnConfirmGenre.getText().equals("Alterar")) {
-            genre.setId(tableGenre.getSelectionModel().getSelectedItem().getId());
-            dao.update(genre);
-            tableGenre.setItems(dao.readAll());
-            lbGenreFieldTitle.setText("Cadastrar Novo Gênero");
-            btnConfirmGenre.setText("Confirmar");
 
-            /*Caso o botão de confirmação seja utilizado para salvar um novo gênero*/
+        if (genre.getName().length() > 0) {
+            /*Caso o botão de confirmação seja utilizado para alterar um gênero*/
+            if (btnConfirmGenre.getText().equals("Alterar")) {
+                genre.setId(tableGenre.getSelectionModel().getSelectedItem().getId());
+                dao.update(genre);
+                tableGenre.setItems(dao.readAll());
+                lbGenreFieldTitle.setText("Cadastrar Novo Gênero");
+                btnConfirmGenre.setText("Confirmar");
+
+                /*Caso o botão de confirmação seja utilizado para salvar um novo gênero*/
+            } else {
+                int max = dao.MaxId();
+                genre.setId(max);
+                dao.save(genre);
+                tableGenre.setItems(dao.readAll());
+            }
+            txtGenreName.clear();
         } else {
-            int max = dao.MaxId();
-            genre.setId(max);
-            dao.save(genre);
-            tableGenre.setItems(dao.readAll());
+            MsgErro msg = new MsgErro();
+            msg.show();
         }
-        txtGenreName.clear();
     }
 }
