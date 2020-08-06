@@ -1,5 +1,6 @@
 package controller;
 
+import com.oracle.webservices.internal.api.message.PropertySet;
 import dao.GenreDAO;
 import dao.MovieDAO;
 import javafx.beans.value.ObservableValue;
@@ -81,8 +82,9 @@ public class ManageMovie extends MenuPrincipal{
             txtMovieName.setText(movie.getName());
             txtDirName.setText(movie.getDirector());
             txtDuration.setText(String.valueOf(movie.getDuration()));
-            cbGenre.setValue(tableMovie.getSelectionModel().getSelectedItem().getGenre());
-            cbParentalControl.setValue(tableMovie.getSelectionModel().getSelectedItem().getParentalRating());
+            cbGenre.setValue(movie.getGenre());
+            cbParentalControl.setValue(movie.getParentalRating());
+            checkCartaz.setSelected(movie.getInTheaters());
         }
     }
 
@@ -91,7 +93,7 @@ public class ManageMovie extends MenuPrincipal{
         MovieDAO dao = new MovieDAO();
         movie.setName(txtMovieName.getText());
         movie.setDirector(txtDirName.getText());
-        movie.setDuration(Integer.parseInt(txtDuration.getText()));
+        movie.setDuration(txtDuration.getText().equals("") ? 0 : Integer.parseInt(txtDuration.getText()));
         movie.setGenre(cbGenre.getSelectionModel().getSelectedItem());
         movie.setInTheaters(checkCartaz.isSelected());
         movie.setParentalRating(cbParentalControl.getValue());
