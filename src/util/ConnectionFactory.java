@@ -1,5 +1,7 @@
 package util;
 
+import org.sqlite.SQLiteConfig;
+
 import java.sql.*;
 
 public class ConnectionFactory implements AutoCloseable {

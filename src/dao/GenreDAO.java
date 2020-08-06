@@ -32,7 +32,7 @@ public class GenreDAO implements DAO <Genre>{
         return null;
     }
 
-    public Genre getById(int id){
+    public Genre getById(int id) throws SQLException {
         Genre genre = null;
         Connection conn = ConnectionFactory.createConnection();
         try{
@@ -42,10 +42,12 @@ public class GenreDAO implements DAO <Genre>{
             ResultSet res = prep.executeQuery();
             if (res != null){
                 genre = new Genre(res.getInt("id"), res.getString("name"));
+                conn.close();
                 return  genre;
             }
             return null;
         } catch (SQLException e) {
+            conn.close();
             e.printStackTrace();
         }
         return null;

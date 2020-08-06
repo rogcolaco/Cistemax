@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class MovieDAO implements DAO <Movie>{
 
-        public ObservableList<Movie> readAll(){
+        public ObservableList<Movie> readAll() throws SQLException {
             ObservableList<Movie> list = FXCollections.observableArrayList();
             Connection conn = ConnectionFactory.createConnection();
             try{
@@ -35,12 +35,13 @@ public class MovieDAO implements DAO <Movie>{
                 }
                 return  list;
             } catch (SQLException e) {
+                conn.close();
                 e.printStackTrace();
             }
             return null;
         }
 
-        public Movie getById(int id){
+        public Movie getById(int id) throws SQLException {
             Connection conn = ConnectionFactory.createConnection();
             try{
                 String sql = "select * from movie where id = ?";
@@ -58,10 +59,13 @@ public class MovieDAO implements DAO <Movie>{
                             res.getBoolean("inTheaters"),
                             genre
                     );
+                    conn.close();
                     return  movie;
                 }
+                conn.close();
                 return null;
             } catch (SQLException e) {
+                conn.close();
                 e.printStackTrace();
             }
             return null;
@@ -71,8 +75,6 @@ public class MovieDAO implements DAO <Movie>{
         public void save(Movie f) throws SQLException {
             Connection conn = ConnectionFactory.createConnection();
             conn.setAutoCommit(false);
-            System.out.println(f.getId());
-            System.out.println(f.getName());
             try {
                 int id = this.MaxId();
                 String sql = "insert into movie (id, duration, name, director, parentalRating, genre, inTheaters) " +
@@ -86,6 +88,7 @@ public class MovieDAO implements DAO <Movie>{
                 prep.setInt(6, f.getGenre().getId());
                 prep.setBoolean(7, f.getInTheaters());
                 prep.execute();
+                prep.close();
                 conn.commit();
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -54,14 +54,14 @@ public class ManageMovie extends MenuPrincipal{
 
 
     @FXML
-    public void initialize(){
+    public void initialize() throws SQLException {
         /*Preenche o Choice Box da Classificação indicativa*/
         ParentalControl pc = new ParentalControl();
         cbParentalControl.setItems(pc.loadParentalControl());
         Fill();
     }
 
-    public void Fill(){
+    public void Fill() throws SQLException {
         GenreDAO daoGenre = new GenreDAO();
         cbGenre.setItems(daoGenre.readAll());
         MovieDAO daoMovie = new MovieDAO();
@@ -81,7 +81,8 @@ public class ManageMovie extends MenuPrincipal{
             txtMovieName.setText(movie.getName());
             txtDirName.setText(movie.getDirector());
             txtDuration.setText(String.valueOf(movie.getDuration()));
-            cGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+            cbGenre.setValue(tableMovie.getSelectionModel().getSelectedItem().getGenre());
+            cbParentalControl.setValue(tableMovie.getSelectionModel().getSelectedItem().getParentalRating());
         }
     }
 
@@ -105,22 +106,30 @@ public class ManageMovie extends MenuPrincipal{
 
                 /*Caso o botão de confirmação seja utilizado para salvar um filme novo*/
             } else {
-                int max = dao.MaxId();
-                movie.setId(max);
+                //int max = dao.MaxId();
+                //movie.setId(max);
                 dao.save(movie);
                 tableMovie.setItems(dao.readAll());
             }
             txtMovieName.clear();
             txtDirName.clear();
             txtDuration.clear();
-            //cbGenre;
+            cbGenre.getSelectionModel().clearSelection();
+            cbParentalControl.getSelectionModel().clearSelection();
             checkCartaz.setSelected(false);
-            //cbParentalControl;
             tableMovie.setItems(dao.readAll());
         } else {
             MsgErro msg = new MsgErro();
             msg.show();
         }
         return;
+    }
+
+    public void deleteMovie(ActionEvent actionEvent) throws SQLException {
+        MovieDAO dao = new MovieDAO();
+        if (tableMovie.getSelectionModel().getSelectedItem() != null) {
+            dao.delete(tableMovie.getSelectionModel().getSelectedItem());
+            tableMovie.setItems(dao.readAll());
+        } else { return;}
     }
 }

@@ -21,7 +21,7 @@
         <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
       <Button fx:id="btnCancelOp" layoutX="636.0" layoutY="208.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancelar" AnchorPane.leftAnchor="636.0" AnchorPane.topAnchor="208.0" />
       <Button fx:id="btnUpdateMovie" layoutX="623.0" layoutY="39.0" mnemonicParsing="false" onAction="#updateMovie" text="Alterar Filme" AnchorPane.leftAnchor="623.0" AnchorPane.topAnchor="39.0" />
-      <Button layoutX="611.0" layoutY="135.0" mnemonicParsing="false" text="Remover Filme" AnchorPane.leftAnchor="617.0" AnchorPane.topAnchor="135.0" />
+      <Button fx:id="btnRemoveMovie" layoutX="611.0" layoutY="135.0" mnemonicParsing="false" onAction="#deleteMovie" text="Remover Filme" AnchorPane.leftAnchor="617.0" AnchorPane.topAnchor="135.0" />
       <Button fx:id="btnConfirmMovie" layoutX="560.0" layoutY="519.0" mnemonicParsing="false" onAction="#addMovie" text="Cadastrar Filme" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="519.0" />
       <CheckBox fx:id="checkCartaz" layoutX="572.0" layoutY="390.0" mnemonicParsing="false" text="Em Cartaz" AnchorPane.leftAnchor="572.0" AnchorPane.topAnchor="390.0" />
       <ChoiceBox fx:id="cbGenre" layoutX="357.0" layoutY="386.0" prefWidth="150.0" AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="386.0" />
