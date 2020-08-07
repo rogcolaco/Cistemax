@@ -14,13 +14,21 @@ import java.sql.SQLException;
 
 public class SessionDAO implements DAO <Session>{
 
-        public ObservableList<Session> readAll() throws SQLException {
+        public ObservableList<Session> readAll(int idTheater) throws SQLException {
             ObservableList<Session> list = FXCollections.observableArrayList();
             Connection conn = ConnectionFactory.createConnection();
             try{
-                String sql = "select * from session";
+                String sql = "select * from session where theater = ? ";
                 PreparedStatement prep = conn.prepareStatement(sql);
+                prep.setInt(1, idTheater);
                 ResultSet res = prep.executeQuery();
+                while (res.next()) {
+                    Session session = new Session(res.getInt("theater"),
+                            res.getString("starts_at"),
+                            res.getString("ends_at"),
+                            res.getBoolean("promotional"));
+                    list.add(session);
+                };
                 return list;
             } catch (SQLException e) {
                 conn.close();

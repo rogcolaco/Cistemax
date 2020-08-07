@@ -62,10 +62,10 @@ public class ManageMovieSession extends MenuPrincipal{
     @FXML private ChoiceBox<Movie> cbMovieSession;
 
     /*Verificar Classe*/
-    @FXML private TableView<String> tableSession;
+    @FXML private TableView<Session> tableSession;
     @FXML private TableColumn<String,String> cMovieSession;
-    @FXML private TableColumn<String, String> cDirMovieSession;
-    @FXML private TableColumn<String,String> cGenre;
+    @FXML private TableColumn<String, String> cStartsAt;
+    @FXML private TableColumn<String, String> cEndsAt;
     @FXML private TableColumn<String,String> cSessionType;
 
     @FXML
@@ -95,6 +95,14 @@ public class ManageMovieSession extends MenuPrincipal{
         cbMovieSession.setItems(listMovie);
     }
 
+    public void updateMovies(ActionEvent actionEvent) throws SQLException {
+        SessionDAO daoSession = new SessionDAO();
+        cMovieSession.setCellValueFactory(new PropertyValueFactory<>("movie"));
+        cStartsAt.setCellValueFactory(new PropertyValueFactory<>("starts"));
+        cEndsAt.setCellValueFactory(new PropertyValueFactory<>("ends"));
+        cSessionType.setCellValueFactory(new PropertyValueFactory<>("promotional"));
+        tableSession.setItems(daoSession.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
+    }
 
     public void updateSession(ActionEvent actionEvent) {
         lbSessionFieldTitle.setText("Alterar Sala");

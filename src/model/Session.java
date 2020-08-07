@@ -4,6 +4,12 @@ public class Session {
     private boolean promotional;
     private int id, movie, theater;
     private String starts, ends, seats;
+    public Session(int theater, String starts, String ends, boolean promotional) {
+        this.theater = theater;
+        this.starts = starts;
+        this.ends = ends;
+        this.promotional = promotional;
+    }
 
     public Session(){
     }

@@ -24,20 +24,20 @@
       <Button fx:id="btnUpdateSession" layoutX="537.0" layoutY="88.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="537.0" AnchorPane.topAnchor="88.0" />
       <Button fx:id="btnRemoveSession" layoutX="531.0" layoutY="149.0" mnemonicParsing="false" text="Remover Sessão" AnchorPane.leftAnchor="531.0" AnchorPane.topAnchor="149.0" />
       <Button fx:id="btnConfirmSession" layoutX="501.0" layoutY="550.0" mnemonicParsing="false" onAction="#addSession" text="Cadastrar Sessão" AnchorPane.leftAnchor="501.0" AnchorPane.topAnchor="550.0" />
-      <ChoiceBox fx:id="cbTheater" layoutX="256.0" layoutY="27.0" prefWidth="150.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="27.0" />
+      <ChoiceBox fx:id="cbTheater" layoutX="256.0" layoutY="27.0" onAction="#updateMovies" prefWidth="150.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="27.0" />
       <Label layoutX="147.0" layoutY="31.0" text="Selecione a Sala:" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="31.0" />
-      <TableView fx:id="tableSession" layoutX="147.0" layoutY="61.0" prefHeight="200.0" prefWidth="363.0" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="61.0">
+      <TableView fx:id="tableSession" layoutX="147.0" layoutY="61.0" prefHeight="200.0" prefWidth="374.0" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="61.0">
         <columns>
-          <TableColumn fx:id="cMovieSession" prefWidth="116.0" text="Nome do Filme" />
-          <TableColumn fx:id="cDirMovieSession" prefWidth="64.0" text="Diretor" />
-            <TableColumn fx:id="cGenre" prefWidth="75.0" text="Gênero" />
-            <TableColumn fx:id="cSessionType" prefWidth="106.0" text="Tipo da Sessão" />
+          <TableColumn fx:id="cMovieSession" prefWidth="180.0" text="Nome do Filme" />
+          <TableColumn fx:id="cStartsAt" prefWidth="58.0" text="Início" />
+            <TableColumn fx:id="cEndsAt" prefWidth="62.0" text="Término" />
+            <TableColumn fx:id="cSessionType" prefWidth="71.0" text="Promoção?" />
         </columns>
       </TableView>
       <Label layoutX="154.0" layoutY="336.0" text="Nome do Filme:" AnchorPane.leftAnchor="154.0" AnchorPane.topAnchor="336.0" />
       <Separator layoutX="130.0" layoutY="269.0" prefHeight="3.0" prefWidth="532.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="1.0" />
       <ChoiceBox fx:id="cbMovieSession" layoutX="250.0" layoutY="332.0" prefHeight="25.0" prefWidth="174.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="332.0" />
-      <DatePicker layoutX="169.0" layoutY="402.0" AnchorPane.leftAnchor="169.0" AnchorPane.topAnchor="402.0" />
+      <DatePicker fx:id="dtInitial" layoutX="169.0" layoutY="402.0" AnchorPane.leftAnchor="169.0" AnchorPane.topAnchor="402.0" />
       <DatePicker layoutX="426.0" layoutY="402.0" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="402.0" />
       <Label layoutX="218.0" layoutY="378.0" text="Data Início" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="378.0" />
       <Label layoutX="482.0" layoutY="378.0" text="Data Fim" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="378.0" />
