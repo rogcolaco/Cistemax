@@ -83,16 +83,17 @@ public class SessionDAO implements DAO <Session>{
             conn.setAutoCommit(false);
             try {
                 int id = this.MaxId();
-                String sql = "insert into session (id, starts_at, ends_at, seat_map, movie, theater, promotional) " +
-                        "values (?, ?, ?, ?, ?, ?, ?)";
+                String sql = "insert into session (id, date, starts_at, ends_at, seat_map, movie, theater, promotional) " +
+                        "values (?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement prep = conn.prepareStatement(sql);
                 prep.setInt(1, id);
-                prep.setString(2, f.getStarts());
-                prep.setString(3, f.getEnds());
-                prep.setString(4, f.getSeats());
-                prep.setInt(5, f.getMovie());
-                prep.setInt(6, f.getTheater());
-                prep.setBoolean(7, f.isPromotional());
+                prep.setString(2, f.getDate());
+                prep.setString(3, f.getStarts());
+                prep.setString(4, f.getEnds());
+                prep.setString(5, f.getSeats());
+                prep.setInt(6, f.getMovie());
+                prep.setInt(7, f.getTheater());
+                prep.setBoolean(8, f.isPromotional());
                 prep.execute();
                 prep.close();
                 conn.commit();

@@ -55,6 +55,9 @@ public class ManageMovieSession extends MenuPrincipal{
     @FXML private CheckBox checkSun;
     @FXML private TextField txtHour;
     @FXML private TextField txtMin;
+    @FXML private DatePicker dtInitial;
+    @FXML private DatePicker dtFinal;
+
 
     /*Verificar Classe*/
     @FXML private ChoiceBox<Theater> cbTheater;
@@ -141,9 +144,11 @@ public class ManageMovieSession extends MenuPrincipal{
 
         System.out.println("Max id: " + dao.MaxId());
         session.setId(dao.MaxId());
+        System.out.println("Initial Date: " + dtInitial.getValue());
+        session.setDate(dtInitial.getValue().toString());
         System.out.println("Starts: " + formatoHoraMin.format(startsAt));
         session.setStarts(formatoHoraMin.format(startsAt));
-        System.out.println("Ends(MOCK): " + formatoHoraMin.format(c.getTime()));
+        System.out.println("Ends: " + formatoHoraMin.format(c.getTime()));
         session.setEnds(formatoHoraMin.format(c.getTime()));
         System.out.println("Seat Map:" + createSeatMap(qtdSeat));
         session.setSeats(createSeatMap(qtdSeat));

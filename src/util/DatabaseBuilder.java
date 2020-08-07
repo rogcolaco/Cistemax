@@ -53,6 +53,7 @@ public class DatabaseBuilder {
 
                     "CREATE TABLE session (" +
                     " id INTEGER NOT NULL PRIMARY KEY," +
+                    " date TEXT, " +
                     " starts_at TEXT," +
                     " ends_at TEXT," +
                     " seat_map TEXT," +

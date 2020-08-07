@@ -3,7 +3,10 @@ package model;
 public class Session {
     private boolean promotional;
     private int id, movie, theater;
-    private String starts, ends, seats;
+    private String starts;
+    private String ends;
+    private String seats;
+
     public Session(int theater, String starts, String ends, boolean promotional) {
         this.theater = theater;
         this.starts = starts;
@@ -11,10 +14,20 @@ public class Session {
         this.promotional = promotional;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    private String date;
+
     public Session(){
     }
 
-    public Session(boolean promotional, int id, int movie, int theater, String starts, String ends, String seats) {
+    public Session(boolean promotional, int id, int movie, int theater, String starts, String ends, String seats, String date) {
         this.promotional = promotional;
         this.id = id;
         this.movie = movie;
@@ -22,6 +35,7 @@ public class Session {
         this.starts = starts;
         this.ends = ends;
         this.seats = seats;
+        this.date = date;
     }
 
     public boolean isPromotional() {
