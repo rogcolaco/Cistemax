@@ -45,7 +45,7 @@ public class ManageMovieSession extends MenuPrincipal{
     /*Verificar Classe*/
     @FXML private ChoiceBox<Theater> cbTheater;
     @FXML private ChoiceBox<Ticket> cbSession;
-    @FXML private ChoiceBox<String> cbMovieSession;
+    @FXML private ChoiceBox<Movie> cbMovieSession;
 
     /*Verificar Classe*/
     @FXML private TableView<String> tableSession;
@@ -55,15 +55,16 @@ public class ManageMovieSession extends MenuPrincipal{
     @FXML private TableColumn<String,String> cSessionType;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws SQLException {
         fill();
     }
 
     private ObservableList<Ticket> listTicket = FXCollections.observableArrayList();
     private ObservableList<Theater> listTheater = FXCollections.observableArrayList();
+    private ObservableList<Movie> listMovie = FXCollections.observableArrayList();
 
 
-    public void fill(){
+    public void fill() throws SQLException {
 
         /*Preenche o choice box com dados dos tipos de sessão cadastrados*/
         TicketDAO daoTicket = new TicketDAO();
@@ -74,6 +75,10 @@ public class ManageMovieSession extends MenuPrincipal{
         TheaterDAO daoTheater = new TheaterDAO();
         listTheater = daoTheater.readAll();;
         cbTheater.setItems(listTheater);
+
+        MovieDAO daoMovie = new MovieDAO();
+        listMovie = daoMovie.readAll(true);
+        cbMovieSession.setItems(listMovie);
     }
 
 
