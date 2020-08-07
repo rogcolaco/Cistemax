@@ -1,5 +1,7 @@
 package controller;
 
+import dao.MovieDAO;
+import dao.SessionDAO;
 import dao.TheaterDAO;
 import dao.TicketDAO;
 import javafx.collections.FXCollections;
@@ -9,11 +11,23 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Movie;
+import model.Session;
 import model.Theater;
 import model.Ticket;
+import org.sqlite.date.DateFormatUtils;
 import util.SwitcherDisplay;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import com.google.gson.Gson;
 
 public class ManageMovieSession extends MenuPrincipal{
 
@@ -85,5 +99,52 @@ public class ManageMovieSession extends MenuPrincipal{
     public void updateSession(ActionEvent actionEvent) {
         lbSessionFieldTitle.setText("Alterar Sala");
         btnConfirmSession.setText("Confirma Alteração");
+    }
+
+    private String createSeatMap(int qtd) {
+        Map<Integer, Boolean> seats = new HashMap<Integer, Boolean>();
+        Gson gson = new Gson();
+
+        for (int i = 1; i <= qtd; i++) {
+            seats.put(i,false);
+        }
+
+        return gson.toJson(seats);
+    }
+
+//    private Map<Integer, Boolean> readSeatMap(String j) {
+//        Gson gson = new Gson();
+//        Map<Integer, Boolean> json = gson.fromJson(j);
+//        return json;
+//    }
+
+    public void addSession(ActionEvent actionEvent) throws SQLException, ParseException {
+        Session session = new Session();
+        SessionDAO dao = new SessionDAO();
+        SimpleDateFormat formatoHoraMin = new SimpleDateFormat("HH:mm");
+        Calendar c = Calendar.getInstance();
+        Date startsAt = formatoHoraMin.parse(txtHour.getText() + ":" + txtMin.getText());
+        int duration = cbMovieSession.getSelectionModel().getSelectedItem().getDuration();
+        int idMovie = cbMovieSession.getSelectionModel().getSelectedItem().getId();
+        int idTheater = cbTheater.getSelectionModel().getSelectedItem().getId();
+        int qtdSeat = cbTheater.getSelectionModel().getSelectedItem().getQtdSeats();
+        c.setTime(startsAt);
+        c.add(Calendar.MINUTE, duration);
+
+        System.out.println("Max id: " + dao.MaxId());
+        session.setId(dao.MaxId());
+        System.out.println("Starts: " + formatoHoraMin.format(startsAt));
+        session.setStarts(formatoHoraMin.format(startsAt));
+        System.out.println("Ends(MOCK): " + formatoHoraMin.format(c.getTime()));
+        session.setEnds(formatoHoraMin.format(c.getTime()));
+        System.out.println("Seat Map:" + createSeatMap(qtdSeat));
+        session.setSeats(createSeatMap(qtdSeat));
+        System.out.println("ID Movie: " + idMovie);
+        session.setMovie(idMovie);
+        System.out.println("ID Theater: " + idTheater);
+        session.setTheater(idTheater);
+        System.out.println("Promotional:" + checkPromo.isSelected());
+        session.setPromotional(checkPromo.isSelected());
+        dao.save(session);
     }
 }

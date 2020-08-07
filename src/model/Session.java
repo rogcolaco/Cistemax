@@ -2,17 +2,17 @@ package model;
 
 public class Session {
     private boolean promotional;
-    private int id, movie, theather;
+    private int id, movie, theater;
     private String starts, ends, seats;
 
     public Session(){
     }
 
-    public Session(boolean promotional, int id, int movie, int theather, String starts, String ends, String seats) {
+    public Session(boolean promotional, int id, int movie, int theater, String starts, String ends, String seats) {
         this.promotional = promotional;
         this.id = id;
         this.movie = movie;
-        this.theather = theather;
+        this.theater = theater;
         this.starts = starts;
         this.ends = ends;
         this.seats = seats;
@@ -42,12 +42,12 @@ public class Session {
         this.movie = movie;
     }
 
-    public int getTheather() {
-        return theather;
+    public int getTheater() {
+        return theater;
     }
 
-    public void setTheather(int theather) {
-        this.theather = theather;
+    public void setTheater(int theather) {
+        this.theater = theater;
     }
 
     public String getStarts() {
