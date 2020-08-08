@@ -15,6 +15,7 @@ import model.Session;
 import model.Theater;
 import model.Ticket;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -125,6 +126,12 @@ public class ManageMovieSession extends MenuPrincipal{
 //        return json;
 //    }
 
+    public boolean validSession(Session session) throws SQLException {
+        SessionDAO dao = new SessionDAO();
+        ResultSet res = dao.checkSessions(session);
+        return res.next();
+    }
+
     public void addSession(ActionEvent actionEvent) throws SQLException, ParseException {
         try {
             Session session = new Session();
@@ -156,7 +163,11 @@ public class ManageMovieSession extends MenuPrincipal{
                 session.setTheater(idTheater);
                 session.setTicket(idTicket);
                 session.setPromotional(checkPromo.isSelected());
-
+                if(validSession(session)) {
+                    MsgErro msg = new MsgErro();
+                    msg.show();
+                    break;
+                }
                 if (checkMon.isSelected() && date.getDayOfWeek().toString() == "MONDAY") {
                     dao.save(session);
                 }
