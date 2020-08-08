@@ -116,7 +116,6 @@ public class ManageMovieSession extends MenuPrincipal{
         for (int i = 1; i <= qtd; i++) {
             seats.put(i,false);
         }
-
         return gson.toJson(seats);
     }
 
@@ -155,8 +154,9 @@ public class ManageMovieSession extends MenuPrincipal{
                 session.setSeats(createSeatMap(qtdSeat));
                 session.setMovie(idMovie);
                 session.setTheater(idTheater);
-                session.setPromotional(checkPromo.isSelected());
                 session.setTicket(idTicket);
+                session.setPromotional(checkPromo.isSelected());
+
                 if (checkMon.isSelected() && date.getDayOfWeek().toString() == "MONDAY") {
                     dao.save(session);
                 }
@@ -178,10 +178,20 @@ public class ManageMovieSession extends MenuPrincipal{
                 if (checkSun.isSelected() && date.getDayOfWeek().toString() == "SUNDAY") {
                     dao.save(session);
                 }
+                tableSession.setItems(dao.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
+
             }
         } catch(Exception e) {
             MsgErro msg = new MsgErro();
             msg.show();
         }
+    }
+
+    public void deleteSession(ActionEvent actionEvent) throws SQLException {
+        SessionDAO dao = new SessionDAO();
+        if (tableSession.getSelectionModel().getSelectedItem() != null) {
+            dao.delete(tableSession.getSelectionModel().getSelectedItem());
+            tableSession.setItems(dao.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
+        } else { return;}
     }
 }

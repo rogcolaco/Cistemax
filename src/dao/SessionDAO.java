@@ -24,7 +24,8 @@ public class SessionDAO implements DAO <Session>{
                 prep.setString(2,java.time.LocalDate.now().toString());
                 ResultSet res = prep.executeQuery();
                 while (res.next()) {
-                    Session session = new Session(res.getInt("theater"),
+                    Session session = new Session(res.getInt("id"),
+                            res.getInt("theater"),
                             res.getString("starts_at"),
                             res.getString("ends_at"),
                             res.getBoolean("promotional"));
@@ -42,10 +43,6 @@ public class SessionDAO implements DAO <Session>{
     public void update(Session f) throws SQLException {
     }
 
-    @Override
-    public void delete(Session f) throws SQLException {
-
-    }
 
 //        public Movie getById(int id) throws SQLException {
 //            Connection conn = ConnectionFactory.createConnection();
@@ -105,6 +102,24 @@ public class SessionDAO implements DAO <Session>{
             }
 
         }
+
+    @Override
+    public void delete(Session f) throws SQLException {
+        Connection conn = ConnectionFactory.createConnection();
+        conn.setAutoCommit(false);
+        try {
+            String sql = "delete from session where id = ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            System.out.println(f.getId());
+            prep.setInt(1, f.getId());
+            prep.execute();
+            conn.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
+        }
+    }
 //
 //        @Override
 //        public void update(Session f) throws SQLException {
