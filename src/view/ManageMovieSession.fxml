@@ -38,16 +38,16 @@
       <Separator layoutX="130.0" layoutY="269.0" prefHeight="3.0" prefWidth="532.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="1.0" />
       <ChoiceBox fx:id="cbMovieSession" layoutX="250.0" layoutY="332.0" prefHeight="25.0" prefWidth="174.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="332.0" />
       <DatePicker fx:id="dtInitial" layoutX="169.0" layoutY="402.0" AnchorPane.leftAnchor="169.0" AnchorPane.topAnchor="402.0" />
-      <DatePicker layoutX="426.0" layoutY="402.0" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="402.0" />
+      <DatePicker fx:id="dtFinal" layoutX="426.0" layoutY="402.0" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="402.0" />
       <Label layoutX="218.0" layoutY="378.0" text="Data Início" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="378.0" />
       <Label layoutX="482.0" layoutY="378.0" text="Data Fim" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="378.0" />
-      <CheckBox fx:id="checkMon" layoutX="210.0" layoutY="475.0" mnemonicParsing="false" text="Segunda-Feira" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="475.0" />
-      <CheckBox fx:id="checkTue" layoutX="344.0" layoutY="475.0" mnemonicParsing="false" text="Terça- Feira" AnchorPane.leftAnchor="344.0" AnchorPane.topAnchor="475.0" />
-      <CheckBox fx:id="checkWed" layoutX="469.0" layoutY="475.0" mnemonicParsing="false" text="Quarta-Feira" AnchorPane.leftAnchor="469.0" AnchorPane.topAnchor="475.0" />
-      <CheckBox fx:id="checkThu" layoutX="200.0" layoutY="511.0" mnemonicParsing="false" text="Quinta-Feira" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="511.0" />
-      <CheckBox fx:id="checkFri" layoutX="304.0" layoutY="511.0" mnemonicParsing="false" text="Sexta-Feira" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="511.0" />
-      <CheckBox fx:id="checkSat" layoutX="407.0" layoutY="511.0" mnemonicParsing="false" text="Sábado" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="511.0" />
-      <CheckBox fx:id="checkSun" layoutX="482.0" layoutY="511.0" mnemonicParsing="false" text="Domingo" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="511.0" />
+      <CheckBox fx:id="checkMon" layoutX="210.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Segunda-Feira" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="475.0" />
+      <CheckBox fx:id="checkTue" layoutX="344.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Terça- Feira" AnchorPane.leftAnchor="344.0" AnchorPane.topAnchor="475.0" />
+      <CheckBox fx:id="checkWed" layoutX="469.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Quarta-Feira" AnchorPane.leftAnchor="469.0" AnchorPane.topAnchor="475.0" />
+      <CheckBox fx:id="checkThu" layoutX="200.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Quinta-Feira" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="511.0" />
+      <CheckBox fx:id="checkFri" layoutX="304.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Sexta-Feira" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="511.0" />
+      <CheckBox fx:id="checkSat" layoutX="407.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Sábado" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="511.0" />
+      <CheckBox fx:id="checkSun" layoutX="482.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Domingo" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="511.0" />
       <Label layoutX="340.0" layoutY="438.0" text="Periodicidade" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="438.0">
          <font>
             <Font size="15.0" />

@@ -2,8 +2,6 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Genre;
-import model.Movie;
 import model.Session;
 import util.ConnectionFactory;
 
@@ -11,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+
 
 public class SessionDAO implements DAO <Session>{
 
@@ -18,9 +18,10 @@ public class SessionDAO implements DAO <Session>{
             ObservableList<Session> list = FXCollections.observableArrayList();
             Connection conn = ConnectionFactory.createConnection();
             try{
-                String sql = "select * from session where theater = ? ";
+                String sql = "select * from session where theater = ? AND date >= ?";
                 PreparedStatement prep = conn.prepareStatement(sql);
                 prep.setInt(1, idTheater);
+                prep.setString(2,java.time.LocalDate.now().toString());
                 ResultSet res = prep.executeQuery();
                 while (res.next()) {
                     Session session = new Session(res.getInt("theater"),
@@ -39,7 +40,6 @@ public class SessionDAO implements DAO <Session>{
 
     @Override
     public void update(Session f) throws SQLException {
-
     }
 
     @Override
@@ -83,8 +83,8 @@ public class SessionDAO implements DAO <Session>{
             conn.setAutoCommit(false);
             try {
                 int id = this.MaxId();
-                String sql = "insert into session (id, date, starts_at, ends_at, seat_map, movie, theater, promotional) " +
-                        "values (?, ?, ?, ?, ?, ?, ?, ?)";
+                String sql = "insert into session (id, date, starts_at, ends_at, seat_map, movie, theater, ticket, promotional) " +
+                        "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement prep = conn.prepareStatement(sql);
                 prep.setInt(1, id);
                 prep.setString(2, f.getDate());
@@ -93,7 +93,8 @@ public class SessionDAO implements DAO <Session>{
                 prep.setString(5, f.getSeats());
                 prep.setInt(6, f.getMovie());
                 prep.setInt(7, f.getTheater());
-                prep.setBoolean(8, f.isPromotional());
+                prep.setInt(8, f.getTicket());
+                prep.setBoolean(9, f.isPromotional());
                 prep.execute();
                 prep.close();
                 conn.commit();

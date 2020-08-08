@@ -59,6 +59,7 @@ public class DatabaseBuilder {
                     " seat_map TEXT," +
                     " movie INTEGER," +
                     " theater INTEGER," +
+                    " ticket INTEGER," +
                     " promotional BOOLEAN," +
                     " FOREIGN KEY('movie') REFERENCES 'movie'('id')," +
                     " FOREIGN KEY('theater') REFERENCES 'theater'('id'));");

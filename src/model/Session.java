@@ -2,16 +2,35 @@ package model;
 
 public class Session {
     private boolean promotional;
-    private int id, movie, theater;
+    private int id;
+    private int movie;
+    private int theater;
+    private int ticket;
     private String starts;
     private String ends;
     private String seats;
+    private String date;
+
+    public Session(){
+    }
 
     public Session(int theater, String starts, String ends, boolean promotional) {
         this.theater = theater;
         this.starts = starts;
         this.ends = ends;
         this.promotional = promotional;
+    }
+
+    public Session(boolean promotional, int id, int movie, int theater, int ticket, String starts, String ends, String seats, String date) {
+        this.promotional = promotional;
+        this.id = id;
+        this.movie = movie;
+        this.theater = theater;
+        this.starts = starts;
+        this.ends = ends;
+        this.seats = seats;
+        this.date = date;
+        this.ticket = ticket;
     }
 
     public String getDate() {
@@ -22,21 +41,9 @@ public class Session {
         this.date = date;
     }
 
-    private String date;
+    public int getTicket() { return ticket; }
 
-    public Session(){
-    }
-
-    public Session(boolean promotional, int id, int movie, int theater, String starts, String ends, String seats, String date) {
-        this.promotional = promotional;
-        this.id = id;
-        this.movie = movie;
-        this.theater = theater;
-        this.starts = starts;
-        this.ends = ends;
-        this.seats = seats;
-        this.date = date;
-    }
+    public void setTicket(int ticket) { this.ticket = ticket; }
 
     public boolean isPromotional() {
         return promotional;
