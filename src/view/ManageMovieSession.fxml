@@ -21,7 +21,7 @@
         </ToolBar>
         <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
         <Button fx:id="btnCancelOp" layoutX="554.0" layoutY="214.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="554.0" AnchorPane.topAnchor="214.0" />
-      <Button fx:id="btnUpdateSession" layoutX="537.0" layoutY="88.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="537.0" AnchorPane.topAnchor="88.0" />
+      <Button fx:id="btnUpdateSession" disable="true" layoutX="537.0" layoutY="88.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="537.0" AnchorPane.topAnchor="88.0" />
       <Button fx:id="btnRemoveSession" layoutX="531.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteSession" text="Remover Sessão" AnchorPane.leftAnchor="531.0" AnchorPane.topAnchor="149.0" />
       <Button fx:id="btnConfirmSession" layoutX="501.0" layoutY="550.0" mnemonicParsing="false" onAction="#addSession" text="Cadastrar Sessão" AnchorPane.leftAnchor="501.0" AnchorPane.topAnchor="550.0" />
       <ChoiceBox fx:id="cbTheater" layoutX="256.0" layoutY="27.0" onAction="#updateMovies" prefWidth="150.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="27.0" />
