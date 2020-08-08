@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="599.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovieSession">
+<AnchorPane prefHeight="599.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovieSession">
 
     <children>
         <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -21,33 +21,33 @@
         </ToolBar>
         <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
         <Button fx:id="btnCancelOp" layoutX="554.0" layoutY="214.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="554.0" AnchorPane.topAnchor="214.0" />
-      <Button fx:id="btnUpdateSession" layoutX="537.0" layoutY="88.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="537.0" AnchorPane.topAnchor="88.0" />
-      <Button fx:id="btnRemoveSession" layoutX="531.0" layoutY="149.0" mnemonicParsing="false" text="Remover Sessão" AnchorPane.leftAnchor="531.0" AnchorPane.topAnchor="149.0" />
-      <Button fx:id="btnConfirmSession" layoutX="501.0" layoutY="550.0" mnemonicParsing="false" text="Cadastrar Sessão" AnchorPane.leftAnchor="501.0" AnchorPane.topAnchor="550.0" />
-      <ChoiceBox fx:id="cbTheater" layoutX="256.0" layoutY="27.0" prefWidth="150.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="27.0" />
+      <Button fx:id="btnUpdateSession" disable="true" layoutX="537.0" layoutY="88.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="537.0" AnchorPane.topAnchor="88.0" />
+      <Button fx:id="btnRemoveSession" layoutX="531.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteSession" text="Remover Sessão" AnchorPane.leftAnchor="531.0" AnchorPane.topAnchor="149.0" />
+      <Button fx:id="btnConfirmSession" layoutX="501.0" layoutY="550.0" mnemonicParsing="false" onAction="#addSession" text="Cadastrar Sessão" AnchorPane.leftAnchor="501.0" AnchorPane.topAnchor="550.0" />
+      <ChoiceBox fx:id="cbTheater" layoutX="256.0" layoutY="27.0" onAction="#updateMovies" prefWidth="150.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="27.0" />
       <Label layoutX="147.0" layoutY="31.0" text="Selecione a Sala:" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="31.0" />
-      <TableView fx:id="tableSession" layoutX="147.0" layoutY="61.0" prefHeight="200.0" prefWidth="363.0" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="61.0">
+      <TableView fx:id="tableSession" layoutX="147.0" layoutY="61.0" prefHeight="200.0" prefWidth="374.0" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="61.0">
         <columns>
-          <TableColumn fx:id="cMovieSession" prefWidth="116.0" text="Nome do Filme" />
-          <TableColumn fx:id="cDirMovieSession" prefWidth="64.0" text="Diretor" />
-            <TableColumn fx:id="cGenre" prefWidth="75.0" text="Gênero" />
-            <TableColumn fx:id="cSessionType" prefWidth="106.0" text="Tipo da Sessão" />
+          <TableColumn fx:id="cMovieSession" prefWidth="180.0" text="Nome do Filme" />
+          <TableColumn fx:id="cStartsAt" prefWidth="58.0" text="Início" />
+            <TableColumn fx:id="cEndsAt" prefWidth="62.0" text="Término" />
+            <TableColumn fx:id="cSessionType" prefWidth="71.0" text="Promoção?" />
         </columns>
       </TableView>
       <Label layoutX="154.0" layoutY="336.0" text="Nome do Filme:" AnchorPane.leftAnchor="154.0" AnchorPane.topAnchor="336.0" />
       <Separator layoutX="130.0" layoutY="269.0" prefHeight="3.0" prefWidth="532.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="1.0" />
       <ChoiceBox fx:id="cbMovieSession" layoutX="250.0" layoutY="332.0" prefHeight="25.0" prefWidth="174.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="332.0" />
-      <DatePicker layoutX="169.0" layoutY="402.0" AnchorPane.leftAnchor="169.0" AnchorPane.topAnchor="402.0" />
-      <DatePicker layoutX="426.0" layoutY="402.0" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="402.0" />
+      <DatePicker fx:id="dtInitial" layoutX="169.0" layoutY="402.0" AnchorPane.leftAnchor="169.0" AnchorPane.topAnchor="402.0" />
+      <DatePicker fx:id="dtFinal" layoutX="426.0" layoutY="402.0" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="402.0" />
       <Label layoutX="218.0" layoutY="378.0" text="Data Início" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="378.0" />
       <Label layoutX="482.0" layoutY="378.0" text="Data Fim" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="378.0" />
-      <CheckBox fx:id="checkMon" layoutX="210.0" layoutY="475.0" mnemonicParsing="false" text="Segunda-Feira" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="475.0" />
-      <CheckBox fx:id="checkTue" layoutX="344.0" layoutY="475.0" mnemonicParsing="false" text="Terça- Feira" AnchorPane.leftAnchor="344.0" AnchorPane.topAnchor="475.0" />
-      <CheckBox fx:id="checkWed" layoutX="469.0" layoutY="475.0" mnemonicParsing="false" text="Quarta-Feira" AnchorPane.leftAnchor="469.0" AnchorPane.topAnchor="475.0" />
-      <CheckBox fx:id="checkThu" layoutX="200.0" layoutY="511.0" mnemonicParsing="false" text="Quinta-Feira" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="511.0" />
-      <CheckBox fx:id="checkFri" layoutX="304.0" layoutY="511.0" mnemonicParsing="false" text="Sexta-Feira" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="511.0" />
-      <CheckBox fx:id="checkSat" layoutX="407.0" layoutY="511.0" mnemonicParsing="false" text="Sábado" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="511.0" />
-      <CheckBox fx:id="checkSun" layoutX="482.0" layoutY="511.0" mnemonicParsing="false" text="Domingo" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="511.0" />
+      <CheckBox fx:id="checkMon" layoutX="210.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Segunda-Feira" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="475.0" />
+      <CheckBox fx:id="checkTue" layoutX="344.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Terça- Feira" AnchorPane.leftAnchor="344.0" AnchorPane.topAnchor="475.0" />
+      <CheckBox fx:id="checkWed" layoutX="469.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Quarta-Feira" AnchorPane.leftAnchor="469.0" AnchorPane.topAnchor="475.0" />
+      <CheckBox fx:id="checkThu" layoutX="200.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Quinta-Feira" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="511.0" />
+      <CheckBox fx:id="checkFri" layoutX="304.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Sexta-Feira" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="511.0" />
+      <CheckBox fx:id="checkSat" layoutX="407.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Sábado" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="511.0" />
+      <CheckBox fx:id="checkSun" layoutX="482.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Domingo" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="511.0" />
       <Label layoutX="340.0" layoutY="438.0" text="Periodicidade" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="438.0">
          <font>
             <Font size="15.0" />

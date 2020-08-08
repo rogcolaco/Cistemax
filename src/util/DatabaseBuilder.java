@@ -27,29 +27,42 @@ public class DatabaseBuilder {
             Statement stmt = conn.createStatement()) {
             StringBuilder sql = new StringBuilder();
 
-            sql.append("CREATE TABLE genre (\n" +
-                    "\tid INTEGER NOT NULL PRIMARY KEY,\n" +
-                    "\tname TEXT\n);\n" +
+            sql.append("CREATE TABLE genre (" +
+                    " id INTEGER NOT NULL PRIMARY KEY," +
+                    " name TEXT);" +
 
-                    "CREATE TABLE movie (\n" +
-                    "\tid INTEGER NOT NULL PRIMARY KEY,\n" +
-                    "\tname TEXT,\n" +
-                    "\tdirector TEXT,\n" +
-                    "\tparentalRating TEXT,\n" +
-                    "\tduration INTEGER,\n" +
-                    "\tgenre INTEGER,\n" +
-                    "\tinTheaters BOOLEAN,\n" +
-                    "\tFOREIGN KEY('genre') REFERENCES 'genre'('id')\n);\n" +
+                    "CREATE TABLE movie (" +
+                    " id INTEGER NOT NULL PRIMARY KEY," +
+                    " name TEXT," +
+                    " director TEXT," +
+                    " parentalRating TEXT," +
+                    " duration INTEGER," +
+                    " genre INTEGER," +
+                    " inTheaters BOOLEAN," +
+                    " FOREIGN KEY('genre') REFERENCES 'genre'('id'));" +
 
-                    "CREATE TABLE ticket (\n " +
-                    "\tid integer not null primary key, \n" +
-                    "\ttype TEXT not null, \n" +
-                    "\tprice number not null \n);\n" +
+                    "CREATE TABLE ticket ( " +
+                    " id integer not null primary key, " +
+                    " type TEXT not null, " +
+                    " price number not null );" +
 
-                    "CREATE TABLE theater (\n" +
-                    "\tid integer not null primary key, \n" +
-                    "\tname TEXT not null, \n" +
-                    "\tqtdSeats number not null \n);\n");
+                    "CREATE TABLE theater (" +
+                    " id integer not null primary key, " +
+                    " name TEXT not null, " +
+                    " qtdSeats number not null );" +
+
+                    "CREATE TABLE session (" +
+                    " id INTEGER NOT NULL PRIMARY KEY," +
+                    " date TEXT, " +
+                    " starts_at TEXT," +
+                    " ends_at TEXT," +
+                    " seat_map TEXT," +
+                    " movie INTEGER," +
+                    " theater INTEGER," +
+                    " ticket INTEGER," +
+                    " promotional BOOLEAN," +
+                    " FOREIGN KEY('movie') REFERENCES 'movie'('id')," +
+                    " FOREIGN KEY('theater') REFERENCES 'theater'('id'));");
 
             stmt.executeUpdate(sql.toString());
 
