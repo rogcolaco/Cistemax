@@ -14,94 +14,63 @@ import java.text.ParseException;
 
 public class SessionDAO implements DAO <Session>{
 
-        public ObservableList<Session> readAll(int idTheater) throws SQLException {
-            ObservableList<Session> list = FXCollections.observableArrayList();
-            Connection conn = ConnectionFactory.createConnection();
-            try{
-                String sql = "select * from session where theater = ? AND date >= ?";
-                PreparedStatement prep = conn.prepareStatement(sql);
-                prep.setInt(1, idTheater);
-                prep.setString(2,java.time.LocalDate.now().toString());
-                ResultSet res = prep.executeQuery();
-                while (res.next()) {
-                    Session session = new Session(res.getInt("id"),
-                            res.getInt("theater"),
-                            res.getString("starts_at"),
-                            res.getString("ends_at"),
-                            res.getBoolean("promotional"));
-                    list.add(session);
-                };
-                return list;
-            } catch (SQLException e) {
-                conn.close();
-                e.printStackTrace();
-            }
-            return null;
+    public ObservableList<Session> readAll(int idTheater) throws SQLException {
+        ObservableList<Session> list = FXCollections.observableArrayList();
+        Connection conn = ConnectionFactory.createConnection();
+        try{
+            String sql = "select * from session where theater = ? AND date >= ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setInt(1, idTheater);
+            prep.setString(2,java.time.LocalDate.now().toString());
+            ResultSet res = prep.executeQuery();
+            while (res.next()) {
+                Session session = new Session(res.getInt("id"),
+                        res.getInt("theater"),
+                        res.getString("starts_at"),
+                        res.getString("ends_at"),
+                        res.getBoolean("promotional"));
+                list.add(session);
+            };
+            return list;
+        } catch (SQLException e) {
+            conn.close();
+            e.printStackTrace();
         }
+        return null;
+    }
+
+    @Override
+    public void save(Session f) throws SQLException {
+        Connection conn = ConnectionFactory.createConnection();
+        conn.setAutoCommit(false);
+        try {
+            int id = this.MaxId();
+            String sql = "insert into session (id, date, starts_at, ends_at, seat_map, movie, theater, ticket, promotional) " +
+                    "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setInt(1, id);
+            prep.setString(2, f.getDate());
+            prep.setString(3, f.getStarts());
+            prep.setString(4, f.getEnds());
+            prep.setString(5, f.getSeats());
+            prep.setInt(6, f.getMovie());
+            prep.setInt(7, f.getTheater());
+            prep.setInt(8, f.getTicket());
+            prep.setBoolean(9, f.isPromotional());
+            prep.execute();
+            prep.close();
+            conn.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
+        }
+
+    }
 
     @Override
     public void update(Session f) throws SQLException {
     }
-
-
-//        public Movie getById(int id) throws SQLException {
-//            Connection conn = ConnectionFactory.createConnection();
-//            try{
-//                String sql = "select * from movie where id = ?";
-//                PreparedStatement prep = conn.prepareStatement(sql);
-//                prep.setInt(1,id);
-//                ResultSet res = prep.executeQuery();
-//                if (res != null){
-//                    GenreDAO genreDao = new GenreDAO();
-//                    Genre genre = genreDao.getById(res.getInt("genre"));
-//                    Movie movie = new Movie(res.getInt("id"),
-//                            res.getInt("duration"),
-//                            res.getString("name"),
-//                            res.getString("director"),
-//                            res.getString("parentalRating"),
-//                            res.getBoolean("inTheaters"),
-//                            genre
-//                    );
-//                    conn.close();
-//                    return  movie;
-//                }
-//                conn.close();
-//                return null;
-//            } catch (SQLException e) {
-//                conn.close();
-//                e.printStackTrace();
-//            }
-//            return null;
-//        }
-//
-        @Override
-        public void save(Session f) throws SQLException {
-            Connection conn = ConnectionFactory.createConnection();
-            conn.setAutoCommit(false);
-            try {
-                int id = this.MaxId();
-                String sql = "insert into session (id, date, starts_at, ends_at, seat_map, movie, theater, ticket, promotional) " +
-                        "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                PreparedStatement prep = conn.prepareStatement(sql);
-                prep.setInt(1, id);
-                prep.setString(2, f.getDate());
-                prep.setString(3, f.getStarts());
-                prep.setString(4, f.getEnds());
-                prep.setString(5, f.getSeats());
-                prep.setInt(6, f.getMovie());
-                prep.setInt(7, f.getTheater());
-                prep.setInt(8, f.getTicket());
-                prep.setBoolean(9, f.isPromotional());
-                prep.execute();
-                prep.close();
-                conn.commit();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                conn.close();
-            }
-
-        }
 
     @Override
     public void delete(Session f) throws SQLException {
@@ -110,7 +79,6 @@ public class SessionDAO implements DAO <Session>{
         try {
             String sql = "delete from session where id = ?";
             PreparedStatement prep = conn.prepareStatement(sql);
-            System.out.println(f.getId());
             prep.setInt(1, f.getId());
             prep.execute();
             conn.commit();
@@ -120,62 +88,21 @@ public class SessionDAO implements DAO <Session>{
             conn.close();
         }
     }
-//
-//        @Override
-//        public void update(Session f) throws SQLException {
-//            Connection conn = ConnectionFactory.createConnection();
-//            conn.setAutoCommit(false);
-//            try{
-//                String sql = "update session set starts_at = ?, ends_at = ?, seat_map = ?, movie = ?, " +
-//                        "theater = ?, promotional = ? where id = ?";
-//                PreparedStatement prep = conn.prepareStatement(sql);
-//                prep.setString(1, f.getStart());
-//                prep.setString(2, f.getEnd());
-//                prep.setString(3, f.getSeats());
-//                prep.setInt(4, f.getMovie().getId());
-//                prep.setInt(5, f.getTheater().getId);
-//                prep.setBoolean(6, f.getPromotional());
-//                prep.setInt(7, f.getId());
-//                prep.execute();
-//                conn.commit();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            } finally {
-//                conn.close();
-//            }
-//        }
-//
-//        @Override
-//        public void delete(Session f) throws SQLException {
-//            Connection conn = ConnectionFactory.createConnection();
-//            conn.setAutoCommit(false);
-//            try {
-//                String sql = "delete from movie where id = ?";
-//                PreparedStatement prep = conn.prepareStatement(sql);
-//                prep.setInt(1, f.getId());
-//                prep.execute();
-//                conn.commit();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            } finally {
-//                conn.close();
-//            }
-//        }
-//
-        public int MaxId() throws SQLException {
-            Connection conn = ConnectionFactory.createConnection();
-            try {
-                String sql = "select max(id) as id from session";
-                PreparedStatement prep = conn.prepareStatement(sql);
-                ResultSet res = prep.executeQuery();
-                int max = res.getInt("id") + 1;
-                return max;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                conn.close();
-            }
-            return 0;
+
+    public int MaxId() throws SQLException {
+        Connection conn = ConnectionFactory.createConnection();
+        try {
+            String sql = "select max(id) as id from session";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            ResultSet res = prep.executeQuery();
+            int max = res.getInt("id") + 1;
+            return max;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
         }
+        return 0;
+    }
 
 }

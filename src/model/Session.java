@@ -11,17 +11,15 @@ public class Session {
     private String seats;
     private String date;
 
-    public Session(){
-    }
-
-    public Session(int theater, String starts, String ends, boolean promotional) {
+       public Session(int id, int theater, String starts, String ends, boolean promotional) {
+        this.id = id;
         this.theater = theater;
         this.starts = starts;
         this.ends = ends;
         this.promotional = promotional;
     }
 
-    public Session(boolean promotional, int id, int movie, int theater, int ticket, String starts, String ends, String seats, String date) {
+    public Session() {
         this.promotional = promotional;
         this.id = id;
         this.movie = movie;
