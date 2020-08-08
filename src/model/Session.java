@@ -73,7 +73,7 @@ public class Session {
         return theater;
     }
 
-    public void setTheater(int theather) {
+    public void setTheater(int theater) {
         this.theater = theater;
     }
 
