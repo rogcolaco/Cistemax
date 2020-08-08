@@ -45,7 +45,7 @@ public class MovieDAO implements DAO <Movie>{
         return null;
     }
 
-    public Movie getById(int id) throws SQLException {
+    public static Movie getById(int id) throws SQLException {
         Connection conn = ConnectionFactory.createConnection();
         try{
             String sql = "select * from movie where id = ?";

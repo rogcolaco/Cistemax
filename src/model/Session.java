@@ -10,13 +10,15 @@ public class Session {
     private String ends;
     private String seats;
     private String date;
+    private String movieName;
 
-       public Session(int id, int theater, String starts, String ends, boolean promotional) {
+       public Session(int id, int theater, String starts, String ends, boolean promotional, String movieName) {
         this.id = id;
         this.theater = theater;
         this.starts = starts;
         this.ends = ends;
         this.promotional = promotional;
+        this.movieName = movieName;
     }
 
     public Session() {
@@ -29,6 +31,10 @@ public class Session {
         this.seats = seats;
         this.date = date;
         this.ticket = ticket;
+    }
+
+    public String getMovieName() {
+        return movieName;
     }
 
     public String getDate() {

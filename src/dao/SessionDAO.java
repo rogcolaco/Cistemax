@@ -2,6 +2,7 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Movie;
 import model.Session;
 import util.ConnectionFactory;
 
@@ -23,11 +24,14 @@ public class SessionDAO implements DAO <Session>{
             prep.setString(2,java.time.LocalDate.now().toString());
             ResultSet res = prep.executeQuery();
             while (res.next()) {
+                MovieDAO movieDAO = new MovieDAO();
+                Movie movieName = movieDAO.getById(res.getInt("movie"));
                 Session session = new Session(res.getInt("id"),
                         res.getInt("theater"),
                         res.getString("starts_at"),
                         res.getString("ends_at"),
-                        res.getBoolean("promotional"));
+                        res.getBoolean("promotional"),
+                        movieName.getName());
                 list.add(session);
             };
             return list;

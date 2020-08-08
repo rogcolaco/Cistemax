@@ -98,7 +98,7 @@ public class ManageMovieSession extends MenuPrincipal{
 
     public void updateMovies(ActionEvent actionEvent) throws SQLException {
         SessionDAO daoSession = new SessionDAO();
-        cMovieSession.setCellValueFactory(new PropertyValueFactory<>("movie"));
+        cMovieSession.setCellValueFactory(new PropertyValueFactory<>("movieName"));
         cStartsAt.setCellValueFactory(new PropertyValueFactory<>("starts"));
         cEndsAt.setCellValueFactory(new PropertyValueFactory<>("ends"));
         cSessionType.setCellValueFactory(new PropertyValueFactory<>("promotional"));
