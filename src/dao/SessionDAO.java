@@ -13,6 +13,33 @@ import java.sql.SQLException;
 
 
 public class SessionDAO implements DAO <Session>{
+    public Session readOne(int idSession) throws SQLException {
+        Connection conn = ConnectionFactory.createConnection();
+        try{
+            String sql = "select * from session where id = ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setInt(1, idSession);
+            ResultSet res = prep.executeQuery();
+            while (res.next()) {
+                MovieDAO movieDAO = new MovieDAO();
+                Movie movieName = movieDAO.getById(res.getInt("movie"));
+                Session session = new Session(res.getInt("id"),
+                        res.getInt("theater"),
+                        res.getString("starts_at"),
+                        res.getString("ends_at"),
+                        res.getBoolean("promotional"),
+                        movieName.getName(),
+                        res.getString("seat_map"));
+                return session;
+            };
+
+        } catch (SQLException e) {
+            conn.close();
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ObservableList<Session> readAll(int idTheater) throws SQLException {
         return readAll(idTheater, false);
     }
@@ -34,7 +61,8 @@ public class SessionDAO implements DAO <Session>{
                         res.getString("starts_at"),
                         res.getString("ends_at"),
                         res.getBoolean("promotional"),
-                        movieName.getName());
+                        movieName.getName(),
+                        res.getString("seat_map"));
                 list.add(session);
             };
             return list;

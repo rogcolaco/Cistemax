@@ -12,13 +12,14 @@ public class Session {
     private String date;
     private String movieName;
 
-       public Session(int id, int theater, String starts, String ends, boolean promotional, String movieName) {
+       public Session(int id, int theater, String starts, String ends, boolean promotional, String movieName, String seatMap) {
         this.id = id;
         this.theater = theater;
         this.starts = starts;
         this.ends = ends;
         this.promotional = promotional;
         this.movieName = movieName;
+        this.seats = seatMap;
     }
 
     public Session() {
