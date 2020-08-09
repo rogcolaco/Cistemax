@@ -104,4 +104,9 @@ public class Session {
     public void setSeats(String seats) {
         this.seats = seats;
     }
+
+    @Override
+    public String toString() {
+        return  "Sala " + this.theater + " - " + this.movieName + " - " + this.starts + " - " + this.ends;
+    }
 }

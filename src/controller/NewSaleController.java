@@ -1,5 +1,8 @@
 package controller;
 
+import dao.SessionDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -8,6 +11,7 @@ import model.Session;
 import util.SwitcherDisplay;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class NewSaleController extends MenuPrincipal{
 
@@ -31,6 +35,20 @@ public class NewSaleController extends MenuPrincipal{
     @FXML private TableColumn<Session, Integer> cSeat;
     @FXML private TableColumn<Session, Boolean> cStatus;
 
+    @FXML
+    public void initialize() throws SQLException {
+        fill();
+    }
 
+    private ObservableList<Session> listSession = FXCollections.observableArrayList();
+
+
+    public void fill() throws SQLException {
+
+        SessionDAO daoSession = new SessionDAO();
+        listSession= daoSession.readAll(0, true);;
+        cbSessionSale.setItems(listSession);
+
+    }
 
 }
