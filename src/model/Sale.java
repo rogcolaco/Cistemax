@@ -45,6 +45,16 @@ public class Sale {
         this.session = session;
     }
 
+    public Sale(int id, String date, double price, String seats, int qtdSeatPromotional, double totalSale, int sessionId) {
+        this.id = id;
+        this.date = date;
+        this.price = price;
+        this.seats = seats;
+        this.qtdSeatPromotional = qtdSeatPromotional;
+        this.totalSale = totalSale;
+        this.sessionId = sessionId;
+    }
+
     public int getId() {
         return id;
     }

@@ -1,5 +1,6 @@
 # Default ignored files
 out/
+reports/
 .idea/
 .idea_modules/
 *.iml

@@ -43,7 +43,6 @@ public class ManageGenre extends MenuPrincipal{
         tableGenre.setItems(dao.readAll());
     }
 
-
     public void updateGenre(ActionEvent actionEvent) {
         if (tableGenre.getSelectionModel().getSelectedItem() != null){
             lbGenreFieldTitle.setText("Alterar Gênero");
