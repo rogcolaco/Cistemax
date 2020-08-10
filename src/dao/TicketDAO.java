@@ -35,6 +35,25 @@ public class TicketDAO implements  DAO<Ticket> {
             return 0.0;
         }
 
+    public Ticket ticketById(int id) throws SQLException {
+        Connection conn = ConnectionFactory.createConnection();
+        try{
+            String sql = "select * from ticket where id= ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setInt(1, id);
+            ResultSet res = prep.executeQuery();
+            if (res != null){
+                Ticket ticket = new Ticket(res.getInt("id"), res.getDouble("price"), res.getString("type"));
+                conn.close();
+                return ticket;
+            }
+        } catch (SQLException e) {
+            conn.close();
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ObservableList<Ticket> readAll() {
         ObservableList<Ticket> list = FXCollections.observableArrayList();
         Connection conn = ConnectionFactory.createConnection();

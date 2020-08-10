@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import model.Sale;
 import model.Seats;
 import model.Session;
+import model.Ticket;
 
 import javax.swing.*;
 import java.awt.print.PrinterException;
@@ -147,7 +148,7 @@ public class NewSaleController extends MenuPrincipal{
             ArrayList<Integer> selected = selectedSeats();
             int qtdSeats = selected.size();
             int qtdPromotional = cbPromoTickets.getSelectionModel().getSelectedItem();
-            double totalSale = ((qtdSeats - qtdPromotional) * price) + (qtdPromotional*(price/2));
+            double totalSale = Double.parseDouble(total());
 
             session = sessionDAO.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
             session.setSeats(updatedSeats(selected));
@@ -169,13 +170,23 @@ public class NewSaleController extends MenuPrincipal{
 
 
     public String total() throws SQLException {
+
+        Double totalSale;
+
         TicketDAO ticketDAO = new TicketDAO();
-        Session session = new Session();
-        Double price = ticketDAO.ticketPrice(cbSessionSale.getSelectionModel().getSelectedItem().getTicket());
+        Ticket ticket = ticketDAO.ticketById(cbSessionSale.getSelectionModel().getSelectedItem().getTicket());
+        Session session = cbSessionSale.getSelectionModel().getSelectedItem();
         ArrayList<Integer> selected = selectedSeats();
         int qtdSeats = selected.size();
         int qtdPromotional = cbPromoTickets.getSelectionModel().getSelectedItem();
-        double totalSale = ((qtdSeats - qtdPromotional) * price) + (qtdPromotional*(price/2));
+
+        if(session.isPromotional()) {
+            totalSale = (qtdSeats  * (ticket.ApplyDiscount()));
+            cbPromoTickets.setValue(qtdSeats);
+        } else {
+            totalSale = ((qtdSeats - qtdPromotional) * ticket.getValue()) + (qtdPromotional * ticket.ApplyDiscount());
+        }
+
         return String.valueOf(totalSale);
     }
 }

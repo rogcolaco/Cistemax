@@ -37,7 +37,7 @@ public class Ticket {
         this.id = id;
     }
 
-    public double DiscountApply(){
+    public double ApplyDiscount(){
         return this.getValue() * 0.5;
     }
 
