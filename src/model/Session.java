@@ -12,11 +12,23 @@ public class Session {
     private String date;
     private String movieName;
 
-       public Session(int id, int theater, String starts, String ends, boolean promotional, String movieName, String seatMap, int ticket) {
+    public Session(int id, int theater, String starts, String ends, boolean promotional, String movieName, String seatMap, int ticket) {
         this.id = id;
         this.theater = theater;
         this.starts = starts;
         this.ends = ends;
+        this.promotional = promotional;
+        this.movieName = movieName;
+        this.seats = seatMap;
+        this.ticket = ticket;
+    }
+
+    public Session(int id, int theater, String starts, String ends,String date, boolean promotional, String movieName, String seatMap, int ticket) {
+        this.id = id;
+        this.theater = theater;
+        this.starts = starts;
+        this.ends = ends;
+        this.date = date;
         this.promotional = promotional;
         this.movieName = movieName;
         this.seats = seatMap;
@@ -34,6 +46,7 @@ public class Session {
         this.date = date;
         this.ticket = ticket;
     }
+
 
     public String getMovieName() {
         return movieName;
@@ -109,6 +122,6 @@ public class Session {
 
     @Override
     public String toString() {
-        return  "Sala " + this.theater + " - " + this.movieName + " - " + this.starts + " - " + this.ends;
+        return  "Sala " + this.theater + " - " + this.movieName + " - " + this.date +" - " + this.starts + " - " + this.ends;
     }
 }

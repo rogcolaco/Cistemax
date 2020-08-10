@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="599.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovieSession">
+<AnchorPane prefHeight="599.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovieSession">
 
     <children>
         <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -20,18 +20,19 @@
             </items>
         </ToolBar>
         <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
-        <Button fx:id="btnCancelOp" layoutX="554.0" layoutY="214.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="554.0" AnchorPane.topAnchor="214.0" />
-      <Button fx:id="btnUpdateSession" disable="true" layoutX="537.0" layoutY="88.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="537.0" AnchorPane.topAnchor="88.0" />
-      <Button fx:id="btnRemoveSession" layoutX="531.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteSession" text="Remover Sessão" AnchorPane.leftAnchor="531.0" AnchorPane.topAnchor="149.0" />
+        <Button fx:id="btnCancelOp" layoutX="606.0" layoutY="212.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="606.0" AnchorPane.topAnchor="212.0" />
+      <Button fx:id="btnUpdateSession" disable="true" layoutX="589.0" layoutY="90.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="589.0" AnchorPane.topAnchor="90.0" />
+      <Button fx:id="btnRemoveSession" layoutX="583.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteSession" text="Remover Sessão" AnchorPane.leftAnchor="583.0" AnchorPane.topAnchor="149.0" />
       <Button fx:id="btnConfirmSession" layoutX="501.0" layoutY="550.0" mnemonicParsing="false" onAction="#addSession" text="Cadastrar Sessão" AnchorPane.leftAnchor="501.0" AnchorPane.topAnchor="550.0" />
       <ChoiceBox fx:id="cbTheater" layoutX="256.0" layoutY="27.0" onAction="#updateMovies" prefWidth="150.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="27.0" />
       <Label layoutX="147.0" layoutY="31.0" text="Selecione a Sala:" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="31.0" />
-      <TableView fx:id="tableSession" layoutX="147.0" layoutY="61.0" prefHeight="200.0" prefWidth="374.0" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="61.0">
+      <TableView fx:id="tableSession" layoutX="147.0" layoutY="61.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="61.0">
         <columns>
-          <TableColumn fx:id="cMovieSession" prefWidth="180.0" text="Nome do Filme" />
-          <TableColumn fx:id="cStartsAt" prefWidth="58.0" text="Início" />
-            <TableColumn fx:id="cEndsAt" prefWidth="62.0" text="Término" />
-            <TableColumn fx:id="cSessionType" prefWidth="71.0" text="Promoção?" />
+          <TableColumn fx:id="cMovieSession" prefWidth="113.0" text="Nome do Filme" />
+            <TableColumn fx:id="cSessionDate" prefWidth="82.0" text="Data" />
+          <TableColumn fx:id="cStartsAt" prefWidth="52.0" text="Início" />
+            <TableColumn fx:id="cEndsAt" prefWidth="67.0" text="Término" />
+            <TableColumn fx:id="cSessionType" prefWidth="84.0" text="Promoção?" />
         </columns>
       </TableView>
       <Label layoutX="154.0" layoutY="336.0" text="Nome do Filme:" AnchorPane.leftAnchor="154.0" AnchorPane.topAnchor="336.0" />

@@ -70,6 +70,7 @@ public class ManagePrice extends MenuPrincipal{
         try {
             ticket.setType(txtSessionType.getText());
             String s = new String(txtSessionPrice.getText().replace(",","."));
+            System.out.println(ticket.isDouble(s));
             if(ticket.isDouble(s)) {
                 ticket.setValue(Double.parseDouble(s));
 

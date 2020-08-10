@@ -62,6 +62,7 @@ public class SessionDAO implements DAO <Session>{
                         res.getInt("theater"),
                         res.getString("starts_at"),
                         res.getString("ends_at"),
+                        res.getString("date"),
                         res.getBoolean("promotional"),
                         movieName.getName(),
                         res.getString("seat_map"),

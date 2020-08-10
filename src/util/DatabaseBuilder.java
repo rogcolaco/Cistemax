@@ -66,13 +66,13 @@ public class DatabaseBuilder {
 
                     "CREATE TABLE sale (" +
                     " id INTEGER NOT NULL PRIMARY KEY, " +
-                            " date TEXT, " +
-                            " price DOUBLE, " +
-                            " seats TEXT, " +
-                            " qtd_seat_promotional INT, " +
-                            " total_sale DOUBLE, " +
-                            " session INT, " +
-                            " FOREIGN KEY('session') REFERENCES 'session'('id')); "
+                    " date TEXT, " +
+                    " price DOUBLE, " +
+                    " seats TEXT, " +
+                    " qtd_seat_promotional INT, " +
+                    " total_sale DOUBLE, " +
+                    " session INT, " +
+                    " FOREIGN KEY('session') REFERENCES 'session'('id')); "
             );
 
             stmt.executeUpdate(sql.toString());

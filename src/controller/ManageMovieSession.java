@@ -64,10 +64,11 @@ public class ManageMovieSession extends MenuPrincipal{
 
     /*Verificar Classe*/
     @FXML private TableView<Session> tableSession;
-    @FXML private TableColumn<String,String> cMovieSession;
-    @FXML private TableColumn<String, String> cStartsAt;
-    @FXML private TableColumn<String, String> cEndsAt;
-    @FXML private TableColumn<String,String> cSessionType;
+    @FXML private TableColumn<Session, String> cMovieSession;
+    @FXML private TableColumn<Session, String> cStartsAt;
+    @FXML private TableColumn<Session, String> cEndsAt;
+    @FXML private TableColumn<Session, String> cSessionType;
+    @FXML private TableColumn<Session, String> cSessionDate;
 
     @FXML
     public void initialize() throws SQLException {
@@ -99,6 +100,7 @@ public class ManageMovieSession extends MenuPrincipal{
     public void updateMovies(ActionEvent actionEvent) throws SQLException {
         SessionDAO daoSession = new SessionDAO();
         cMovieSession.setCellValueFactory(new PropertyValueFactory<>("movieName"));
+        cSessionDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         cStartsAt.setCellValueFactory(new PropertyValueFactory<>("starts"));
         cEndsAt.setCellValueFactory(new PropertyValueFactory<>("ends"));
         cSessionType.setCellValueFactory(new PropertyValueFactory<>("promotional"));

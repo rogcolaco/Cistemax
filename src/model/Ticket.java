@@ -55,7 +55,7 @@ public class Ticket {
     }
 
     public boolean isDouble(String s){
-        return s.matches("\\d+\\.\\d{0,2}") || s.matches("\\.\\d{0,2}");
+        return s.matches("\\d+\\.\\d{0,2}") || s.matches("\\.\\d{0,2}") || s.matches("[0-9]+");
     }
 
     @Override
