@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import model.Sale;
 import model.Seats;
@@ -35,6 +36,7 @@ public class NewSaleController extends MenuPrincipal{
     @FXML private Button btnMovieSession;
     @FXML private Button btnCancelSale;
     @FXML private Button btnReport;
+    @FXML private Label lbTotal;
 
     @FXML private ChoiceBox<Session> cbSessionSale;
     @FXML private ChoiceBox<Integer> cbPromoTickets;
@@ -59,6 +61,14 @@ public class NewSaleController extends MenuPrincipal{
         SessionDAO daoSession = new SessionDAO();
         listSession= daoSession.readAll(0, true);;
         cbSessionSale.setItems(listSession);
+
+        cbPromoTickets.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            try {
+                lbTotal.setText("Valor Total: R$ " + total());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
 
     }
 
@@ -156,6 +166,17 @@ public class NewSaleController extends MenuPrincipal{
             MsgErro msg = new MsgErro();
             msg.show();
         }
+    }
 
+
+    public String total() throws SQLException {
+        TicketDAO ticketDAO = new TicketDAO();
+        Session session = new Session();
+        Double price = ticketDAO.ticketPrice(cbSessionSale.getSelectionModel().getSelectedItem().getTicket());
+        ArrayList<Integer> selected = selectedSeats();
+        int qtdSeats = selected.size();
+        int qtdPromotional = cbPromoTickets.getSelectionModel().getSelectedItem();
+        double totalSale = ((qtdSeats - qtdPromotional) * price) + (qtdPromotional*(price/2));
+        return String.valueOf(totalSale);
     }
 }
