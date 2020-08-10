@@ -120,12 +120,6 @@ public class ManageMovieSession extends MenuPrincipal{
         return gson.toJson(seats);
     }
 
-//    private Map<Integer, Boolean> readSeatMap(String j) {
-//        Gson gson = new Gson();
-//        Map<Integer, Boolean> json = gson.fromJson(j);
-//        return json;
-//    }
-
     public boolean validSession(Session session) throws SQLException {
         SessionDAO dao = new SessionDAO();
         ResultSet res = dao.checkSessions(session);

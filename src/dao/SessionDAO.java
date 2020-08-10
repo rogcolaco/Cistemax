@@ -29,7 +29,8 @@ public class SessionDAO implements DAO <Session>{
                         res.getString("ends_at"),
                         res.getBoolean("promotional"),
                         movieName.getName(),
-                        res.getString("seat_map"));
+                        res.getString("seat_map"),
+                        res.getInt("ticket"));
                 return session;
             };
 
@@ -62,7 +63,8 @@ public class SessionDAO implements DAO <Session>{
                         res.getString("ends_at"),
                         res.getBoolean("promotional"),
                         movieName.getName(),
-                        res.getString("seat_map"));
+                        res.getString("seat_map"),
+                        res.getInt("ticket"));
                 list.add(session);
             };
             return list;

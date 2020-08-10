@@ -15,6 +15,26 @@ import java.util.List;
 
 public class TicketDAO implements  DAO<Ticket> {
 
+    public double ticketPrice(int id) throws SQLException {
+            Connection conn = ConnectionFactory.createConnection();
+            try{
+                String sql = "select id, price from ticket where id= ?";
+                PreparedStatement prep = conn.prepareStatement(sql);
+                prep.setInt(1, id);
+                ResultSet res = prep.executeQuery();
+                if (res != null){
+                    Ticket price = new Ticket(res.getInt("id"), res.getDouble("price"));
+                    conn.close();
+                    return price.getValue();
+                }
+                return 0.0;
+            } catch (SQLException e) {
+                conn.close();
+                e.printStackTrace();
+            }
+            return 0.0;
+        }
+
     public ObservableList<Ticket> readAll() {
         ObservableList<Ticket> list = FXCollections.observableArrayList();
         Connection conn = ConnectionFactory.createConnection();

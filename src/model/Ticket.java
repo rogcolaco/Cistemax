@@ -47,6 +47,10 @@ public class Ticket {
         this.type = type;
     }
 
+    public Ticket(int id, double value) {
+        this.id = id;
+        this.value = value;
+    }
     public Ticket() {
     }
 
