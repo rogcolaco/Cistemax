@@ -31,6 +31,7 @@ public class SessionDAO implements DAO <Session>{
                         movieName.getName(),
                         res.getString("seat_map"),
                         res.getInt("ticket"));
+                conn.close();
                 return session;
             };
 
@@ -106,6 +107,21 @@ public class SessionDAO implements DAO <Session>{
 
     @Override
     public void update(Session f) throws SQLException {
+        Connection conn = ConnectionFactory.createConnection();
+        conn.setAutoCommit(false);
+        try {
+            String sql = "update session set seat_map = ? where id = ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setString(1, f.getSeats());
+            prep.setInt(2, f.getId());
+            prep.execute();
+            prep.close();
+            conn.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
+        }
     }
 
     @Override

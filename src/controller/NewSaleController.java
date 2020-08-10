@@ -98,7 +98,7 @@ public class NewSaleController extends MenuPrincipal{
         return selected;
     }
 
-    public String updateSeats(ArrayList<Integer> selectedSeats) throws SQLException {
+    public String updatedSeats(ArrayList<Integer> selectedSeats) throws SQLException {
         Gson gson = new Gson();
         SessionDAO daoSession = new SessionDAO();
         Session s = new Session();
@@ -136,14 +136,9 @@ public class NewSaleController extends MenuPrincipal{
         int qtdPromotional = cbPromoTickets.getSelectionModel().getSelectedItem();
         double totalSale = ((qtdSeats - qtdPromotional) * price) + (qtdPromotional*(price/2));
         s = daoSession.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
-        System.out.println(s);
-        System.out.println("TICKET Price: " + price);
-        System.out.println("SELECTED SEATS: " + selectedSeats());
-        System.out.println("QTD SEATS: " + qtdSeats);
-        System.out.println("Promotional Tickets: " + qtdPromotional);
-        System.out.println("TOTAL: " + totalSale);
-        System.out.println("NEW SEATS: " + updateSeats(selected));
-
+        s.setSeats(updatedSeats(selected));
+        daoSession.update(s);
+        updateSeats(new ActionEvent());
         printTicket(1, s, price, selected, qtdSeats, qtdPromotional,totalSale);
     }
 }
