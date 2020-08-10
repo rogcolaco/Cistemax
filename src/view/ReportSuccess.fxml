@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ReportSuccess"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <children>
+        <Button fx:id="btnOk" layoutX="229.0" layoutY="129.0" mnemonicParsing="false" onAction="#confirm" text="OK" AnchorPane.leftAnchor="229.0" AnchorPane.topAnchor="129.0" />
+        <Label layoutX="108.0" layoutY="71.0" text="Relatório Emitido com Sucesso !" AnchorPane.leftAnchor="108.0" AnchorPane.topAnchor="71.0">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+    </children>
+
+</AnchorPane>

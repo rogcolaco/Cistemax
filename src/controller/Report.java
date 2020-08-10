@@ -73,6 +73,8 @@ public class Report extends MenuPrincipal {
                     writer.write(sb.toString());
                 }
             }
+            ReportSuccess msg = new ReportSuccess();
+            msg.show();
         } catch (Exception e) {
             MsgErro msg = new MsgErro();
             msg.show();
