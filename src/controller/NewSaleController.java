@@ -127,18 +127,24 @@ public class NewSaleController extends MenuPrincipal{
     }
 
     public void executeSale(ActionEvent actionEvent) throws SQLException, PrinterException {
-        TicketDAO ticketDAO = new TicketDAO();
-        SessionDAO daoSession = new SessionDAO();
-        Session s = new Session();
-        Double price = ticketDAO.ticketPrice(cbSessionSale.getSelectionModel().getSelectedItem().getTicket());
-        ArrayList<Integer> selected = selectedSeats();
-        int qtdSeats = selected.size();
-        int qtdPromotional = cbPromoTickets.getSelectionModel().getSelectedItem();
-        double totalSale = ((qtdSeats - qtdPromotional) * price) + (qtdPromotional*(price/2));
-        s = daoSession.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
-        s.setSeats(updatedSeats(selected));
-        daoSession.update(s);
-        updateSeats(new ActionEvent());
-        printTicket(1, s, price, selected, qtdSeats, qtdPromotional,totalSale);
+        try {
+            TicketDAO ticketDAO = new TicketDAO();
+            SessionDAO daoSession = new SessionDAO();
+            Session s = new Session();
+            Double price = ticketDAO.ticketPrice(cbSessionSale.getSelectionModel().getSelectedItem().getTicket());
+            ArrayList<Integer> selected = selectedSeats();
+            int qtdSeats = selected.size();
+            int qtdPromotional = cbPromoTickets.getSelectionModel().getSelectedItem();
+            double totalSale = ((qtdSeats - qtdPromotional) * price) + (qtdPromotional*(price/2));
+            s = daoSession.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
+            s.setSeats(updatedSeats(selected));
+            daoSession.update(s);
+            updateSeats(new ActionEvent());
+            printTicket(1, s, price, selected, qtdSeats, qtdPromotional,totalSale);
+        } catch (Exception e) {
+            MsgErro msg = new MsgErro();
+            msg.show();
+        }
+
     }
 }
