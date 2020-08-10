@@ -2,6 +2,7 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import dao.SaleDAO;
 import dao.SessionDAO;
 import dao.TicketDAO;
 import javafx.collections.FXCollections;
@@ -12,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import model.Sale;
 import model.Seats;
 import model.Session;
 
@@ -128,19 +130,28 @@ public class NewSaleController extends MenuPrincipal{
 
     public void executeSale(ActionEvent actionEvent) throws SQLException, PrinterException {
         try {
+            SaleDAO saleDAO = new SaleDAO();
             TicketDAO ticketDAO = new TicketDAO();
-            SessionDAO daoSession = new SessionDAO();
-            Session s = new Session();
+            SessionDAO sessionDAO = new SessionDAO();
+            Session session = new Session();
             Double price = ticketDAO.ticketPrice(cbSessionSale.getSelectionModel().getSelectedItem().getTicket());
             ArrayList<Integer> selected = selectedSeats();
             int qtdSeats = selected.size();
             int qtdPromotional = cbPromoTickets.getSelectionModel().getSelectedItem();
             double totalSale = ((qtdSeats - qtdPromotional) * price) + (qtdPromotional*(price/2));
-            s = daoSession.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
-            s.setSeats(updatedSeats(selected));
-            daoSession.update(s);
+
+            session = sessionDAO.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
+            session.setSeats(updatedSeats(selected));
+            Sale sale = new Sale(price,
+                    selected.toString().replace("]","").replace("[","").replace(" ",""),
+                    qtdPromotional,
+                    totalSale,
+                    session);
+
+            sessionDAO.update(session);
+            saleDAO.save(sale);
+            printTicket(saleDAO.MaxId(), session, price, selected, qtdSeats, qtdPromotional, totalSale);
             updateSeats(new ActionEvent());
-            printTicket(1, s, price, selected, qtdSeats, qtdPromotional,totalSale);
         } catch (Exception e) {
             MsgErro msg = new MsgErro();
             msg.show();
