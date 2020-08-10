@@ -70,32 +70,31 @@ public class ManagePrice extends MenuPrincipal{
         try {
             ticket.setType(txtSessionType.getText());
             String s = new String(txtSessionPrice.getText().replace(",","."));
-            System.out.println(ticket.isDouble(s));
-            if(ticket.isDouble(s)) {
+
+            if(ticket.isDouble(s) && !ticket.getType().equals("")) {
                 ticket.setValue(Double.parseDouble(s));
 
-            } else {
-                /*Desvia para tratamento de exceção caso não seja aceito pelo regex*/
-                ticket.setValue(Double.parseDouble("Erro"));
-            }
-
                 /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
-                if(btnConfirmPrice.getText().equals("Alterar")){
+                if (btnConfirmPrice.getText().equals("Alterar")) {
                     ticket.setId(tableSession.getSelectionModel().getSelectedItem().getId());
                     dao.update(ticket);
                     tableSession.setItems(dao.readAll());
                     lbPriceFieldTitle.setText("Cadastrar Novo Tipo de Sessão");
                     btnConfirmPrice.setText("Confirmar");
 
-                /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
+                    /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
                 } else {
                     int max = dao.MaxId();
                     ticket.setId(max);
                     dao.save(ticket);
                     tableSession.setItems(dao.readAll());
                 }
-            txtSessionType.clear();
-            txtSessionPrice.clear();
+                txtSessionType.clear();
+                txtSessionPrice.clear();
+            }else {
+                    /*Desvia para tratamento de exceção caso não seja aceito pelo regex*/
+                    throw new NumberFormatException();
+                }
 
         } catch (NumberFormatException n){
             MsgErro msg = new MsgErro();

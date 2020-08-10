@@ -66,23 +66,29 @@ public class ManageTheater extends MenuPrincipal{
             theater.setName(txtTheaterName.getText());
             theater.setQtdSeats(Integer.parseInt(txtQtdSeats.getText()));
 
-            /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
-            if (btnConfirmTheater.getText().equals("Alterar")) {
-                theater.setId(tableTheater.getSelectionModel().getSelectedItem().getId());
-                dao.update(theater);
-                tableTheater.setItems(dao.readAll());
-                lbTheaterFieldTitle.setText("Cadastrar Nova Sala");
-                btnConfirmTheater.setText("Confirmar");
+            if(!theater.getName().equals("")) {
 
-                /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
-            } else {
-                int max = dao.MaxId();
-                theater.setId(max);
-                dao.save(theater);
-                tableTheater.setItems(dao.readAll());
+                /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
+                if (btnConfirmTheater.getText().equals("Alterar")) {
+                    theater.setId(tableTheater.getSelectionModel().getSelectedItem().getId());
+                    dao.update(theater);
+                    tableTheater.setItems(dao.readAll());
+                    lbTheaterFieldTitle.setText("Cadastrar Nova Sala");
+                    btnConfirmTheater.setText("Confirmar");
+
+
+                    /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
+                } else {
+                    int max = dao.MaxId();
+                    theater.setId(max);
+                    dao.save(theater);
+                    tableTheater.setItems(dao.readAll());
+                }
+                txtTheaterName.clear();
+                txtQtdSeats.clear();
+            } else{
+                throw new NumberFormatException();
             }
-            txtTheaterName.clear();
-            txtQtdSeats.clear();
         } catch (NumberFormatException n){
             MsgErro msg = new MsgErro();
             msg.show();
