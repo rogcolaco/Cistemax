@@ -2,6 +2,7 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Genre;
 import model.Movie;
 import model.Sale;
 import model.Session;
@@ -14,6 +15,27 @@ import java.sql.SQLException;
 
 
 public class SaleDAO implements DAO <Sale>{
+    public Sale getById(int id) throws SQLException {
+        Sale sale = null;
+        Connection conn = ConnectionFactory.createConnection();
+        try{
+            String sql = "select id, seats, session from sale where id= ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setInt(1, id);
+            ResultSet res = prep.executeQuery();
+            if (res != null){
+                sale = new Sale(res.getInt("id"), res.getString("seats"), res.getInt("session"));
+                conn.close();
+                return sale;
+            }
+            return null;
+        } catch (SQLException e) {
+            conn.close();
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public void save(Sale f) throws SQLException {
         Connection conn = ConnectionFactory.createConnection();

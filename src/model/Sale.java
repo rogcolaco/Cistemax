@@ -7,10 +7,34 @@ public class Sale {
     String seats;
     int qtdSeatPromotional;
     double totalSale;
+    int sessionId;
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setSeats(String seats) {
+        this.seats = seats;
+    }
+
+    public int getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(int sessionId) {
+        this.sessionId = sessionId;
+    }
+
     Session session;
     public Sale() {
 
     };
+
+    public Sale(int id, String seats, int session){
+        this.id = id;
+        this.seats = seats;
+        this.sessionId = session;
+    }
 
     public Sale(double price, String seats, int qtdSeatPromotional, double totalSale, Session session) {
         this.date = java.time.LocalDate.now().toString();
