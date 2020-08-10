@@ -122,6 +122,6 @@ public class Session {
 
     @Override
     public String toString() {
-        return  "Sala " + this.theater + " - " + this.movieName + " - " + this.date +" - " + this.starts + " - " + this.ends;
+        return  "Sala " + this.theater + " - " + this.movieName + " - " + this.date + " - " + this.starts + " - " + this.ends;
     }
 }

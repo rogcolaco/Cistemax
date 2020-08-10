@@ -60,6 +60,12 @@ public class CancelSale extends MenuPrincipal{
             session.setSeats(updatedSeats);
             saleDAO.delete(sale);
             sessionDAO.update(session);
+
+            ReportSuccess msg = new ReportSuccess();
+            msg.show();
+
+            txtIdCancelSale.clear();
+
         } catch (Exception e) {
             System.out.println(e);
             MsgErro msg = new MsgErro();

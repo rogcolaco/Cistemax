@@ -43,7 +43,6 @@ public class NewSaleController extends MenuPrincipal{
     @FXML private Button btnSetSale;
     @FXML private Button btnCancelOp;
 
-    /*Verificar Classes*/
     @FXML private TableView<Seats> tableSeats;
     @FXML private TableColumn<Seats, Integer> cSeat;
     @FXML private TableColumn<Seats, Boolean> cStatus;
