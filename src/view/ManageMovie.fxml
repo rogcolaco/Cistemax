@@ -4,32 +4,32 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="587.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovie">
+<AnchorPane prefHeight="587.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovie">
     <children>
         <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
-                <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" text="Vender Ingresso" />
-                <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" text="Gerenciar Filmes" />
-                <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" text="Gerenciar Salas" />
+                <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" prefHeight="25.0" prefWidth="114.0" text="Vender Ingresso" />
+                <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" prefHeight="25.0" prefWidth="114.0" text="Gerenciar Filmes" />
+                <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Salas" />
                 <Button fx:id="btnGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
-                <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" text="Gerenciar Preços" />
-                <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" text="Gerenciar Sessões" />
-                <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" text="Cancelar Vendas" />
-                <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
+                <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Preços" />
+                <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" prefHeight="25.0" prefWidth="117.0" text="Gerenciar Sessões" />
+                <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" prefHeight="25.0" prefWidth="117.0" text="Cancelar Vendas" />
+                <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" prefHeight="25.0" prefWidth="118.0" text="Emitir Relatório" />
             </items>
         </ToolBar>
         <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
-      <Button fx:id="btnCancelOp" layoutX="636.0" layoutY="208.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancelar" AnchorPane.leftAnchor="636.0" AnchorPane.topAnchor="208.0" />
-      <Button fx:id="btnUpdateMovie" layoutX="623.0" layoutY="39.0" mnemonicParsing="false" onAction="#updateMovie" text="Alterar Filme" AnchorPane.leftAnchor="623.0" AnchorPane.topAnchor="39.0" />
-      <Button fx:id="btnRemoveMovie" layoutX="611.0" layoutY="135.0" mnemonicParsing="false" onAction="#deleteMovie" text="Remover Filme" AnchorPane.leftAnchor="617.0" AnchorPane.topAnchor="135.0" />
-      <Button fx:id="btnConfirmMovie" layoutX="560.0" layoutY="519.0" mnemonicParsing="false" onAction="#addMovie" text="Cadastrar Filme" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="519.0" />
-      <CheckBox fx:id="checkCartaz" layoutX="572.0" layoutY="390.0" mnemonicParsing="false" text="Em Cartaz" AnchorPane.leftAnchor="572.0" AnchorPane.topAnchor="390.0" />
-      <ChoiceBox fx:id="cbGenre" layoutX="357.0" layoutY="386.0" prefWidth="150.0" AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="386.0" />
+      <Button fx:id="btnCancelOp" layoutX="617.0" layoutY="208.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="95.0" text="Cancelar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="208.0" />
+      <Button fx:id="btnUpdateMovie" layoutX="611.0" layoutY="64.0" mnemonicParsing="false" onAction="#updateMovie" prefHeight="25.0" prefWidth="95.0" text="Alterar Filme" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="64.0" />
+      <Button fx:id="btnRemoveMovie" layoutX="611.0" layoutY="135.0" mnemonicParsing="false" onAction="#deleteMovie" text="Remover Filme" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="135.0" />
+      <Button fx:id="btnConfirmMovie" layoutX="560.0" layoutY="519.0" mnemonicParsing="false" onAction="#addMovie" text="Cadastrar Filme" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="519.0" />
+      <CheckBox fx:id="checkCartaz" layoutX="572.0" layoutY="390.0" mnemonicParsing="false" text="Em Cartaz" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="390.0" />
+      <ChoiceBox fx:id="cbGenre" layoutX="357.0" layoutY="386.0" prefWidth="150.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="386.0" />
       <Label fx:id="lbMovieFieldTitle" layoutX="338.0" layoutY="327.0" text="Cadastrar Filme">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <TableView fx:id="tableMovie" layoutX="141.0" layoutY="20.0" prefHeight="280.0" prefWidth="455.0" AnchorPane.leftAnchor="141.0" AnchorPane.topAnchor="20.0">
+      <TableView fx:id="tableMovie" layoutX="141.0" layoutY="20.0" prefHeight="280.0" prefWidth="455.0" AnchorPane.leftAnchor="141.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="20.0">
         <columns>
           <TableColumn fx:id="cMovieName" prefWidth="191.0" text="Nome do Filme" />
           <TableColumn fx:id="cDirMovie" minWidth="8.0" prefWidth="68.0" text="Diretor" />
@@ -38,15 +38,15 @@
         </columns>
       </TableView>
       <Separator layoutX="132.0" layoutY="313.0" prefHeight="3.0" prefWidth="599.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="0.0" />
-      <ChoiceBox fx:id="cbParentalControl" layoutX="357.0" layoutY="452.0" prefWidth="150.0" AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="452.0" />
+      <ChoiceBox fx:id="cbParentalControl" layoutX="357.0" layoutY="452.0" prefWidth="150.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="452.0" />
       <Label layoutX="201.0" layoutY="365.0" text="Nome do Filme:" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="365.0" />
       <Label layoutX="225.0" layoutY="428.0" text="Diretor:" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="428.0" />
-      <Label layoutX="374.0" layoutY="428.0" text="Clasificação Indicativa" AnchorPane.leftAnchor="374.0" AnchorPane.topAnchor="428.0" />
-      <Label layoutX="413.0" layoutY="365.0" text="Gênero" AnchorPane.leftAnchor="413.0" AnchorPane.topAnchor="365.0" />
-      <TextField fx:id="txtMovieName" layoutX="170.0" layoutY="386.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="386.0" />
-      <TextField fx:id="txtDirName" layoutX="169.0" layoutY="452.0" AnchorPane.leftAnchor="169.0" AnchorPane.topAnchor="452.0" />
-      <Label layoutX="587.0" layoutY="428.0" text="Duração" AnchorPane.leftAnchor="587.0" AnchorPane.topAnchor="428.0" />
-      <TextField fx:id="txtDuration" layoutX="542.0" layoutY="452.0" prefWidth="150.0" AnchorPane.leftAnchor="534.0" AnchorPane.topAnchor="452.0" />
+      <Label layoutX="374.0" layoutY="428.0" text="Clasificação Indicativa" AnchorPane.rightAnchor="241.0" AnchorPane.topAnchor="428.0" />
+      <Label layoutX="413.0" layoutY="365.0" text="Gênero" AnchorPane.rightAnchor="279.0" AnchorPane.topAnchor="365.0" />
+      <TextField fx:id="txtMovieName" layoutX="170.0" layoutY="386.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="412.0" AnchorPane.topAnchor="386.0" />
+      <TextField fx:id="txtDirName" layoutX="169.0" layoutY="452.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="412.0" AnchorPane.topAnchor="452.0" />
+      <Label layoutX="589.0" layoutY="428.0" text="Duração" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="428.0" />
+      <TextField fx:id="txtDuration" layoutX="542.0" layoutY="452.0" prefWidth="150.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="452.0" />
     </children>
 
 </AnchorPane>

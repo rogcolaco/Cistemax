@@ -82,7 +82,7 @@ public class ManagePrice extends MenuPrincipal{
                     lbPriceFieldTitle.setText("Cadastrar Novo Tipo de Sessão");
                     btnConfirmPrice.setText("Confirmar");
 
-                    /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
+                /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
                 } else {
                     int max = dao.MaxId();
                     ticket.setId(max);
@@ -92,7 +92,7 @@ public class ManagePrice extends MenuPrincipal{
                 txtSessionType.clear();
                 txtSessionPrice.clear();
             }else {
-                    /*Desvia para tratamento de exceção caso não seja aceito pelo regex*/
+                    /*Desvia para tratamento de exceção*/
                     throw new NumberFormatException();
                 }
 

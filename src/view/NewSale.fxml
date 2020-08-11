@@ -8,28 +8,28 @@
    <children>
       <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-            <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" text="Vender Ingresso" />
-            <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" text="Gerenciar Filmes" />
-            <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" text="Gerenciar Salas" />
+            <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" prefHeight="25.0" prefWidth="114.0" text="Vender Ingresso" />
+            <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" prefHeight="25.0" prefWidth="114.0" text="Gerenciar Filmes" />
+            <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Salas" />
             <Button fx:id="btnGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
-            <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" text="Gerenciar Preços" />
-            <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" text="Gerenciar Sessões" />
-            <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" text="Cancelar Vendas" />
-            <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
+            <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Preços" />
+            <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" prefHeight="25.0" prefWidth="117.0" text="Gerenciar Sessões" />
+            <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" prefHeight="25.0" prefWidth="117.0" text="Cancelar Vendas" />
+            <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" prefHeight="25.0" prefWidth="118.0" text="Emitir Relatório" />
         </items>
       </ToolBar>
       <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
       <Label layoutX="165.0" layoutY="27.0" text="Sessões:" AnchorPane.leftAnchor="165.0" AnchorPane.topAnchor="27.0" />
-      <ChoiceBox fx:id="cbSessionSale" layoutX="219.0" layoutY="23.0" onAction="#updateSeats" prefHeight="25.0" prefWidth="357.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="23.0" />
+      <ChoiceBox fx:id="cbSessionSale" layoutX="219.0" layoutY="23.0" onAction="#updateSeats" prefHeight="25.0" prefWidth="357.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="23.0" />
       <Label layoutX="149.0" layoutY="271.0" text="Total de ingressos Promocionais:" AnchorPane.leftAnchor="149.0" AnchorPane.topAnchor="271.0" />
       <ChoiceBox fx:id="cbPromoTickets" layoutX="336.0" layoutY="267.0" prefHeight="25.0" prefWidth="58.0" AnchorPane.leftAnchor="336.0" AnchorPane.topAnchor="267.0" />
       <Label fx:id="lbTotal" layoutX="154.0" layoutY="324.0" text="Valor Total:" AnchorPane.leftAnchor="149.0" AnchorPane.topAnchor="324.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Button fx:id="btnSetSale" layoutX="477.0" layoutY="348.0" mnemonicParsing="false" onAction="#executeSale" text="Efetuar Venda" AnchorPane.leftAnchor="477.0" AnchorPane.topAnchor="348.0" />
-      <Button fx:id="btnCancelOp" layoutX="398.0" layoutY="348.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="398.0" AnchorPane.topAnchor="348.0" />
-      <TableView fx:id="tableSeats" layoutX="136.0" layoutY="58.0" onMouseClicked="#updatePromotionalTickets" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="58.0">
+      <Button fx:id="btnSetSale" layoutX="485.0" layoutY="348.0" mnemonicParsing="false" onAction="#executeSale" text="Efetuar Venda" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="348.0" />
+      <Button fx:id="btnCancelOp" layoutX="323.0" layoutY="348.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="91.0" text="Cancela" AnchorPane.rightAnchor="186.0" AnchorPane.topAnchor="348.0" />
+      <TableView fx:id="tableSeats" layoutX="136.0" layoutY="58.0" onMouseClicked="#updatePromotionalTickets" prefHeight="200.0" prefWidth="441.0" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="58.0">
         <columns>
           <TableColumn fx:id="cSeat" prefWidth="75.0" text="N° Assento" />
           <TableColumn fx:id="cStatus" prefWidth="124.0" text="Ocupado?" />
