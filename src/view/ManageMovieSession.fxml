@@ -4,68 +4,95 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="599.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovieSession">
 
-    <children>
-        <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <items>
-                <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" prefHeight="25.0" prefWidth="114.0" text="Vender Ingresso" />
-                <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" prefHeight="25.0" prefWidth="114.0" text="Gerenciar Filmes" />
-                <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Salas" />
-                <Button fx:id="btnGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
-                <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Preços" />
-                <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" prefHeight="25.0" prefWidth="117.0" text="Gerenciar Sessões" />
-                <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" prefHeight="25.0" prefWidth="117.0" text="Cancelar Vendas" />
-                <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" prefHeight="25.0" prefWidth="118.0" text="Emitir Relatório" />
-            </items>
-        </ToolBar>
-        <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
-        <Button fx:id="btnCancelOp" layoutX="606.0" layoutY="212.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="606.0" AnchorPane.topAnchor="212.0" />
-      <Button fx:id="btnUpdateSession" disable="true" layoutX="589.0" layoutY="90.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="589.0" AnchorPane.topAnchor="90.0" />
-      <Button fx:id="btnRemoveSession" layoutX="583.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteSession" text="Remover Sessão" AnchorPane.leftAnchor="583.0" AnchorPane.topAnchor="149.0" />
-      <Button fx:id="btnConfirmSession" layoutX="501.0" layoutY="550.0" mnemonicParsing="false" onAction="#addSession" text="Cadastrar Sessão" AnchorPane.leftAnchor="501.0" AnchorPane.topAnchor="550.0" />
-      <ChoiceBox fx:id="cbTheater" layoutX="256.0" layoutY="27.0" onAction="#updateMovies" prefWidth="150.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="27.0" />
-      <Label layoutX="147.0" layoutY="31.0" text="Selecione a Sala:" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="31.0" />
-      <TableView fx:id="tableSession" layoutX="147.0" layoutY="61.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="61.0">
-        <columns>
-          <TableColumn fx:id="cMovieSession" prefWidth="113.0" text="Nome do Filme" />
-            <TableColumn fx:id="cSessionDate" prefWidth="82.0" text="Data" />
-          <TableColumn fx:id="cStartsAt" prefWidth="52.0" text="Início" />
-            <TableColumn fx:id="cEndsAt" prefWidth="67.0" text="Término" />
-            <TableColumn fx:id="cSessionType" prefWidth="84.0" text="Promoção?" />
-        </columns>
-      </TableView>
-      <Label layoutX="154.0" layoutY="336.0" text="Nome do Filme:" AnchorPane.leftAnchor="154.0" AnchorPane.topAnchor="336.0" />
-      <Separator layoutX="130.0" layoutY="269.0" prefHeight="3.0" prefWidth="532.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="1.0" />
-      <ChoiceBox fx:id="cbMovieSession" layoutX="250.0" layoutY="332.0" prefHeight="25.0" prefWidth="174.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="332.0" />
-      <DatePicker fx:id="dtInitial" layoutX="169.0" layoutY="402.0" AnchorPane.leftAnchor="169.0" AnchorPane.topAnchor="402.0" />
-      <DatePicker fx:id="dtFinal" layoutX="426.0" layoutY="402.0" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="402.0" />
-      <Label layoutX="218.0" layoutY="378.0" text="Data Início" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="378.0" />
-      <Label layoutX="482.0" layoutY="378.0" text="Data Fim" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="378.0" />
-      <CheckBox fx:id="checkMon" layoutX="210.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Segunda-Feira" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="475.0" />
-      <CheckBox fx:id="checkTue" layoutX="344.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Terça- Feira" AnchorPane.leftAnchor="344.0" AnchorPane.topAnchor="475.0" />
-      <CheckBox fx:id="checkWed" layoutX="469.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Quarta-Feira" AnchorPane.leftAnchor="469.0" AnchorPane.topAnchor="475.0" />
-      <CheckBox fx:id="checkThu" layoutX="200.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Quinta-Feira" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="511.0" />
-      <CheckBox fx:id="checkFri" layoutX="304.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Sexta-Feira" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="511.0" />
-      <CheckBox fx:id="checkSat" layoutX="407.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Sábado" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="511.0" />
-      <CheckBox fx:id="checkSun" layoutX="482.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Domingo" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="511.0" />
-      <Label layoutX="340.0" layoutY="438.0" text="Periodicidade" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="438.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="178.0" layoutY="554.0" text="Tipo da Sessão" AnchorPane.leftAnchor="178.0" AnchorPane.topAnchor="554.0" />
-      <ChoiceBox fx:id="cbSession" layoutX="280.0" layoutY="550.0" prefWidth="150.0" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="550.0" />
-      <CheckBox fx:id="checkPromo" layoutX="474.0" layoutY="291.0" mnemonicParsing="false" text="Sessão Promocional" AnchorPane.leftAnchor="474.0" AnchorPane.topAnchor="291.0" />
-      <TextField fx:id="txtHour" layoutX="513.0" layoutY="332.0" prefHeight="25.0" prefWidth="41.0" AnchorPane.leftAnchor="513.0" AnchorPane.topAnchor="332.0" />
-      <TextField fx:id="txtMin" layoutX="573.0" layoutY="332.0" prefHeight="25.0" prefWidth="41.0" AnchorPane.leftAnchor="573.0" AnchorPane.topAnchor="332.0" />
-      <Label layoutX="461.0" layoutY="336.0" text="Horário" AnchorPane.leftAnchor="461.0" AnchorPane.topAnchor="336.0" />
-      <Label layoutX="560.0" layoutY="336.0" text=":" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="336.0" />
-      <Label fx:id="lbSessionFieldTitle" layoutX="196.0" layoutY="283.0" text="Cadastrar Nova Sessão" AnchorPane.leftAnchor="196.0" AnchorPane.topAnchor="283.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-    </children>
-
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovieSession">
+   <center>
+      <AnchorPane prefHeight="599.0" prefWidth="717.0">
+      
+          <children>
+              <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <items>
+                      <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" prefHeight="25.0" prefWidth="114.0" text="Vender Ingresso" />
+                      <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" prefHeight="25.0" prefWidth="114.0" text="Gerenciar Filmes" />
+                      <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Salas" />
+                      <Button fx:id="btnGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
+                      <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Preços" />
+                      <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" prefHeight="25.0" prefWidth="117.0" text="Gerenciar Sessões" />
+                      <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" prefHeight="25.0" prefWidth="117.0" text="Cancelar Vendas" />
+                      <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" prefHeight="25.0" prefWidth="118.0" text="Emitir Relatório" />
+                  </items>
+              </ToolBar>
+              <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
+              <Button fx:id="btnCancelOp" layoutX="606.0" layoutY="212.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="606.0" AnchorPane.topAnchor="212.0" />
+            <Button fx:id="btnUpdateSession" disable="true" layoutX="589.0" layoutY="90.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="589.0" AnchorPane.topAnchor="90.0" />
+            <Button fx:id="btnRemoveSession" layoutX="583.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteSession" text="Remover Sessão" AnchorPane.leftAnchor="583.0" AnchorPane.topAnchor="149.0" />
+            <Button fx:id="btnConfirmSession" layoutX="501.0" layoutY="550.0" mnemonicParsing="false" onAction="#addSession" text="Cadastrar Sessão" AnchorPane.leftAnchor="501.0" AnchorPane.topAnchor="550.0" />
+            <ChoiceBox fx:id="cbTheater" layoutX="256.0" layoutY="27.0" onAction="#updateMovies" prefWidth="150.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="27.0" />
+            <Label layoutX="147.0" layoutY="31.0" text="Selecione a Sala:" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="31.0" />
+            <TableView fx:id="tableSession" layoutX="147.0" layoutY="61.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="61.0">
+              <columns>
+                <TableColumn fx:id="cMovieSession" prefWidth="113.0" text="Nome do Filme" />
+                  <TableColumn fx:id="cSessionDate" prefWidth="82.0" text="Data" />
+                <TableColumn fx:id="cStartsAt" prefWidth="52.0" text="Início" />
+                  <TableColumn fx:id="cEndsAt" prefWidth="67.0" text="Término" />
+                  <TableColumn fx:id="cSessionType" prefWidth="84.0" text="Promoção?" />
+              </columns>
+            </TableView>
+            <Label layoutX="154.0" layoutY="336.0" text="Nome do Filme:" AnchorPane.leftAnchor="154.0" AnchorPane.topAnchor="336.0" />
+            <Separator layoutX="130.0" layoutY="269.0" prefHeight="3.0" prefWidth="532.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="1.0" />
+            <ChoiceBox fx:id="cbMovieSession" layoutX="250.0" layoutY="332.0" prefHeight="25.0" prefWidth="174.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="332.0" />
+            <DatePicker fx:id="dtInitial" layoutX="169.0" layoutY="402.0" AnchorPane.leftAnchor="169.0" AnchorPane.topAnchor="402.0" />
+            <DatePicker fx:id="dtFinal" layoutX="426.0" layoutY="402.0" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="402.0" />
+            <Label layoutX="218.0" layoutY="378.0" text="Data Início" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="378.0" />
+            <Label layoutX="482.0" layoutY="378.0" text="Data Fim" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="378.0" />
+            <CheckBox fx:id="checkMon" layoutX="210.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Segunda-Feira" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="475.0" />
+            <CheckBox fx:id="checkTue" layoutX="344.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Terça- Feira" AnchorPane.leftAnchor="344.0" AnchorPane.topAnchor="475.0" />
+            <CheckBox fx:id="checkWed" layoutX="469.0" layoutY="475.0" mnemonicParsing="false" selected="true" text="Quarta-Feira" AnchorPane.leftAnchor="469.0" AnchorPane.topAnchor="475.0" />
+            <CheckBox fx:id="checkThu" layoutX="200.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Quinta-Feira" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="511.0" />
+            <CheckBox fx:id="checkFri" layoutX="304.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Sexta-Feira" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="511.0" />
+            <CheckBox fx:id="checkSat" layoutX="407.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Sábado" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="511.0" />
+            <CheckBox fx:id="checkSun" layoutX="482.0" layoutY="511.0" mnemonicParsing="false" selected="true" text="Domingo" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="511.0" />
+            <Label layoutX="340.0" layoutY="438.0" text="Periodicidade" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="438.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="178.0" layoutY="554.0" text="Tipo da Sessão" AnchorPane.leftAnchor="178.0" AnchorPane.topAnchor="554.0" />
+            <ChoiceBox fx:id="cbSession" layoutX="280.0" layoutY="550.0" prefWidth="150.0" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="550.0" />
+            <CheckBox fx:id="checkPromo" layoutX="474.0" layoutY="291.0" mnemonicParsing="false" text="Sessão Promocional" AnchorPane.leftAnchor="474.0" AnchorPane.topAnchor="291.0" />
+            <TextField fx:id="txtHour" layoutX="513.0" layoutY="332.0" prefHeight="25.0" prefWidth="41.0" AnchorPane.leftAnchor="513.0" AnchorPane.topAnchor="332.0" />
+            <TextField fx:id="txtMin" layoutX="573.0" layoutY="332.0" prefHeight="25.0" prefWidth="41.0" AnchorPane.leftAnchor="573.0" AnchorPane.topAnchor="332.0" />
+            <Label layoutX="461.0" layoutY="336.0" text="Horário" AnchorPane.leftAnchor="461.0" AnchorPane.topAnchor="336.0" />
+            <Label layoutX="560.0" layoutY="336.0" text=":" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="336.0" />
+            <Label fx:id="lbSessionFieldTitle" layoutX="196.0" layoutY="283.0" text="Cadastrar Nova Sessão" AnchorPane.leftAnchor="196.0" AnchorPane.topAnchor="283.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+          </children>
+      
+      </AnchorPane>
+   </center>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Venda">
+                    <items>
+                        <MenuItem fx:id="menuSale" mnemonicParsing="false" onAction="#newSale" text="Realizar Venda" />
+                        <MenuItem fx:id="menuCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" text="Cancelar Venda" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Administração">
+                    <items>
+                        <MenuItem fx:id="menuMovie" mnemonicParsing="false" onAction="#mngMovie" text="Gerenciar Filme" />
+                        <MenuItem fx:id="menuTheater" mnemonicParsing="false" onAction="#mngTheater" text="Gerenciar Salas" />
+                        <MenuItem fx:id="menuGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
+                        <MenuItem fx:id="menuPrice" mnemonicParsing="false" onAction="#mngPrice" text="Gerenciar Preços" />
+                        <MenuItem fx:id="menuMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" text="Gerenciar Sessões" />
+                        <MenuItem fx:id="menuReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>

@@ -4,7 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="587.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovie">
+<BorderPane prefHeight="587.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovie"  >
+<center>
+<AnchorPane prefHeight="200.0" prefWidth="200.0">
     <children>
         <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
@@ -50,3 +52,27 @@
     </children>
 
 </AnchorPane>
+</center>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Venda">
+                    <items>
+                        <MenuItem fx:id="menuSale" mnemonicParsing="false" onAction="#newSale" text="Realizar Venda" />
+                        <MenuItem fx:id="menuCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" text="Cancelar Venda" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Administração">
+                    <items>
+                        <MenuItem fx:id="menuMovie" mnemonicParsing="false" onAction="#mngMovie" text="Gerenciar Filme" />
+                        <MenuItem fx:id="menuTheater" mnemonicParsing="false" onAction="#mngTheater" text="Gerenciar Salas" />
+                        <MenuItem fx:id="menuGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
+                        <MenuItem fx:id="menuPrice" mnemonicParsing="false" onAction="#mngPrice" text="Gerenciar Preços" />
+                        <MenuItem fx:id="menuMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" text="Gerenciar Sessões" />
+                        <MenuItem fx:id="menuReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>

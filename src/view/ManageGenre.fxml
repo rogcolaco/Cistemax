@@ -4,38 +4,65 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageGenre">
-    <children>
-        <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <items>
-                <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" prefHeight="25.0" prefWidth="114.0" text="Vender Ingresso" />
-                <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" prefHeight="25.0" prefWidth="114.0" text="Gerenciar Filmes" />
-                <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Salas" />
-                <Button fx:id="btnGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
-                <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Preços" />
-                <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" prefHeight="25.0" prefWidth="117.0" text="Gerenciar Sessões" />
-                <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" prefHeight="25.0" prefWidth="117.0" text="Cancelar Vendas" />
-                <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" prefHeight="25.0" prefWidth="118.0" text="Emitir Relatório" />
-            </items>
-        </ToolBar>
-        <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
-        <Button fx:id="btnCancelOp" layoutX="447.0" layoutY="188.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="133.0" text="Cancela" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="188.0" />
-      <TableView fx:id="tableGenre" layoutX="156.0" layoutY="28.0" prefHeight="200.0" prefWidth="272.0" AnchorPane.leftAnchor="156.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="28.0">
-        <columns>
-          <TableColumn fx:id="cGenre" prefWidth="125.0" text="Gênero" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnUpdateGenre" layoutX="447.0" layoutY="49.0" mnemonicParsing="false" onAction="#updateGenre" prefHeight="25.0" prefWidth="133.0" text="Alterar Gênero" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="49.0" />
-      <Button fx:id="btnRemoveGenre" layoutX="447.0" layoutY="116.0" mnemonicParsing="false" onAction="#removeGenre" prefHeight="25.0" prefWidth="133.0" text="Remover Gênero" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="116.0" />
-      <Separator layoutX="132.0" layoutY="262.0" prefHeight="3.0" prefWidth="468.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="0.0" />
-      <Label fx:id="lbGenreFieldTitle" layoutX="289.0" layoutY="273.0" text="Cadastrar Gênero">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="164.0" layoutY="316.0" text="Nome do gênero:" AnchorPane.leftAnchor="164.0" AnchorPane.topAnchor="316.0" />
-      <Button fx:id="btnConfirmGenre" layoutX="447.0" layoutY="312.0" mnemonicParsing="false" onAction="#addGenre" prefHeight="25.0" prefWidth="133.0" text="Confirmar Cadastro" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="312.0" />
-      <TextField fx:id="txtGenreName" layoutX="272.0" layoutY="312.0" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="179.0" AnchorPane.topAnchor="312.0" />
-    </children>
 
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageGenre">
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+          <children>
+              <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <items>
+                      <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" prefHeight="25.0" prefWidth="114.0" text="Vender Ingresso" />
+                      <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" prefHeight="25.0" prefWidth="114.0" text="Gerenciar Filmes" />
+                      <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Salas" />
+                      <Button fx:id="btnGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
+                      <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Preços" />
+                      <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" prefHeight="25.0" prefWidth="117.0" text="Gerenciar Sessões" />
+                      <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" prefHeight="25.0" prefWidth="117.0" text="Cancelar Vendas" />
+                      <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" prefHeight="25.0" prefWidth="118.0" text="Emitir Relatório" />
+                  </items>
+              </ToolBar>
+              <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
+              <Button fx:id="btnCancelOp" layoutX="447.0" layoutY="188.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="133.0" text="Cancela" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="188.0" />
+            <TableView fx:id="tableGenre" layoutX="156.0" layoutY="28.0" prefHeight="200.0" prefWidth="272.0" AnchorPane.leftAnchor="156.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="28.0">
+              <columns>
+                <TableColumn fx:id="cGenre" prefWidth="125.0" text="Gênero" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnUpdateGenre" layoutX="447.0" layoutY="49.0" mnemonicParsing="false" onAction="#updateGenre" prefHeight="25.0" prefWidth="133.0" text="Alterar Gênero" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="49.0" />
+            <Button fx:id="btnRemoveGenre" layoutX="447.0" layoutY="116.0" mnemonicParsing="false" onAction="#removeGenre" prefHeight="25.0" prefWidth="133.0" text="Remover Gênero" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="116.0" />
+            <Separator layoutX="132.0" layoutY="262.0" prefHeight="3.0" prefWidth="468.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="0.0" />
+            <Label fx:id="lbGenreFieldTitle" layoutX="289.0" layoutY="273.0" text="Cadastrar Gênero">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="164.0" layoutY="316.0" text="Nome do gênero:" AnchorPane.leftAnchor="164.0" AnchorPane.topAnchor="316.0" />
+            <Button fx:id="btnConfirmGenre" layoutX="447.0" layoutY="312.0" mnemonicParsing="false" onAction="#addGenre" prefHeight="25.0" prefWidth="133.0" text="Confirmar Cadastro" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="312.0" />
+            <TextField fx:id="txtGenreName" layoutX="272.0" layoutY="312.0" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="179.0" AnchorPane.topAnchor="312.0" />
+          </children>
+      
+      </AnchorPane>
+   </center>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Venda">
+                    <items>
+                        <MenuItem fx:id="menuSale" mnemonicParsing="false" onAction="#newSale" text="Realizar Venda" />
+                        <MenuItem fx:id="menuCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" text="Cancelar Venda" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Administração">
+                    <items>
+                        <MenuItem fx:id="menuMovie" mnemonicParsing="false" onAction="#mngMovie" text="Gerenciar Filme" />
+                        <MenuItem fx:id="menuTheater" mnemonicParsing="false" onAction="#mngTheater" text="Gerenciar Salas" />
+                        <MenuItem fx:id="menuGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
+                        <MenuItem fx:id="menuPrice" mnemonicParsing="false" onAction="#mngPrice" text="Gerenciar Preços" />
+                        <MenuItem fx:id="menuMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" text="Gerenciar Sessões" />
+                        <MenuItem fx:id="menuReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>
