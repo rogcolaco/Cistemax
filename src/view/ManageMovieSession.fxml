@@ -23,7 +23,7 @@
                   </items>
               </ToolBar>
               <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
-              <Button fx:id="btnCancelOp" layoutX="606.0" layoutY="212.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="606.0" AnchorPane.topAnchor="212.0" />
+              <Button fx:id="btnCancelOp" layoutX="606.0" layoutY="212.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancelar" AnchorPane.leftAnchor="606.0" AnchorPane.topAnchor="212.0" />
             <Button fx:id="btnUpdateSession" disable="true" layoutX="589.0" layoutY="90.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="589.0" AnchorPane.topAnchor="90.0" />
             <Button fx:id="btnRemoveSession" layoutX="583.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteSession" text="Remover Sessão" AnchorPane.leftAnchor="583.0" AnchorPane.topAnchor="149.0" />
             <Button fx:id="btnConfirmSession" layoutX="501.0" layoutY="550.0" mnemonicParsing="false" onAction="#addSession" text="Cadastrar Sessão" AnchorPane.leftAnchor="501.0" AnchorPane.topAnchor="550.0" />
@@ -89,6 +89,10 @@
                         <MenuItem fx:id="menuGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
                         <MenuItem fx:id="menuPrice" mnemonicParsing="false" onAction="#mngPrice" text="Gerenciar Preços" />
                         <MenuItem fx:id="menuMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" text="Gerenciar Sessões" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Relatório">
+                    <items>
                         <MenuItem fx:id="menuReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
                     </items>
                 </Menu>

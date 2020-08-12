@@ -20,10 +20,10 @@
                   </items>
               </ToolBar>
               <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
-            <Button fx:id="btnConfirmCancelSale" layoutX="438.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteSale" text="Confirma" AnchorPane.leftAnchor="438.0" AnchorPane.topAnchor="153.0" />
+            <Button fx:id="btnConfirmCancelSale" layoutX="438.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteSale" text="Confirmar" AnchorPane.leftAnchor="438.0" AnchorPane.topAnchor="153.0" />
             <Label layoutX="234.0" layoutY="88.0" text="Número da venda:" AnchorPane.leftAnchor="234.0" AnchorPane.topAnchor="88.0" />
             <TextField fx:id="txtIdCancelSale" layoutX="354.0" layoutY="84.0" AnchorPane.leftAnchor="354.0" AnchorPane.topAnchor="84.0" />
-            <Button fx:id="btnCancelOp" layoutX="274.0" layoutY="153.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancela" AnchorPane.leftAnchor="274.0" AnchorPane.topAnchor="153.0" />
+            <Button fx:id="btnCancelOp" layoutX="274.0" layoutY="153.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancelar" AnchorPane.leftAnchor="274.0" AnchorPane.topAnchor="153.0" />
       
           </children>
       
@@ -45,9 +45,13 @@
                   <MenuItem fx:id="menuGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
                   <MenuItem fx:id="menuPrice" mnemonicParsing="false" onAction="#mngPrice" text="Gerenciar Preços" />
                   <MenuItem fx:id="menuMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" text="Gerenciar Sessões" />
-                  <MenuItem fx:id="menuReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Relatório">
+               <items>
+                  <MenuItem fx:id="menuReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

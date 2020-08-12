@@ -62,6 +62,10 @@
                         <MenuItem fx:id="menuGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
                         <MenuItem fx:id="menuPrice" mnemonicParsing="false" onAction="#mngPrice" text="Gerenciar Preços" />
                         <MenuItem fx:id="menuMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" text="Gerenciar Sessões" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Relatório">
+                    <items>
                         <MenuItem fx:id="menuReport" mnemonicParsing="false" onAction="#mngReport" text="Emitir Relatório" />
                     </items>
                 </Menu>
