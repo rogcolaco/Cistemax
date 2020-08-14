@@ -29,19 +29,10 @@ import com.google.gson.Gson;
 
 public class ManageMovieSession extends MenuPrincipal{
 
-    //Toolbar buttons
-    @FXML private Button btnSale;
-    @FXML private Button btnMovie;
-    @FXML private Button btnTheater;
-    @FXML private Button btnGenre;
-    @FXML private Button btnPrice;
-    @FXML private Button btnMovieSession;
-    @FXML private Button btnCancelSale;
-    @FXML private Button btnReport;
-
     @FXML private Button btnRemoveSession;
     @FXML private Button btnConfirmSession;
     @FXML private Button btnUpdateSession;
+    @FXML private Button btnCancelOp;
     @FXML private Label lbSessionFieldTitle;
     @FXML private CheckBox checkPromo;
     @FXML private CheckBox checkMon;

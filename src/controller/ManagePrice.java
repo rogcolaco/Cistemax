@@ -20,18 +20,9 @@ import java.util.List;
 
 public class ManagePrice extends MenuPrincipal{
 
-    //Toolbar buttons
-    @FXML private Button btnSale;
-    @FXML private Button btnMovie;
-    @FXML private Button btnTheater;
-    @FXML private Button btnGenre;
-    @FXML private Button btnPrice;
-    @FXML private Button btnMovieSession;
-    @FXML private Button btnCancelSale;
-    @FXML private Button btnReport;
-
     @FXML private Button btnConfirmPrice;
     @FXML private Button btnUpdatePrice;
+    @FXML private Button btnCancelOp;
     @FXML private Label lbPriceFieldTitle;
     @FXML private Button btnRemoveSession;
     @FXML private TextField txtSessionType;

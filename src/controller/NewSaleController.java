@@ -28,15 +28,6 @@ import java.util.Map;
 
 public class NewSaleController extends MenuPrincipal{
 
-    //Toolbar buttons
-    @FXML private Button btnSale;
-    @FXML private Button btnMovie;
-    @FXML private Button btnTheater;
-    @FXML private Button btnGenre;
-    @FXML private Button btnPrice;
-    @FXML private Button btnMovieSession;
-    @FXML private Button btnCancelSale;
-    @FXML private Button btnReport;
     @FXML private Label lbTotal;
 
     @FXML private ChoiceBox<Session> cbSessionSale;

@@ -9,19 +9,6 @@
    <center>
       <AnchorPane prefHeight="471.0" prefWidth="600.0">
           <children>
-              <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <items>
-                      <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" prefHeight="25.0" prefWidth="114.0" text="Vender Ingresso" />
-                      <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" prefHeight="25.0" prefWidth="114.0" text="Gerenciar Filmes" />
-                      <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Salas" />
-                      <Button fx:id="btnGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
-                      <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Preços" />
-                      <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" prefHeight="25.0" prefWidth="117.0" text="Gerenciar Sessões" />
-                      <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" prefHeight="25.0" prefWidth="117.0" text="Cancelar Vendas" />
-                      <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" prefHeight="25.0" prefWidth="118.0" text="Emitir Relatório" />
-                  </items>
-              </ToolBar>
-              <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
             <TableView fx:id="tableTheater" layoutX="169.0" layoutY="14.0" prefHeight="289.0" prefWidth="298.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="14.0">
               <columns>
                 <TableColumn fx:id="cTheaterName" prefWidth="126.0" text="Nome da Sala" />

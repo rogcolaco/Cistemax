@@ -15,18 +15,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class ManageTheater extends MenuPrincipal{
-    //Toolbar buttons
-    @FXML private Button btnSale;
-    @FXML private Button btnMovie;
-    @FXML private Button btnTheater;
-    @FXML private Button btnGenre;
-    @FXML private Button btnPrice;
-    @FXML private Button btnMovieSession;
-    @FXML private Button btnCancelSale;
-    @FXML private Button btnReport;
 
     @FXML private Button btnUpdateTheater;
     @FXML private Button btnConfirmTheater;
+    @FXML private Button btnCancelOp;
     @FXML private Label lbTheaterFieldTitle;
     @FXML private Button btnRemoveTheater;
     @FXML private TextField txtTheaterName;

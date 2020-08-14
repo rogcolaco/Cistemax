@@ -10,19 +10,6 @@
       <AnchorPane prefHeight="599.0" prefWidth="717.0">
       
           <children>
-              <ToolBar orientation="VERTICAL" prefHeight="400.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <items>
-                      <Button fx:id="btnSale" mnemonicParsing="false" onAction="#newSale" prefHeight="25.0" prefWidth="114.0" text="Vender Ingresso" />
-                      <Button fx:id="btnMovie" mnemonicParsing="false" onAction="#mngMovie" prefHeight="25.0" prefWidth="114.0" text="Gerenciar Filmes" />
-                      <Button fx:id="btnTheater" mnemonicParsing="false" onAction="#mngTheater" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Salas" />
-                      <Button fx:id="btnGenre" mnemonicParsing="false" onAction="#mngGenre" text="Gerenciar Gêneros" />
-                      <Button fx:id="btnPrice" mnemonicParsing="false" onAction="#mngPrice" prefHeight="25.0" prefWidth="115.0" text="Gerenciar Preços" />
-                      <Button fx:id="btnMovieSession" mnemonicParsing="false" onAction="#mngMovieSession" prefHeight="25.0" prefWidth="117.0" text="Gerenciar Sessões" />
-                      <Button fx:id="btnCancelSale" mnemonicParsing="false" onAction="#mngCancelSale" prefHeight="25.0" prefWidth="117.0" text="Cancelar Vendas" />
-                      <Button fx:id="btnReport" mnemonicParsing="false" onAction="#mngReport" prefHeight="25.0" prefWidth="118.0" text="Emitir Relatório" />
-                  </items>
-              </ToolBar>
-              <Separator layoutX="130.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
               <Button fx:id="btnCancelOp" layoutX="606.0" layoutY="212.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancelar" AnchorPane.leftAnchor="606.0" AnchorPane.topAnchor="212.0" />
             <Button fx:id="btnUpdateSession" disable="true" layoutX="589.0" layoutY="90.0" mnemonicParsing="false" onAction="#updateSession" text="Alterar Sessão" AnchorPane.leftAnchor="589.0" AnchorPane.topAnchor="90.0" />
             <Button fx:id="btnRemoveSession" layoutX="583.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteSession" text="Remover Sessão" AnchorPane.leftAnchor="583.0" AnchorPane.topAnchor="149.0" />
