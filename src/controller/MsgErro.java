@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,6 +33,10 @@ public class MsgErro {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Entrada de dados inválida");
+
+            Image image = new Image("/Image/logoTransparente.png");
+            stage.getIcons().add(image);
+
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
 
