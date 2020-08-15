@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Ticket;
 
@@ -21,6 +22,10 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewSale.fxml"));
         this.stage = primaryStage;
         stage.setTitle("Cistemax - Gerenciar Vendas");
+
+        Image image = new Image("/Image/logoTransparente.png");
+        stage.getIcons().add(image);
+
         stage.setScene(new Scene(root, 940, 650));
         stage.show();
     }

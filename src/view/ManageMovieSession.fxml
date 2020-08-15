@@ -26,7 +26,7 @@
                   <TableColumn fx:id="cSessionType" prefWidth="84.0" text="Promoção?" />
               </columns>
             </TableView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#14395b" height="163.0" layoutX="23.0" layoutY="419.0" opacity="0.29" stroke="BLACK" strokeType="INSIDE" width="433.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#14395b" height="163.0" layoutX="23.0" layoutY="419.0" opacity="0.29" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" width="433.0" />
             <Label layoutX="25.0" layoutY="348.0" text="Nome do Filme:" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="348.0" />
             <Separator layoutY="298.0" prefHeight="3.0" prefWidth="532.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="298.0" />
             <ChoiceBox fx:id="cbMovieSession" layoutX="23.0" layoutY="378.0" prefHeight="25.0" prefWidth="433.0" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="378.0" />
