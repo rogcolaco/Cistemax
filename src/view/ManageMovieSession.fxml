@@ -46,9 +46,9 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="731.0" layoutY="428.0" text="Tipo da Sessão" AnchorPane.leftAnchor="731.0" AnchorPane.topAnchor="428.0" />
-            <ChoiceBox fx:id="cbSession" layoutX="731.0" layoutY="457.0" prefWidth="150.0" AnchorPane.leftAnchor="731.0" AnchorPane.topAnchor="457.0" />
-            <CheckBox fx:id="checkPromo" layoutX="731.0" layoutY="382.0" mnemonicParsing="false" text="Sessão Promocional" AnchorPane.leftAnchor="731.0" AnchorPane.topAnchor="382.0" />
+            <Label layoutX="740.0" layoutY="428.0" text="Tipo da Sessão" AnchorPane.leftAnchor="740.0" AnchorPane.topAnchor="428.0" />
+            <ChoiceBox fx:id="cbSession" layoutX="740.0" layoutY="460.0" prefWidth="150.0" AnchorPane.leftAnchor="740.0" AnchorPane.topAnchor="460.0" />
+            <CheckBox fx:id="checkPromo" layoutX="740.0" layoutY="382.0" mnemonicParsing="false" text="Sessão Promocional" AnchorPane.leftAnchor="740.0" AnchorPane.topAnchor="382.0" />
             <TextField fx:id="txtHour" layoutX="548.0" layoutY="378.0" prefHeight="25.0" prefWidth="41.0" AnchorPane.leftAnchor="548.0" AnchorPane.topAnchor="378.0" />
             <TextField fx:id="txtMin" layoutX="608.0" layoutY="378.0" prefHeight="25.0" prefWidth="41.0" AnchorPane.leftAnchor="608.0" AnchorPane.topAnchor="378.0" />
             <Label layoutX="496.0" layoutY="382.0" text="Horário" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="382.0" />
