@@ -5,18 +5,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import model.Genre;
-import util.SwitcherDisplay;
+import util.Regex;
 
-import java.io.IOException;
 import java.sql.SQLException;
+
+import static util.Utils.mostrarAlerta;
 
 public class ManageGenre extends MenuPrincipal{
 
     @FXML private Button btnUpdateGenre;
     @FXML private Button btnConfirmGenre;
-    //@FXML private Button btnCancelOp;
     @FXML private Label lbGenreFieldTitle;
     @FXML private Button btnRemoveGenre;
     @FXML private TextField txtGenreName;
@@ -24,6 +23,8 @@ public class ManageGenre extends MenuPrincipal{
     /*Confirmar Classes*/
     @FXML private TableView<Genre> tableGenre;
     @FXML private TableColumn<Genre, String> cGenre;
+
+    Regex regex = new Regex();
 
     @FXML public void initialize(){ fill(); }
 
@@ -56,7 +57,7 @@ public class ManageGenre extends MenuPrincipal{
         GenreDAO dao = new GenreDAO();
         genre.setName(txtGenreName.getText());
 
-        if (genre.getName().length() > 0) {
+        if (!genre.getName().equals("") && regex.isText(genre.getName())) {
             /*Caso o botão de confirmação seja utilizado para alterar um gênero*/
             if (btnConfirmGenre.getText().equals("Alterar")) {
                 genre.setId(tableGenre.getSelectionModel().getSelectedItem().getId());
@@ -74,8 +75,12 @@ public class ManageGenre extends MenuPrincipal{
             }
             txtGenreName.clear();
         } else {
-            MsgErro msg = new MsgErro();
-            msg.show();
+            if (genre.getName().equals("")) {
+                mostrarAlerta("Gênero", "Nome do Gênero", "Por Favor Preencha o Campo 'Nome do Gênero' ", Alert.AlertType.ERROR);
+            }
+            if(!regex.isText(genre.getName())){
+                mostrarAlerta("Gênero", "Nome do Gênero", "Por Favor Preencha o Campo 'Nome do Gênero' apenas com texto.", Alert.AlertType.ERROR);
+            }
         }
     }
 }

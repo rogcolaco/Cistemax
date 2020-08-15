@@ -9,16 +9,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Theater;
 import model.Ticket;
+import util.Regex;
 import util.SwitcherDisplay;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static util.Utils.mostrarAlerta;
+
 public class ManageTheater extends MenuPrincipal{
 
     @FXML private Button btnUpdateTheater;
     @FXML private Button btnConfirmTheater;
-    //@FXML private Button btnCancelOp;
     @FXML private Label lbTheaterFieldTitle;
     @FXML private Button btnRemoveTheater;
     @FXML private TextField txtTheaterName;
@@ -28,6 +30,7 @@ public class ManageTheater extends MenuPrincipal{
     @FXML private TableView<Theater> tableTheater;
     @FXML private TableColumn<Theater, String> cTheaterName;
     @FXML private TableColumn<Theater, Integer> cQtdSeats;
+
 
     @FXML
     public void initialize(){
@@ -54,6 +57,7 @@ public class ManageTheater extends MenuPrincipal{
     public void confirm(ActionEvent actionEvent) throws SQLException {
         Theater theater = new Theater();
         TheaterDAO dao = new TheaterDAO();
+
         try {
             theater.setName(txtTheaterName.getText());
             theater.setQtdSeats(Integer.parseInt(txtQtdSeats.getText()));
@@ -79,11 +83,10 @@ public class ManageTheater extends MenuPrincipal{
                 txtTheaterName.clear();
                 txtQtdSeats.clear();
             } else{
-                throw new NumberFormatException();
+                    mostrarAlerta("Sala", "Nome da Sala", "Por Favor Preencha o Campo 'Nome da Sala' ", Alert.AlertType.ERROR);
             }
         } catch (NumberFormatException n){
-            MsgErro msg = new MsgErro();
-            msg.show();
+            mostrarAlerta("Sala", "Nome da Sala", "Por Favor Preencha o Campo 'Qtd Assentos' apenas com números", Alert.AlertType.ERROR);
         }
     }
 

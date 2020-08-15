@@ -18,6 +18,7 @@ import model.Sale;
 import model.Seats;
 import model.Session;
 import model.Ticket;
+import util.ErroDbAcess;
 
 import javax.swing.*;
 import java.awt.print.PrinterException;
@@ -39,6 +40,8 @@ public class NewSaleController extends MenuPrincipal{
     @FXML private TableView<Seats> tableSeats;
     @FXML private TableColumn<Seats, Integer> cSeat;
     @FXML private TableColumn<Seats, Boolean> cStatus;
+
+    ErroDbAcess erro = new ErroDbAcess();
 
     @FXML
     public void initialize() throws SQLException {
@@ -155,8 +158,7 @@ public class NewSaleController extends MenuPrincipal{
             printTicket(saleDAO.MaxId(), session, price, selected, qtdSeats, qtdPromotional, totalSale);
             updateSeats(new ActionEvent());
         } catch (Exception e) {
-            MsgErro msg = new MsgErro();
-            msg.show();
+            erro.erroBdAcess();
         }
     }
 

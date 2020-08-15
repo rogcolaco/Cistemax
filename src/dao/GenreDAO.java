@@ -30,7 +30,7 @@ public class GenreDAO implements DAO <Genre>{
             }
             return  list;
         } catch (SQLException e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         }
         return null;
     }
@@ -51,7 +51,7 @@ public class GenreDAO implements DAO <Genre>{
             return null;
         } catch (SQLException e) {
             conn.close();
-            e.printStackTrace();
+            erro.erroBdAcess();;
         }
         return null;
     }
@@ -69,7 +69,7 @@ public class GenreDAO implements DAO <Genre>{
             prep.execute();
             conn.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }
@@ -87,7 +87,7 @@ public class GenreDAO implements DAO <Genre>{
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }
@@ -104,8 +104,7 @@ public class GenreDAO implements DAO <Genre>{
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            e.printStackTrace();
-            mostrarAlerta("Gênero","Erro ao deletar Gênero","Existe pelo menos um filme com utilizando o Gênero selecionado.", Alert.AlertType.ERROR);
+            mostrarAlerta("Gênero","Erro ao deletar Gênero","Existe pelo menos um filme utilizando o gênero selecionado.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }
@@ -120,7 +119,7 @@ public class GenreDAO implements DAO <Genre>{
             int max = res.getInt("id") + 1;
             return max;
         } catch (SQLException e) {
-            e.printStackTrace();
+            erro.erroBdAcess();;
         } finally {
             conn.close();
         }

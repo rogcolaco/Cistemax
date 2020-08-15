@@ -1,22 +1,16 @@
 package controller;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import dao.TicketDAO;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import model.ParentalControl;
 import model.Ticket;
-import util.SwitcherDisplay;
+import util.Regex;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
+import static util.Utils.mostrarAlerta;
 
 public class ManagePrice extends MenuPrincipal{
 
@@ -32,6 +26,7 @@ public class ManagePrice extends MenuPrincipal{
     @FXML private TableColumn<Ticket, String> cSessionType;
     @FXML private TableColumn<Ticket, Double> cSessionPrice;
 
+    Regex regex = new Regex();
 
     @FXML
     public void initialize(){
@@ -58,11 +53,10 @@ public class ManagePrice extends MenuPrincipal{
     public void confirm(ActionEvent actionEvent) throws SQLException{
         Ticket ticket = new Ticket();
         TicketDAO dao = new TicketDAO();
-        try {
             ticket.setType(txtSessionType.getText());
-            String s = new String(txtSessionPrice.getText().replace(",","."));
+            String s = new String(txtSessionPrice.getText().replace(",", "."));
 
-            if(ticket.isDouble(s) && !ticket.getType().equals("")) {
+            if (regex.isDouble(s) && !ticket.getType().equals("")) {
                 ticket.setValue(Double.parseDouble(s));
 
                 /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
@@ -75,22 +69,24 @@ public class ManagePrice extends MenuPrincipal{
 
                 /*Caso o botão de confirmação seja utilizado para salvar um ticket novo*/
                 } else {
-                    int max = dao.MaxId();
+                    int max = dao.maxId();
                     ticket.setId(max);
                     dao.save(ticket);
                     tableSession.setItems(dao.readAll());
                 }
                 txtSessionType.clear();
                 txtSessionPrice.clear();
-            }else {
-                    /*Desvia para tratamento de exceção*/
-                    throw new NumberFormatException();
+            } else {
+                if (ticket.getType().equals("")) {
+                    mostrarAlerta("Tipos de Sessão e Preços", "Tipo de Sessão", "Por Favor Preencha o Campo 'Tipo da Sessão'", Alert.AlertType.ERROR);
+                    return;
                 }
 
-        } catch (NumberFormatException n){
-            MsgErro msg = new MsgErro();
-            msg.show();
-        }
+                if (!regex.isDouble(s)) {
+                    mostrarAlerta("Tipos de Sessão e Preços", "Tipo de Sessão", "Por Favor Preencha o Campo 'Preço' em Reais", Alert.AlertType.ERROR);
+                    return;
+                }
+            }
     }
 
     public void remove(ActionEvent actionEvent) throws SQLException {

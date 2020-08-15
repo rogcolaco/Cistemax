@@ -4,6 +4,7 @@ import dao.GenreDAO;
 import dao.ReportDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Menu;
@@ -18,6 +19,8 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+
+import static util.Utils.mostrarAlerta;
 
 public class Report extends MenuPrincipal {
 
@@ -63,11 +66,9 @@ public class Report extends MenuPrincipal {
                     writer.write(sb.toString());
                 }
             }
-            ReportSuccess msg = new ReportSuccess();
-            msg.show();
+            mostrarAlerta("Relatórios","Relatório Emitido com Sucesso","", Alert.AlertType.INFORMATION);
         } catch (Exception e) {
-            MsgErro msg = new MsgErro();
-            msg.show();
+            mostrarAlerta("Relatórios","Erro ao Emitir Relatório","", Alert.AlertType.ERROR);
         }
     }
 }

@@ -6,6 +6,7 @@ import dao.SaleDAO;
 import dao.SessionDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -20,6 +21,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import controller.NewSaleController.*;
+
+import static util.Utils.mostrarAlerta;
 
 public class CancelSale extends MenuPrincipal{
 
@@ -52,15 +55,12 @@ public class CancelSale extends MenuPrincipal{
             saleDAO.delete(sale);
             sessionDAO.update(session);
 
-            ReportSuccess msg = new ReportSuccess();
-            msg.show();
+            mostrarAlerta("Cancelar Venda","Venda Cancelada com Sucesso","", Alert.AlertType.INFORMATION);
 
             txtIdCancelSale.clear();
 
         } catch (Exception e) {
-            System.out.println(e);
-            MsgErro msg = new MsgErro();
-            msg.show();
+            mostrarAlerta("Cancelar Venda","Erro ao Cancelar Venda","", Alert.AlertType.ERROR);
         }
 
     }

@@ -2,6 +2,7 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.Genre;
 import model.Movie;
 import util.ConnectionFactory;
@@ -10,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import static util.Utils.mostrarAlerta;
 
 public class MovieDAO implements DAO <Movie>{
 
@@ -40,7 +43,7 @@ public class MovieDAO implements DAO <Movie>{
             return  list;
         } catch (SQLException e) {
             conn.close();
-            e.printStackTrace();
+            erro.erroBdAcess();
         }
         return null;
     }
@@ -70,7 +73,7 @@ public class MovieDAO implements DAO <Movie>{
             return null;
         } catch (SQLException e) {
             conn.close();
-            e.printStackTrace();
+            erro.erroBdAcess();;
         }
         return null;
     }
@@ -95,7 +98,7 @@ public class MovieDAO implements DAO <Movie>{
             prep.close();
             conn.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }
@@ -120,7 +123,7 @@ public class MovieDAO implements DAO <Movie>{
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }
@@ -137,7 +140,7 @@ public class MovieDAO implements DAO <Movie>{
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            mostrarAlerta("Filmes","Erro ao Deletar Filme","Existe pelo menos uma sessão utilizando a sala selecionado.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }
@@ -152,7 +155,7 @@ public class MovieDAO implements DAO <Movie>{
             int max = res.getInt("id") + 1;
             return max;
         } catch (SQLException e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }

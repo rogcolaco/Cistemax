@@ -48,7 +48,7 @@ public class DatabaseBuilder {
                     "CREATE TABLE ticket ( " +
                     " id integer not null primary key, " +
                     " type TEXT not null, " +
-                    " price number not null );" +
+                    " price number(8,2) not null );" +
 
                     "CREATE TABLE theater (" +
                     " id integer not null primary key, " +
@@ -65,8 +65,9 @@ public class DatabaseBuilder {
                     " theater INTEGER," +
                     " ticket INTEGER," +
                     " promotional BOOLEAN," +
-                    " FOREIGN KEY('movie') REFERENCES 'movie'('id')," +
-                    " FOREIGN KEY('theater') REFERENCES 'theater'('id'));" +
+                    " FOREIGN KEY('movie') REFERENCES 'movie'('id') ON DELETE RESTRICT," +
+                    " FOREIGN KEY('ticket') REFERENCES 'ticket'('id') ON DELETE RESTRICT," +
+                    " FOREIGN KEY('theater') REFERENCES 'theater'('id') ON DELETE RESTRICT);" +
 
                     "CREATE TABLE sale (" +
                     " id INTEGER NOT NULL PRIMARY KEY, " +
@@ -76,7 +77,7 @@ public class DatabaseBuilder {
                     " qtd_seat_promotional INT, " +
                     " total_sale DOUBLE, " +
                     " session INT, " +
-                    " FOREIGN KEY('session') REFERENCES 'session'('id')); "
+                    " FOREIGN KEY('session') REFERENCES 'session'('id') ON DELETE RESTRICT); "
             );
 
             stmt.executeUpdate(sql.toString());

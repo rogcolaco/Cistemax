@@ -2,6 +2,7 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.Theater;
 import model.Ticket;
 import util.ConnectionFactory;
@@ -10,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import static util.Utils.mostrarAlerta;
 
 public class TheaterDAO implements DAO<Theater>{
 
@@ -45,7 +48,7 @@ public class TheaterDAO implements DAO<Theater>{
             prep.execute();
             conn.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }
@@ -64,7 +67,7 @@ public class TheaterDAO implements DAO<Theater>{
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }
@@ -81,7 +84,7 @@ public class TheaterDAO implements DAO<Theater>{
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            mostrarAlerta("Salas","Erro ao Deletar Sala","Existe pelo menos uma sessão utilizando a sala selecionado.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }
@@ -99,7 +102,7 @@ public class TheaterDAO implements DAO<Theater>{
 
             return max;
         } catch (SQLException e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }

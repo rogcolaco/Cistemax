@@ -2,6 +2,9 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import model.Genre;
 import model.Ticket;
 import util.ConnectionFactory;
@@ -12,6 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import static util.Utils.mostrarAlerta;
 
 public class TicketDAO implements  DAO<Ticket> {
 
@@ -29,8 +34,7 @@ public class TicketDAO implements  DAO<Ticket> {
                 }
                 return 0.0;
             } catch (SQLException e) {
-                conn.close();
-                e.printStackTrace();
+                erro.erroBdAcess();
             }
             return 0.0;
         }
@@ -49,7 +53,7 @@ public class TicketDAO implements  DAO<Ticket> {
             }
         } catch (SQLException e) {
             conn.close();
-            e.printStackTrace();
+            erro.erroBdAcess();
         }
         return null;
     }
@@ -67,7 +71,7 @@ public class TicketDAO implements  DAO<Ticket> {
             }
             return list;
         } catch (SQLException e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         }
         return null;
     }
@@ -85,7 +89,7 @@ public class TicketDAO implements  DAO<Ticket> {
             prep.execute();
             conn.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+            erro.erroBdAcess();;
         } finally {
             conn.close();
         }
@@ -105,7 +109,7 @@ public class TicketDAO implements  DAO<Ticket> {
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }
@@ -122,13 +126,13 @@ public class TicketDAO implements  DAO<Ticket> {
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            mostrarAlerta("Preço","Erro ao excluir tipo de preço","Existe pelo menos 1 sessão cadastrada com esse tipo de sessão.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }
     }
 
-    public int MaxId() throws SQLException {
+    public int maxId() throws SQLException {
         Connection conn = ConnectionFactory.createConnection();
         try {
             String sql = "select max(id) as id from ticket";
@@ -139,10 +143,11 @@ public class TicketDAO implements  DAO<Ticket> {
 
             return max;
         } catch (SQLException e) {
-            e.printStackTrace();
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }
         return 0;
     }
+
 }

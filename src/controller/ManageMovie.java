@@ -1,6 +1,7 @@
 package controller;
 
 import com.oracle.webservices.internal.api.message.PropertySet;
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import dao.GenreDAO;
 import dao.MovieDAO;
 import javafx.beans.value.ObservableValue;
@@ -16,10 +17,13 @@ import model.Genre;
 import model.Movie;
 import model.ParentalControl;
 import model.Theater;
+import util.Regex;
 import util.SwitcherDisplay;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
+import static util.Utils.mostrarAlerta;
 
 public class ManageMovie extends MenuPrincipal{
 
@@ -44,6 +48,7 @@ public class ManageMovie extends MenuPrincipal{
     @FXML private TextField txtDirName;
     @FXML private TextField txtDuration;
 
+    Regex regex = new Regex();
 
     @FXML
     public void initialize() throws SQLException {
@@ -84,11 +89,18 @@ public class ManageMovie extends MenuPrincipal{
         MovieDAO dao = new MovieDAO();
         movie.setName(txtMovieName.getText());
         movie.setDirector(txtDirName.getText());
-        movie.setDuration(txtDuration.getText().equals("") ? 0 : Integer.parseInt(txtDuration.getText()));
+        if(!txtDuration.getText().equals("") && regex.isInt(txtDuration.getText())){
+            movie.setDuration(Integer.parseInt(txtDuration.getText()));
+        } else{
+            mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Duração' com um valor inteiro positivo", Alert.AlertType.ERROR);
+            return;
+        }
         movie.setGenre(cbGenre.getSelectionModel().getSelectedItem());
         movie.setInTheaters(checkCartaz.isSelected());
         movie.setParentalRating(cbParentalControl.getValue());
-        if (movie.getName().length() > 0) {
+        boolean b = fillError(movie);
+
+        if (!b) {
             /*Caso o botão de confirmação seja utilizado para alterar um filme*/
             if (btnConfirmMovie.getText().equals("Alterar")) {
                 movie.setId(tableMovie.getSelectionModel().getSelectedItem().getId());
@@ -111,9 +123,6 @@ public class ManageMovie extends MenuPrincipal{
             cbParentalControl.getSelectionModel().clearSelection();
             checkCartaz.setSelected(false);
             tableMovie.setItems(dao.readAll());
-        } else {
-            MsgErro msg = new MsgErro();
-            msg.show();
         }
         return;
     }
@@ -124,5 +133,25 @@ public class ManageMovie extends MenuPrincipal{
             dao.delete(tableMovie.getSelectionModel().getSelectedItem());
             tableMovie.setItems(dao.readAll());
         } else { return;}
+    }
+
+    public boolean fillError(Movie movie){
+        if (movie.getName().equals("")) {
+            mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Nome do Filme'", Alert.AlertType.ERROR);
+            return true;
+        }
+        if (movie.getDirector().equals("")) {
+            mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Diretor'", Alert.AlertType.ERROR);
+            return true;
+        }
+        if (movie.getGenre() == null) {
+            mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Gênero'", Alert.AlertType.ERROR);
+            return true;
+        }
+        if (movie.getParentalRating() == null) {
+            mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Classificação Indicativa'", Alert.AlertType.ERROR);
+            return true;
+        }
+        return false;
     }
 }
