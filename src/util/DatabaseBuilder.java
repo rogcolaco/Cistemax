@@ -39,7 +39,11 @@ public class DatabaseBuilder {
                     " duration INTEGER," +
                     " genre INTEGER," +
                     " inTheaters BOOLEAN," +
-                    " FOREIGN KEY('genre') REFERENCES 'genre'('id'));" +
+                    " FOREIGN KEY('genre') REFERENCES 'genre'('id')," +
+                    " CONSTRAINT fk_genre " +
+                    " FOREIGN KEY ('id') " +
+                    " REFERENCES 'genre'('id') " +
+                    " ON DELETE RESTRICT);" +
 
                     "CREATE TABLE ticket ( " +
                     " id integer not null primary key, " +

@@ -12,7 +12,9 @@ public class ConnectionFactory implements AutoCloseable {
 
         public static Connection createConnection(){
             try {
-                connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+                SQLiteConfig config = new SQLiteConfig();
+                config.enforceForeignKeys(true);
+                connection = DriverManager.getConnection("jdbc:sqlite:database.db", config.toProperties());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -36,7 +38,6 @@ public class ConnectionFactory implements AutoCloseable {
             }
             return statement;
         }
-
 
         @Override
         public void close() {

@@ -3,6 +3,7 @@ package dao;
 import controller.MsgErro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.Genre;
 import util.ConnectionFactory;
 
@@ -102,6 +103,12 @@ public class GenreDAO implements DAO <Genre>{
             conn.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Gênero");
+            alert.setHeaderText("Erro ao excluir gênero.");
+            alert.setContentText("Existe pelo menos 1 filme cadastrado com esse gênero.");
+
+            alert.showAndWait();
         } finally {
             conn.close();
         }
