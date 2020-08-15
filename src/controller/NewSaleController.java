@@ -9,16 +9,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import model.Sale;
 import model.Seats;
 import model.Session;
 import model.Ticket;
-import util.ErroDbAcess;
+import util.ErroDbAccess;
 
 import javax.swing.*;
 import java.awt.print.PrinterException;
@@ -41,7 +39,7 @@ public class NewSaleController extends MenuPrincipal{
     @FXML private TableColumn<Seats, Integer> cSeat;
     @FXML private TableColumn<Seats, Boolean> cStatus;
 
-    ErroDbAcess erro = new ErroDbAcess();
+    ErroDbAccess erro = new ErroDbAccess();
 
     @FXML
     public void initialize() throws SQLException {
