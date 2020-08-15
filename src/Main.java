@@ -21,7 +21,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewSale.fxml"));
         this.stage = primaryStage;
         stage.setTitle("Cistemax - Gerenciar Vendas");
-        stage.setScene(new Scene(root, 800, 630));
+        stage.setScene(new Scene(root, 940, 650));
         stage.show();
     }
 

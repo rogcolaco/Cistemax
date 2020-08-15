@@ -32,7 +32,7 @@ public class ManageMovieSession extends MenuPrincipal{
     @FXML private Button btnRemoveSession;
     @FXML private Button btnConfirmSession;
     @FXML private Button btnUpdateSession;
-    @FXML private Button btnCancelOp;
+    //@FXML private Button btnCancelOp;
     @FXML private Label lbSessionFieldTitle;
     @FXML private CheckBox checkPromo;
     @FXML private CheckBox checkMon;

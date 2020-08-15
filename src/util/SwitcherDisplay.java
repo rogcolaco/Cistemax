@@ -13,7 +13,7 @@ public class SwitcherDisplay {
         Pane sceneGraph = null;
         try {
             FXMLLoader loader = new FXMLLoader();
-            sceneGraph = loader.load(getClass().getResource(fxmlResource).openStream());
+            sceneGraph = loader.load(getClass().getResource(fxmlResource));
             Scene scene = new Scene(sceneGraph, width, height);
 
             stage.setScene(scene);

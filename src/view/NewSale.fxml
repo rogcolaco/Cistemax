@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewSaleController">
    <center>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane minHeight="600.0" minWidth="900.0">
          <children>
-            <Label layoutX="165.0" layoutY="27.0" text="Sessões:" AnchorPane.leftAnchor="165.0" AnchorPane.topAnchor="27.0" />
-            <ChoiceBox fx:id="cbSessionSale" layoutX="219.0" layoutY="23.0" onAction="#updateSeats" prefHeight="25.0" prefWidth="357.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="23.0" />
-            <Label layoutX="149.0" layoutY="271.0" text="Total de ingressos Promocionais:" AnchorPane.leftAnchor="149.0" AnchorPane.topAnchor="271.0" />
-            <ChoiceBox fx:id="cbPromoTickets" layoutX="336.0" layoutY="267.0" prefHeight="25.0" prefWidth="58.0" AnchorPane.leftAnchor="336.0" AnchorPane.topAnchor="267.0" />
-            <Label fx:id="lbTotal" layoutX="154.0" layoutY="324.0" text="Valor Total:" AnchorPane.leftAnchor="149.0" AnchorPane.topAnchor="324.0">
+            <Label layoutX="499.0" layoutY="27.0" text="Sessões:" AnchorPane.leftAnchor="499.0" AnchorPane.topAnchor="27.0" />
+            <ChoiceBox fx:id="cbSessionSale" layoutX="499.0" layoutY="53.0" onAction="#updateSeats" prefHeight="25.0" prefWidth="377.0" AnchorPane.leftAnchor="499.0" AnchorPane.topAnchor="53.0" />
+            <Label layoutX="277.0" layoutY="472.0" text="Total de ingressos Promocionais:" AnchorPane.leftAnchor="277.0" AnchorPane.topAnchor="472.0" />
+            <ChoiceBox fx:id="cbPromoTickets" layoutX="464.0" layoutY="468.0" prefHeight="25.0" prefWidth="58.0" AnchorPane.leftAnchor="464.0" AnchorPane.topAnchor="468.0" />
+            <Label fx:id="lbTotal" layoutX="277.0" layoutY="524.0" text="Valor Total:" AnchorPane.leftAnchor="277.0" AnchorPane.topAnchor="524.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="btnSetSale" layoutX="485.0" layoutY="348.0" mnemonicParsing="false" onAction="#executeSale" text="Efetuar Venda" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="348.0" />
-            <Button fx:id="btnCancelOp" layoutX="323.0" layoutY="348.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="91.0" text="Cancelar" AnchorPane.rightAnchor="186.0" AnchorPane.topAnchor="348.0" />
-            <TableView fx:id="tableSeats" layoutX="136.0" layoutY="58.0" onMouseClicked="#updatePromotionalTickets" prefHeight="200.0" prefWidth="441.0" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="58.0">
+            <Button fx:id="btnSetSale" layoutX="786.0" layoutY="504.0" mnemonicParsing="false" onAction="#executeSale" prefHeight="25.0" prefWidth="120.0" text="Efetuar Venda" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="504.0" />
+            <Button fx:id="btnCancelOp" layoutX="624.0" layoutY="504.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="120.0" text="Cancelar" AnchorPane.rightAnchor="185.0" AnchorPane.topAnchor="504.0" />
+            <TableView fx:id="tableSeats" layoutX="276.0" layoutY="91.0" onMouseClicked="#updatePromotionalTickets" prefHeight="359.0" prefWidth="601.0" AnchorPane.leftAnchor="276.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="91.0">
               <columns>
-                <TableColumn fx:id="cSeat" prefWidth="75.0" text="N° Assento" />
-                <TableColumn fx:id="cStatus" prefWidth="124.0" text="Ocupado?" />
+                <TableColumn fx:id="cSeat" prefWidth="143.0" text="N° Assento" />
+                <TableColumn fx:id="cStatus" prefWidth="153.0" text="Ocupado?" />
               </columns>
             </TableView>
+            <ImageView fitHeight="175.0" fitWidth="237.0" layoutX="14.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="91.0">
+               <image>
+                  <Image url="@../Image/logoTransparente.png" />
+               </image>
+            </ImageView>
+            <DatePicker fx:id="calSessionDate" layoutX="276.0" layoutY="53.0" prefHeight="25.0" prefWidth="207.0" AnchorPane.leftAnchor="276.0" AnchorPane.topAnchor="53.0" />
+            <Label layoutX="276.0" layoutY="27.0" text="Data:" />
          </children>
       </AnchorPane>
    </center>

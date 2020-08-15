@@ -24,7 +24,7 @@ public class Report extends MenuPrincipal {
     @FXML private DatePicker calDateStartReport;
     @FXML private DatePicker calDateEndReport;
     @FXML private Button btnRequestReport;
-    @FXML private Button btnCancelOp;
+    //@FXML private Button btnCancelOp;
 
     @FXML public void initialize(){ fill(); }
 

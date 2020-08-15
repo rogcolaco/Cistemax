@@ -28,7 +28,7 @@ public class MsgErro {
             FXMLLoader loader = new FXMLLoader();
             sceneGraph = loader.load(getClass().getResource("/view/MsgErro.fxml").openStream());
 
-            Scene scene = new Scene(sceneGraph, 500, 200);
+            Scene scene = new Scene(sceneGraph, 350, 300);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Entrada de dados inválida");

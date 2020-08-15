@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Report">
    <center>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane prefHeight="600.0" prefWidth="900.0">
           <children>
-            <DatePicker fx:id="calDateStartReport" layoutX="370.0" layoutY="63.0" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="63.0" />
-            <DatePicker fx:id="calDateEndReport" layoutX="370.0" layoutY="122.0" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="122.0" />
-            <Button fx:id="btnRequestReport" layoutX="392.0" layoutY="216.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="114.0" text="Emitir Relatório" AnchorPane.leftAnchor="392.0" AnchorPane.topAnchor="216.0" />
-            <Label layoutX="272.0" layoutY="67.0" text="Data Início" AnchorPane.leftAnchor="272.0" AnchorPane.topAnchor="67.0" />
-            <Label layoutX="276.0" layoutY="126.0" text="Data Fim" AnchorPane.leftAnchor="276.0" AnchorPane.topAnchor="126.0" />
-            <Button fx:id="btnCancelOp" layoutX="272.0" layoutY="216.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancelar" AnchorPane.leftAnchor="272.0" AnchorPane.topAnchor="216.0" />
+            <DatePicker fx:id="calDateStartReport" layoutX="403.0" layoutY="125.0" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="125.0" />
+            <DatePicker fx:id="calDateEndReport" layoutX="651.0" layoutY="125.0" AnchorPane.leftAnchor="651.0" AnchorPane.topAnchor="125.0" />
+            <Button fx:id="btnRequestReport" layoutX="651.0" layoutY="429.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="120.0" text="Emitir Relatório" AnchorPane.leftAnchor="651.0" AnchorPane.topAnchor="429.0" />
+            <Label layoutX="403.0" layoutY="95.0" text="Data Início:" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="95.0" />
+            <Label layoutX="651.0" layoutY="95.0" text="Data Fim:" AnchorPane.leftAnchor="651.0" AnchorPane.topAnchor="95.0" />
+            <Button fx:id="btnCancelOp" layoutX="403.0" layoutY="429.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="120.0" text="Cancelar" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="429.0" />
+            <ImageView fitHeight="175.0" fitWidth="237.0" layoutX="36.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="91.0">
+               <image>
+                  <Image url="@../Image/logoTransparente.png" />
+               </image>
+            </ImageView>
       
           </children>
       

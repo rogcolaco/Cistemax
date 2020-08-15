@@ -33,7 +33,8 @@ public class NewSaleController extends MenuPrincipal{
     @FXML private ChoiceBox<Session> cbSessionSale;
     @FXML private ChoiceBox<Integer> cbPromoTickets;
     @FXML private Button btnSetSale;
-    @FXML private Button btnCancelOp;
+    //@FXML private Button btnCancelOp;
+    @FXML private DatePicker calSessionDate;
 
     @FXML private TableView<Seats> tableSeats;
     @FXML private TableColumn<Seats, Integer> cSeat;

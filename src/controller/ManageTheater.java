@@ -18,7 +18,7 @@ public class ManageTheater extends MenuPrincipal{
 
     @FXML private Button btnUpdateTheater;
     @FXML private Button btnConfirmTheater;
-    @FXML private Button btnCancelOp;
+    //@FXML private Button btnCancelOp;
     @FXML private Label lbTheaterFieldTitle;
     @FXML private Button btnRemoveTheater;
     @FXML private TextField txtTheaterName;

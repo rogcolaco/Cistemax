@@ -16,7 +16,7 @@ public class ManageGenre extends MenuPrincipal{
 
     @FXML private Button btnUpdateGenre;
     @FXML private Button btnConfirmGenre;
-    @FXML private Button btnCancelOp;
+    //@FXML private Button btnCancelOp;
     @FXML private Label lbGenreFieldTitle;
     @FXML private Button btnRemoveGenre;
     @FXML private TextField txtGenreName;

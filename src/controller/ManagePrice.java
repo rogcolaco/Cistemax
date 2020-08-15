@@ -22,7 +22,7 @@ public class ManagePrice extends MenuPrincipal{
 
     @FXML private Button btnConfirmPrice;
     @FXML private Button btnUpdatePrice;
-    @FXML private Button btnCancelOp;
+    //@FXML private Button btnCancelOp;
     @FXML private Label lbPriceFieldTitle;
     @FXML private Button btnRemoveSession;
     @FXML private TextField txtSessionType;

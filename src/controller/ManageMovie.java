@@ -25,7 +25,7 @@ public class ManageMovie extends MenuPrincipal{
 
     @FXML private Button btnUpdateMovie;
     @FXML private Button btnConfirmMovie;
-    @FXML private Button btnCancelOp;
+    //@FXML private Button btnCancelOp;
     @FXML private Label lbMovieFieldTitle;
     @FXML private ChoiceBox<String> cbParentalControl;
 

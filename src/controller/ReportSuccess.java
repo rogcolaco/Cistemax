@@ -31,7 +31,7 @@ public class ReportSuccess {
             FXMLLoader loader = new FXMLLoader();
             sceneGraph = loader.load(getClass().getResource("/view/ReportSuccess.fxml").openStream());
 
-            Scene scene = new Scene(sceneGraph, 500, 200);
+            Scene scene = new Scene(sceneGraph, 350, 300);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Relatório Emitido Com Sucesso");

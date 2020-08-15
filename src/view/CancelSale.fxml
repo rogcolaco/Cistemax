@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CancelSale">
    <center>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane minHeight="600.0" minWidth="900.0">
           <children>
-            <Button fx:id="btnConfirmCancelSale" layoutX="438.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteSale" text="Confirmar" AnchorPane.leftAnchor="438.0" AnchorPane.topAnchor="153.0" />
-            <Label layoutX="234.0" layoutY="88.0" text="Número da venda:" AnchorPane.leftAnchor="234.0" AnchorPane.topAnchor="88.0" />
-            <TextField fx:id="txtIdCancelSale" layoutX="354.0" layoutY="84.0" AnchorPane.leftAnchor="354.0" AnchorPane.topAnchor="84.0" />
-            <Button fx:id="btnCancelOp" layoutX="274.0" layoutY="153.0" mnemonicParsing="false" onAction="#CancelOp" text="Cancelar" AnchorPane.leftAnchor="274.0" AnchorPane.topAnchor="153.0" />
+            <Button fx:id="btnConfirmCancelSale" layoutX="585.0" layoutY="174.0" mnemonicParsing="false" onAction="#deleteSale" prefHeight="25.0" prefWidth="120.0" text="Confirmar" AnchorPane.leftAnchor="585.0" AnchorPane.topAnchor="174.0" />
+            <Label layoutX="385.0" layoutY="106.0" text="Número da venda:" AnchorPane.leftAnchor="385.0" AnchorPane.topAnchor="106.0" />
+            <TextField fx:id="txtIdCancelSale" layoutX="505.0" layoutY="102.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="505.0" AnchorPane.topAnchor="102.0" />
+            <Button fx:id="btnCancelOp" layoutX="421.0" layoutY="174.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="120.0" text="Cancelar" AnchorPane.leftAnchor="421.0" AnchorPane.topAnchor="174.0" />
+            <ImageView fitHeight="175.0" fitWidth="237.0" layoutX="21.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="91.0">
+               <image>
+                  <Image url="@../Image/logoTransparente.png" />
+               </image>
+            </ImageView>
       
           </children>
       

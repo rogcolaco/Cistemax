@@ -23,7 +23,7 @@ import controller.NewSaleController.*;
 
 public class CancelSale extends MenuPrincipal{
 
-    @FXML private Button btnCancelOp;
+    //@FXML private Button btnCancelOp;
     @FXML Button btnConfirmCancelSale;
     @FXML TextField txtIdCancelSale;
 
