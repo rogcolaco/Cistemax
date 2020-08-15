@@ -7,66 +7,6 @@
 <?import javafx.scene.text.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovieSession">
-   <center>
-      <AnchorPane minHeight="650.0" minWidth="940.0">
-
-          <children>
-              <Button fx:id="btnCancelOp" layoutX="606.0" layoutY="212.0" minWidth="120.0" mnemonicParsing="false" onAction="#CancelOp" prefWidth="120.0" text="Cancelar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="170.0" />
-            <Button fx:id="btnUpdateSession" disable="true" layoutX="589.0" layoutY="90.0" mnemonicParsing="false" onAction="#updateSession" prefWidth="120.0" text="Alterar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
-            <Button fx:id="btnRemoveSession" layoutX="583.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteSession" prefWidth="120.0" text="Remover" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="110.0" />
-            <Button fx:id="btnConfirmSession" layoutX="501.0" layoutY="550.0" minWidth="120.0" mnemonicParsing="false" onAction="#addSession" prefWidth="120.0" text="Confirmar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="520.0" />
-            <ChoiceBox fx:id="cbTheater" layoutX="265.0" layoutY="38.0" onAction="#updateMovies" prefHeight="25.0" prefWidth="398.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="38.0" />
-            <Label layoutX="264.0" layoutY="14.0" text="Selecione a Sala:" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="14.0" />
-            <TableView fx:id="tableSession" layoutX="269.0" layoutY="83.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="83.0">
-              <columns>
-                <TableColumn fx:id="cMovieSession" prefWidth="113.0" text="Nome do Filme" />
-                  <TableColumn fx:id="cSessionDate" prefWidth="82.0" text="Data" />
-                <TableColumn fx:id="cStartsAt" prefWidth="52.0" text="Início" />
-                  <TableColumn fx:id="cEndsAt" prefWidth="67.0" text="Término" />
-                  <TableColumn fx:id="cSessionType" prefWidth="84.0" text="Promoção?" />
-              </columns>
-            </TableView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#14395b" height="163.0" layoutX="23.0" layoutY="419.0" opacity="0.29" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" width="433.0" />
-            <Label layoutX="25.0" layoutY="348.0" text="Nome do Filme:" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="348.0" />
-            <Separator layoutY="298.0" prefHeight="3.0" prefWidth="532.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="298.0" />
-            <ChoiceBox fx:id="cbMovieSession" layoutX="23.0" layoutY="378.0" prefHeight="25.0" prefWidth="433.0" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="378.0" />
-            <DatePicker fx:id="dtInitial" layoutX="496.0" layoutY="460.0" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="460.0" />
-            <DatePicker fx:id="dtFinal" layoutX="496.0" layoutY="536.0" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="536.0" />
-            <Label layoutX="496.0" layoutY="428.0" text="Data Início" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="428.0" />
-            <Label layoutX="496.0" layoutY="504.0" text="Data Fim" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="504.0" />
-            <CheckBox fx:id="checkMon" layoutX="123.0" layoutY="482.0" mnemonicParsing="false" selected="true" text="Segunda-Feira" AnchorPane.leftAnchor="123.0" AnchorPane.topAnchor="482.0" />
-            <CheckBox fx:id="checkTue" layoutX="242.0" layoutY="482.0" mnemonicParsing="false" selected="true" text="Terça- Feira" AnchorPane.leftAnchor="242.0" AnchorPane.topAnchor="482.0" />
-            <CheckBox fx:id="checkWed" layoutX="345.0" layoutY="482.0" mnemonicParsing="false" selected="true" text="Quarta-Feira" AnchorPane.leftAnchor="345.0" AnchorPane.topAnchor="482.0" />
-            <CheckBox fx:id="checkThu" layoutX="35.0" layoutY="527.0" mnemonicParsing="false" selected="true" text="Quinta-Feira" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="527.0" />
-            <CheckBox fx:id="checkFri" layoutX="211.0" layoutY="527.0" mnemonicParsing="false" selected="true" text="Sexta-Feira" AnchorPane.leftAnchor="211.0" AnchorPane.topAnchor="527.0" />
-            <CheckBox fx:id="checkSat" layoutX="359.0" layoutY="527.0" mnemonicParsing="false" selected="true" text="Sábado" AnchorPane.leftAnchor="359.0" AnchorPane.topAnchor="527.0" />
-            <CheckBox fx:id="checkSun" layoutX="35.0" layoutY="482.0" mnemonicParsing="false" selected="true" text="Domingo" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="482.0" />
-            <Label layoutX="198.0" layoutY="437.0" text="Periodicidade" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="437.0">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="740.0" layoutY="428.0" text="Tipo da Sessão" AnchorPane.leftAnchor="740.0" AnchorPane.topAnchor="428.0" />
-            <ChoiceBox fx:id="cbSession" layoutX="740.0" layoutY="460.0" prefWidth="150.0" AnchorPane.leftAnchor="740.0" AnchorPane.topAnchor="460.0" />
-            <CheckBox fx:id="checkPromo" layoutX="740.0" layoutY="382.0" mnemonicParsing="false" text="Sessão Promocional" AnchorPane.leftAnchor="740.0" AnchorPane.topAnchor="382.0" />
-            <TextField fx:id="txtHour" layoutX="548.0" layoutY="378.0" prefHeight="25.0" prefWidth="41.0" AnchorPane.leftAnchor="548.0" AnchorPane.topAnchor="378.0" />
-            <TextField fx:id="txtMin" layoutX="608.0" layoutY="378.0" prefHeight="25.0" prefWidth="41.0" AnchorPane.leftAnchor="608.0" AnchorPane.topAnchor="378.0" />
-            <Label layoutX="496.0" layoutY="382.0" text="Horário" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="382.0" />
-            <Label layoutX="595.0" layoutY="382.0" text=":" AnchorPane.leftAnchor="595.0" AnchorPane.topAnchor="382.0" />
-            <Label fx:id="lbSessionFieldTitle" layoutX="390.0" layoutY="314.0" text="Cadastrar Nova Sessão" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="314.0">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="175.0" fitWidth="237.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="91.0">
-               <image>
-                  <Image url="@../Image/logoTransparente.png" />
-               </image>
-            </ImageView>
-          </children>
-
-      </AnchorPane>
-   </center>
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -93,4 +33,64 @@
             </menus>
         </MenuBar>
     </top>
+   <bottom>
+      <AnchorPane minHeight="650.0" minWidth="940.0" BorderPane.alignment="CENTER">
+
+          <children>
+              <Button fx:id="btnCancelOp" layoutX="606.0" layoutY="212.0" minWidth="120.0" mnemonicParsing="false" onAction="#CancelOp" prefWidth="120.0" text="Cancelar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="170.0" />
+            <Button fx:id="btnUpdateSession" disable="true" layoutX="589.0" layoutY="90.0" mnemonicParsing="false" onAction="#updateSession" prefWidth="120.0" text="Alterar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
+            <Button fx:id="btnRemoveSession" layoutX="583.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteSession" prefWidth="120.0" text="Remover" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="110.0" />
+            <Button fx:id="btnConfirmSession" layoutX="770.0" layoutY="557.0" minWidth="120.0" mnemonicParsing="false" onAction="#addSession" prefWidth="120.0" text="Confirmar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="557.0" />
+            <ChoiceBox fx:id="cbTheater" layoutX="265.0" layoutY="38.0" onAction="#updateMovies" prefHeight="25.0" prefWidth="398.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="38.0" />
+            <Label layoutX="264.0" layoutY="14.0" text="Selecione a Sala:" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="14.0" />
+            <TableView fx:id="tableSession" layoutX="269.0" layoutY="83.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="83.0">
+              <columns>
+                <TableColumn fx:id="cMovieSession" prefWidth="113.0" text="Nome do Filme" />
+                  <TableColumn fx:id="cSessionDate" prefWidth="82.0" text="Data" />
+                <TableColumn fx:id="cStartsAt" prefWidth="52.0" text="Início" />
+                  <TableColumn fx:id="cEndsAt" prefWidth="67.0" text="Término" />
+                  <TableColumn fx:id="cSessionType" prefWidth="84.0" text="Promoção?" />
+              </columns>
+            </TableView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#14395b" height="163.0" layoutX="23.0" layoutY="419.0" opacity="0.29" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" width="433.0" />
+            <Label layoutX="25.0" layoutY="348.0" text="Nome do Filme:" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="348.0" />
+            <Separator layoutY="298.0" prefHeight="3.0" prefWidth="532.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="298.0" />
+            <ChoiceBox fx:id="cbMovieSession" layoutX="23.0" layoutY="378.0" prefHeight="25.0" prefWidth="433.0" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="378.0" />
+            <DatePicker fx:id="dtInitial" layoutX="496.0" layoutY="443.0" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="443.0" />
+            <DatePicker fx:id="dtFinal" layoutX="492.0" layoutY="557.0" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="557.0" />
+            <Label layoutX="496.0" layoutY="419.0" text="Data Início" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="419.0" />
+            <Label layoutX="492.0" layoutY="530.0" text="Data Fim" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="530.0" />
+            <CheckBox fx:id="checkMon" layoutX="123.0" layoutY="482.0" mnemonicParsing="false" selected="true" text="Segunda-Feira" AnchorPane.leftAnchor="123.0" AnchorPane.topAnchor="482.0" />
+            <CheckBox fx:id="checkTue" layoutX="242.0" layoutY="482.0" mnemonicParsing="false" selected="true" text="Terça- Feira" AnchorPane.leftAnchor="242.0" AnchorPane.topAnchor="482.0" />
+            <CheckBox fx:id="checkWed" layoutX="345.0" layoutY="482.0" mnemonicParsing="false" selected="true" text="Quarta-Feira" AnchorPane.leftAnchor="345.0" AnchorPane.topAnchor="482.0" />
+            <CheckBox fx:id="checkThu" layoutX="35.0" layoutY="527.0" mnemonicParsing="false" selected="true" text="Quinta-Feira" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="527.0" />
+            <CheckBox fx:id="checkFri" layoutX="204.0" layoutY="528.0" mnemonicParsing="false" selected="true" text="Sexta-Feira" AnchorPane.leftAnchor="204.0" AnchorPane.topAnchor="528.0" />
+            <CheckBox fx:id="checkSat" layoutX="359.0" layoutY="527.0" mnemonicParsing="false" selected="true" text="Sábado" AnchorPane.leftAnchor="359.0" AnchorPane.topAnchor="527.0" />
+            <CheckBox fx:id="checkSun" layoutX="35.0" layoutY="482.0" mnemonicParsing="false" selected="true" text="Domingo" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="482.0" />
+            <Label layoutX="198.0" layoutY="437.0" text="Periodicidade" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="437.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="730.0" layoutY="417.0" text="Tipo da Sessão" AnchorPane.leftAnchor="730.0" AnchorPane.topAnchor="417.0" />
+            <ChoiceBox fx:id="cbSession" layoutX="729.0" layoutY="443.0" prefWidth="150.0" AnchorPane.leftAnchor="729.0" AnchorPane.topAnchor="443.0" />
+            <CheckBox fx:id="checkPromo" layoutX="740.0" layoutY="382.0" mnemonicParsing="false" text="Sessão Promocional" AnchorPane.leftAnchor="740.0" AnchorPane.topAnchor="382.0" />
+            <TextField fx:id="txtHour" layoutX="563.0" layoutY="378.0" prefHeight="25.0" prefWidth="41.0" AnchorPane.leftAnchor="563.0" AnchorPane.topAnchor="378.0" />
+            <TextField fx:id="txtMin" layoutX="629.0" layoutY="378.0" prefHeight="25.0" prefWidth="41.0" AnchorPane.leftAnchor="629.0" AnchorPane.topAnchor="378.0" />
+            <Label layoutX="496.0" layoutY="382.0" text="Horário" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="382.0" />
+            <Label layoutX="614.0" layoutY="382.0" text=":" AnchorPane.leftAnchor="614.0" AnchorPane.topAnchor="382.0" />
+            <Label fx:id="lbSessionFieldTitle" layoutX="390.0" layoutY="314.0" text="Cadastrar Nova Sessão" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="314.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="175.0" fitWidth="237.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="91.0">
+               <image>
+                  <Image url="@../Image/logoTransparente.png" />
+               </image>
+            </ImageView>
+          </children>
+
+      </AnchorPane>
+   </bottom>
 </BorderPane>

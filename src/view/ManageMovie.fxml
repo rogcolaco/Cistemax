@@ -6,46 +6,6 @@
 <?import javafx.scene.text.*?>
 
 <BorderPane prefHeight="587.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageMovie">
-<center>
-<AnchorPane minHeight="600.0" minWidth="900.0">
-    <children>
-      <Button fx:id="btnCancelOp" layoutX="617.0" layoutY="208.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="120.0" text="Cancelar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="170.0" />
-      <Button fx:id="btnUpdateMovie" layoutX="611.0" layoutY="64.0" mnemonicParsing="false" onAction="#updateMovie" prefHeight="25.0" prefWidth="120.0" text="Alterar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="50.0" />
-      <Button fx:id="btnRemoveMovie" layoutX="611.0" layoutY="135.0" mnemonicParsing="false" onAction="#deleteMovie" prefWidth="120.0" text="Remover" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="110.0" />
-      <Button fx:id="btnConfirmMovie" layoutX="726.0" layoutY="541.0" minWidth="120.0" mnemonicParsing="false" onAction="#addMovie" prefWidth="120.0" text="Confirmar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="520.0" />
-      <CheckBox fx:id="checkCartaz" layoutX="501.0" layoutY="543.0" mnemonicParsing="false" text="Em Cartaz" AnchorPane.rightAnchor="325.0" AnchorPane.topAnchor="543.0" />
-      <ChoiceBox fx:id="cbGenre" layoutX="501.0" layoutY="410.0" prefWidth="150.0" AnchorPane.rightAnchor="249.0" AnchorPane.topAnchor="410.0" />
-      <Label fx:id="lbMovieFieldTitle" layoutX="395.0" layoutY="336.0" text="Cadastrar Filme">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font></Label>
-      <TableView fx:id="tableMovie" layoutX="141.0" layoutY="20.0" prefHeight="210.0" prefWidth="469.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="50.0">
-        <columns>
-          <TableColumn fx:id="cMovieName" prefWidth="191.0" text="Nome do Filme" />
-          <TableColumn fx:id="cDirMovie" minWidth="8.0" prefWidth="68.0" text="Diretor" />
-            <TableColumn fx:id="cGenre" prefWidth="115.0" text="Gênero" />
-            <TableColumn fx:id="cCartaz" prefWidth="71.0" text="Cartaz" />
-        </columns>
-      </TableView>
-      <Separator layoutX="136.0" layoutY="342.0" prefHeight="3.0" prefWidth="599.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0" />
-      <ChoiceBox fx:id="cbParentalControl" layoutX="501.0" layoutY="497.0" prefWidth="150.0" AnchorPane.rightAnchor="249.0" AnchorPane.topAnchor="497.0" />
-      <Label layoutX="90.0" layoutY="380.0" text="Nome do Filme:" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="380.0" />
-      <Label layoutX="83.0" layoutY="452.0" text="Diretor:" AnchorPane.leftAnchor="83.0" AnchorPane.topAnchor="452.0" />
-      <Label layoutX="501.0" layoutY="469.0" text="Clasificação Indicativa" AnchorPane.rightAnchor="283.0" AnchorPane.topAnchor="469.0" />
-      <Label layoutX="501.0" layoutY="380.0" text="Gênero" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="380.0" />
-      <TextField fx:id="txtMovieName" layoutX="90.0" layoutY="410.0" minWidth="300.0" prefWidth="300.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="410.0" />
-      <TextField fx:id="txtDirName" layoutX="83.0" layoutY="474.0" minWidth="300.0" prefWidth="300.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="474.0" />
-      <Label layoutX="81.0" layoutY="514.0" text="Duração" AnchorPane.leftAnchor="81.0" AnchorPane.topAnchor="514.0" />
-      <TextField fx:id="txtDuration" layoutX="81.0" layoutY="539.0" prefWidth="150.0" AnchorPane.leftAnchor="81.0" AnchorPane.topAnchor="539.0" />
-            <ImageView fitHeight="175.0" fitWidth="237.0" layoutX="27.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="91.0">
-               <image>
-                  <Image url="@../Image/logoTransparente.png" />
-               </image>
-            </ImageView>
-    </children>
-
-</AnchorPane>
-</center>
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -72,4 +32,44 @@
             </menus>
         </MenuBar>
     </top>
+   <bottom>
+<AnchorPane minHeight="600.0" minWidth="900.0" BorderPane.alignment="CENTER">
+    <children>
+      <Button fx:id="btnCancelOp" layoutX="755.0" layoutY="235.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="120.0" text="Cancelar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="235.0" />
+      <Button fx:id="btnUpdateMovie" layoutX="611.0" layoutY="64.0" mnemonicParsing="false" onAction="#updateMovie" prefHeight="25.0" prefWidth="120.0" text="Alterar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="50.0" />
+      <Button fx:id="btnRemoveMovie" layoutX="755.0" layoutY="138.0" mnemonicParsing="false" onAction="#deleteMovie" prefWidth="120.0" text="Remover" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="138.0" />
+      <Button fx:id="btnConfirmMovie" layoutX="755.0" layoutY="539.0" minWidth="120.0" mnemonicParsing="false" onAction="#addMovie" prefWidth="120.0" text="Confirmar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="539.0" />
+      <CheckBox fx:id="checkCartaz" layoutX="500.0" layoutY="543.0" mnemonicParsing="false" text="Em Cartaz" AnchorPane.rightAnchor="326.0" AnchorPane.topAnchor="543.0" />
+      <ChoiceBox fx:id="cbGenre" layoutX="500.0" layoutY="407.0" prefWidth="150.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="407.0" />
+      <Label fx:id="lbMovieFieldTitle" layoutX="395.0" layoutY="336.0" text="Cadastrar Filme">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <TableView fx:id="tableMovie" layoutX="141.0" layoutY="20.0" prefHeight="210.0" prefWidth="469.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="50.0">
+        <columns>
+          <TableColumn fx:id="cMovieName" prefWidth="191.0" text="Nome do Filme" />
+          <TableColumn fx:id="cDirMovie" minWidth="8.0" prefWidth="68.0" text="Diretor" />
+            <TableColumn fx:id="cGenre" prefWidth="115.0" text="Gênero" />
+            <TableColumn fx:id="cCartaz" prefWidth="71.0" text="Cartaz" />
+        </columns>
+      </TableView>
+      <Separator layoutX="136.0" layoutY="342.0" prefHeight="3.0" prefWidth="599.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0" />
+      <ChoiceBox fx:id="cbParentalControl" layoutX="500.0" layoutY="474.0" prefWidth="150.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="474.0" />
+      <Label layoutX="84.0" layoutY="380.0" text="Nome do Filme:" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="380.0" />
+      <Label layoutX="84.0" layoutY="449.0" text="Diretor:" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="449.0" />
+      <Label layoutX="505.0" layoutY="449.0" text="Clasificação Indicativa" AnchorPane.rightAnchor="279.0" AnchorPane.topAnchor="449.0" />
+      <Label layoutX="501.0" layoutY="380.0" text="Gênero" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="380.0" />
+      <TextField fx:id="txtMovieName" layoutX="83.0" layoutY="407.0" minWidth="300.0" prefWidth="300.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="407.0" />
+      <TextField fx:id="txtDirName" layoutX="83.0" layoutY="474.0" minWidth="300.0" prefWidth="300.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="474.0" />
+      <Label layoutX="84.0" layoutY="513.0" text="Duração" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="513.0" />
+      <TextField fx:id="txtDuration" layoutX="83.0" layoutY="539.0" prefWidth="150.0" AnchorPane.leftAnchor="83.0" AnchorPane.topAnchor="539.0" />
+            <ImageView fitHeight="175.0" fitWidth="237.0" layoutX="27.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="91.0">
+               <image>
+                  <Image url="@../Image/logoTransparente.png" />
+               </image>
+            </ImageView>
+    </children>
+
+</AnchorPane>
+   </bottom>
 </BorderPane>

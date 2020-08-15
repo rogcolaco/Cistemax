@@ -9,16 +9,16 @@
    <center>
       <AnchorPane minHeight="600.0" minWidth="900.0">
           <children>
-            <TableView fx:id="tableTheater" layoutX="169.0" layoutY="14.0" prefHeight="210.0" prefWidth="370.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="50.0">
+            <TableView fx:id="tableTheater" layoutX="169.0" layoutY="14.0" prefHeight="210.0" prefWidth="429.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="50.0">
               <columns>
-                <TableColumn fx:id="cTheaterName" prefWidth="126.0" text="Nome da Sala" />
-                <TableColumn fx:id="cQtdSeats" prefWidth="142.0" text="Número de Assentos" />
+                <TableColumn fx:id="cTheaterName" prefWidth="278.0" text="Nome da Sala" />
+                <TableColumn fx:id="cQtdSeats" prefWidth="150.0" text="Número de Assentos" />
               </columns>
             </TableView>
-              <Button fx:id="btnCancelOp" layoutX="485.0" layoutY="178.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="120.0" text="Cancelar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="170.0" />
-            <Button fx:id="btnConfirmTheater" layoutX="463.0" layoutY="374.0" mnemonicParsing="false" onAction="#confirm" prefHeight="25.0" prefWidth="120.0" text="Confirmar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="520.0" />
+              <Button fx:id="btnCancelOp" layoutX="740.0" layoutY="235.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="120.0" text="Cancelar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="235.0" />
+            <Button fx:id="btnConfirmTheater" layoutX="740.0" layoutY="541.0" mnemonicParsing="false" onAction="#confirm" prefHeight="25.0" prefWidth="120.0" text="Confirmar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="541.0" />
             <Button fx:id="btnUpdateTheater" layoutX="482.0" layoutY="64.0" mnemonicParsing="false" onAction="#updateTheater" prefHeight="25.0" prefWidth="120.0" text="Alterar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
-            <Button fx:id="btnRemoveTheater" layoutX="485.0" layoutY="121.0" mnemonicParsing="false" onAction="#remove" prefHeight="25.0" prefWidth="120.0" text="Remover" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="110.0" />
+            <Button fx:id="btnRemoveTheater" layoutX="740.0" layoutY="143.0" mnemonicParsing="false" onAction="#remove" prefHeight="25.0" prefWidth="120.0" text="Remover" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="143.0" />
             <Label fx:id="lbTheaterFieldTitle" layoutX="379.0" layoutY="324.0" text="Cadastrar Nova Sala">
                <font>
                   <Font name="System Bold" size="15.0" />

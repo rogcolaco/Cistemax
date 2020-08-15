@@ -8,12 +8,12 @@
    <center>
       <AnchorPane prefHeight="600.0" prefWidth="900.0">
           <children>
-            <DatePicker fx:id="calDateStartReport" layoutX="403.0" layoutY="125.0" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="125.0" />
+            <DatePicker fx:id="calDateStartReport" layoutX="316.0" layoutY="128.0" AnchorPane.leftAnchor="316.0" AnchorPane.topAnchor="128.0" />
             <DatePicker fx:id="calDateEndReport" layoutX="651.0" layoutY="125.0" AnchorPane.leftAnchor="651.0" AnchorPane.topAnchor="125.0" />
-            <Button fx:id="btnRequestReport" layoutX="651.0" layoutY="429.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="120.0" text="Emitir Relatório" AnchorPane.leftAnchor="651.0" AnchorPane.topAnchor="429.0" />
-            <Label layoutX="403.0" layoutY="95.0" text="Data Início:" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="95.0" />
+            <Button fx:id="btnRequestReport" layoutX="705.0" layoutY="442.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="120.0" text="Emitir Relatório" AnchorPane.leftAnchor="705.0" AnchorPane.topAnchor="442.0" />
+            <Label layoutX="316.0" layoutY="98.0" text="Data Início:" AnchorPane.leftAnchor="316.0" AnchorPane.topAnchor="98.0" />
             <Label layoutX="651.0" layoutY="95.0" text="Data Fim:" AnchorPane.leftAnchor="651.0" AnchorPane.topAnchor="95.0" />
-            <Button fx:id="btnCancelOp" layoutX="403.0" layoutY="429.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="120.0" text="Cancelar" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="429.0" />
+            <Button fx:id="btnCancelOp" layoutX="556.0" layoutY="442.0" mnemonicParsing="false" onAction="#CancelOp" prefHeight="25.0" prefWidth="120.0" text="Cancelar" AnchorPane.leftAnchor="556.0" AnchorPane.topAnchor="442.0" />
             <ImageView fitHeight="175.0" fitWidth="237.0" layoutX="36.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="91.0">
                <image>
                   <Image url="@../Image/logoTransparente.png" />
