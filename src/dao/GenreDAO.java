@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import static util.Utils.mostrarAlerta;
+
 public class GenreDAO implements DAO <Genre>{
 
     public ObservableList<Genre> readAll(){
@@ -103,12 +105,7 @@ public class GenreDAO implements DAO <Genre>{
             conn.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Gênero");
-            alert.setHeaderText("Erro ao excluir gênero.");
-            alert.setContentText("Existe pelo menos 1 filme cadastrado com esse gênero.");
-
-            alert.showAndWait();
+            mostrarAlerta("Gênero","Erro ao deletar Gênero","Existe pelo menos um filme com utilizando o Gênero selecionado.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }
