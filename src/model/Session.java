@@ -1,5 +1,10 @@
 package model;
 
+import dao.MovieDAO;
+import dao.TheaterDAO;
+
+import java.sql.SQLException;
+
 public class Session {
     private boolean promotional;
     private int id;
@@ -122,6 +127,18 @@ public class Session {
 
     @Override
     public String toString() {
-        return  "Sala " + this.theater + " - " + this.movieName + " - " + this.date + " - " + this.starts + " - " + this.ends;
+        TheaterDAO dao = new TheaterDAO();
+        Theater theaterName;
+        try {
+            theaterName = dao.getById(this.theater);
+            return  theaterName.getName() + " - " + this.movieName + " - " + this.starts + " - " + this.ends;
+        } catch (SQLException throwables) {
+
+
+            /*Precisa melhorar isso!!!!*/
+
+            throwables.printStackTrace();
+            return "--";
+        }
     }
 }

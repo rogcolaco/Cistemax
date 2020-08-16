@@ -2,6 +2,7 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.DatePicker;
 import model.Movie;
 import model.Session;
 import util.ConnectionFactory;
@@ -44,17 +45,73 @@ public class SessionDAO implements DAO <Session>{
     }
 
     public ObservableList<Session> readAll(int idTheater) throws SQLException {
-        return readAll(idTheater, false);
-    }
-
-    public ObservableList<Session> readAll(int idTheater, boolean sale) throws SQLException {
         ObservableList<Session> list = FXCollections.observableArrayList();
         Connection conn = ConnectionFactory.createConnection();
         try{
-            String sql = sale ? "select * from session where theater > ? AND date >= ?" : "select * from session where theater = ? AND date >= ?";
+            String sql = "select * from session where theater = ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setInt(1,idTheater);
+            ResultSet res = prep.executeQuery();
+            while (res.next()) {
+                MovieDAO movieDAO = new MovieDAO();
+                Movie movieName = movieDAO.getById(res.getInt("movie"));
+                Session session = new Session(res.getInt("id"),
+                        res.getInt("theater"),
+                        res.getString("starts_at"),
+                        res.getString("ends_at"),
+                        res.getString("date"),
+                        res.getBoolean("promotional"),
+                        movieName.getName(),
+                        res.getString("seat_map"),
+                        res.getInt("ticket"));
+                list.add(session);
+            };
+            return list;
+        } catch (SQLException e) {
+            conn.close();
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /*public ObservableList<Session> readAll(int idTheater, boolean sale, DatePicker date) throws SQLException {
+        ObservableList<Session> list = FXCollections.observableArrayList();
+        Connection conn = ConnectionFactory.createConnection();
+        try{
+            String sql = sale ? "select * from session where theater > ? AND date = ?" : "select * from session where theater = ? AND date = ?";
             PreparedStatement prep = conn.prepareStatement(sql);
             prep.setInt(1, idTheater);
-            prep.setString(2,java.time.LocalDate.now().toString());
+            prep.setString(2,date.toString());
+            ResultSet res = prep.executeQuery();
+            while (res.next()) {
+                MovieDAO movieDAO = new MovieDAO();
+                Movie movieName = movieDAO.getById(res.getInt("movie"));
+                Session session = new Session(res.getInt("id"),
+                        res.getInt("theater"),
+                        res.getString("starts_at"),
+                        res.getString("ends_at"),
+                        res.getString("date"),
+                        res.getBoolean("promotional"),
+                        movieName.getName(),
+                        res.getString("seat_map"),
+                        res.getInt("ticket"));
+                list.add(session);
+            };
+            return list;
+        } catch (SQLException e) {
+            conn.close();
+            e.printStackTrace();
+        }
+        return null;
+    }*/
+
+    public ObservableList<Session> readAll(String date) throws SQLException {
+        ObservableList<Session> list = FXCollections.observableArrayList();
+        Connection conn = ConnectionFactory.createConnection();
+        try{
+            String sql = "select * from session where date = ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setString(1,date);
             ResultSet res = prep.executeQuery();
             while (res.next()) {
                 MovieDAO movieDAO = new MovieDAO();
