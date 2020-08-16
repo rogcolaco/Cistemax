@@ -40,9 +40,11 @@ public class NewSaleController extends MenuPrincipal{
     @FXML private TableColumn<Seats, Boolean> cStatus;
 
     ErroDbAccess erro = new ErroDbAccess();
+    //calSessionDate.setValue(java.time.LocalDate.now());
 
     @FXML
     public void initialize() throws SQLException {
+        calSessionDate.setValue(java.time.LocalDate.now());
         fill();
     }
 
@@ -52,7 +54,7 @@ public class NewSaleController extends MenuPrincipal{
     public void fill() throws SQLException {
 
         SessionDAO daoSession = new SessionDAO();
-        listSession= daoSession.readAll(0, true);;
+        listSession= daoSession.readAll(calSessionDate.getValue().toString());
         cbSessionSale.setItems(listSession);
 
         cbPromoTickets.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
@@ -115,7 +117,7 @@ public class NewSaleController extends MenuPrincipal{
         return gson.toJson(seatMap);
     }
 
-    public void printTicket(int id, Session session, double price, ArrayList selected, int qtdSeats, int qtdPromotional, double totalSale) throws PrinterException {
+    /*public void printTicket(int id, Session session, double price, ArrayList selected, int qtdSeats, int qtdPromotional, double totalSale) throws PrinterException {
         String intro = "### CISTEMAX ###\n\n";
         String strId = "Número da venda: " + id + "\n";
         String strSession = "Sessão: " + session.toString() + "\n";
@@ -128,6 +130,23 @@ public class NewSaleController extends MenuPrincipal{
         JTextArea myTicket = new JTextArea();
         myTicket.setLineWrap(true);
         myTicket.append(intro + strSession + strId + strPrice + strQtdSeats + strQtdPromocionais +strSelected + strTotal + strThanks);
+        myTicket.print();
+    }*/
+
+    public void printTicket(int id,String date, Session session, double price, ArrayList selected, int qtdSeats, int qtdPromotional, double totalSale) throws PrinterException {
+        String intro = "### CISTEMAX ###\n\n";
+        String strId = "Número da venda: " + id + "\n";
+        String strDate = "Data: " + date + "\n";
+        String strSession = "Sessão: " + session.toString() + "\n";
+        String strPrice = "Valor unitário dos ingressos: R$" + String.valueOf(price).replace(".",",") + "\n";
+        String strQtdSeats = "Quantidade de assentos totais: " + qtdSeats + "\n";
+        String strQtdPromocionais = "Quantidade de assentos promocionais: " + qtdPromotional + "\n";
+        String strSelected = "Assentos escolhidos: " + selected.toString().replace("[","").replace("]","") + "\n\n";
+        String strTotal = "Total da compra: R$" + String.valueOf(totalSale).replace(".",",") + "\n";
+        String strThanks = "\n\nObrigado pela preferência!" + "\n";
+        JTextArea myTicket = new JTextArea();
+        myTicket.setLineWrap(true);
+        myTicket.append(intro + strId + strDate + strSession + strPrice + strQtdSeats + strQtdPromocionais +strSelected + strTotal + strThanks);
         myTicket.print();
     }
 
@@ -153,7 +172,7 @@ public class NewSaleController extends MenuPrincipal{
 
             sessionDAO.update(session);
             saleDAO.save(sale);
-            printTicket(saleDAO.MaxId(), session, price, selected, qtdSeats, qtdPromotional, totalSale);
+            printTicket(saleDAO.MaxId(), calSessionDate.getValue().toString() ,session, price, selected, qtdSeats, qtdPromotional, totalSale);
             updateSeats(new ActionEvent());
         } catch (Exception e) {
             erro.erroBdAcess();
@@ -180,5 +199,10 @@ public class NewSaleController extends MenuPrincipal{
         }
 
         return String.valueOf(totalSale);
+    }
+
+    public void changeSessionDate(ActionEvent actionEvent) throws SQLException {
+        calSessionDate.getValue().toString();
+        fill();
     }
 }

@@ -98,6 +98,7 @@ public class MovieDAO implements DAO <Movie>{
             prep.close();
             conn.commit();
         } catch (SQLException e) {
+            e.printStackTrace();
             erro.erroBdAcess();
         } finally {
             conn.close();

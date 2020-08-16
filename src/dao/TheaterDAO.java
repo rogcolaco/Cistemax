@@ -3,6 +3,8 @@ package dao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import model.Genre;
+import model.Movie;
 import model.Theater;
 import model.Ticket;
 import util.ConnectionFactory;
@@ -107,5 +109,31 @@ public class TheaterDAO implements DAO<Theater>{
             conn.close();
         }
         return 0;
+    }
+
+    public static Theater getById(int id) throws SQLException {
+        Connection conn = ConnectionFactory.createConnection();
+        try{
+            String sql = "select * from theater where id = ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setInt(1,id);
+            ResultSet res = prep.executeQuery();
+            if (res != null){
+
+                Theater theater = new Theater(res.getInt("id"),
+                            res.getString("name"),
+                            res.getInt("qtdSeats")
+                );
+
+                conn.close();
+                return  theater;
+            }
+            conn.close();
+            return null;
+        } catch (SQLException e) {
+            conn.close();
+            erro.erroBdAcess();;
+        }
+        return null;
     }
 }
