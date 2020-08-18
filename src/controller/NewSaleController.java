@@ -174,6 +174,9 @@ public class NewSaleController extends MenuPrincipal{
             saleDAO.save(sale);
             printTicket(saleDAO.MaxId(), calSessionDate.getValue().toString() ,session, price, selected, qtdSeats, qtdPromotional, totalSale);
             updateSeats(new ActionEvent());
+            lbTotal.setText("Valor Total:");
+            cbPromoTickets.getSelectionModel().clearSelection();
+
         } catch (Exception e) {
             erro.erroBdAcess();
         }
@@ -189,7 +192,7 @@ public class NewSaleController extends MenuPrincipal{
         Session session = cbSessionSale.getSelectionModel().getSelectedItem();
         ArrayList<Integer> selected = selectedSeats();
         int qtdSeats = selected.size();
-        int qtdPromotional = cbPromoTickets.getSelectionModel().getSelectedItem();
+        int qtdPromotional = cbPromoTickets.getSelectionModel().isEmpty() ? 0 : cbPromoTickets.getSelectionModel().getSelectedItem();
 
         if(session.isPromotional()) {
             totalSale = (qtdSeats  * (ticket.ApplyDiscount()));
