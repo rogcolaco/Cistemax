@@ -201,7 +201,7 @@ public class NewSaleController extends MenuPrincipal{
             totalSale = ((qtdSeats - qtdPromotional) * ticket.getValue()) + (qtdPromotional * ticket.ApplyDiscount());
         }
 
-        return String.valueOf(totalSale);
+        return String.format("%.2f", totalSale);
     }
 
     public void changeSessionDate(ActionEvent actionEvent) throws SQLException {
