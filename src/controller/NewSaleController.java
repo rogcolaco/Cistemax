@@ -85,6 +85,20 @@ public class NewSaleController extends MenuPrincipal{
         cSeat.setCellValueFactory(new PropertyValueFactory<>("number"));
         cStatus.setCellValueFactory(new PropertyValueFactory<>("availability"));
         tableSeats.setItems(seats);
+        cStatus.setCellFactory(col -> new TableCell<Seats, Boolean>() {
+            @Override
+            protected void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty) ;
+                setText(empty ? null : item ? "Sim" : "Não" );
+                if (getItem() != null) {
+                    if (getItem()) {
+                        this.setStyle("-fx-background-color: #ed5765; -fx-font-weight: bold;");
+                    } else {
+                        this.setStyle("-fx-background-color: #93bf85; -fx-font-weight: bold;");
+                    }
+                }
+            }
+        });
     }
 
     public void updatePromotionalTickets(MouseEvent mouseEvent) throws SQLException {
