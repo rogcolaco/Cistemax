@@ -3,7 +3,7 @@ package util;
 public class Regex {
 
     public boolean isText(String s){
-        return s.matches("^[a-zA-Z ]*$");
+        return s.matches("^[a-zA-Z\\u00C0-\\u00FF]*$");
     }
 
     public boolean isDouble(String s){
