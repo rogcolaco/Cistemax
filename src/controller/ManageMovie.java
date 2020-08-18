@@ -2,6 +2,7 @@ package controller;
 
 import com.oracle.webservices.internal.api.message.PropertySet;
 import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import dao.GenreDAO;
 import dao.MovieDAO;
 import javafx.beans.value.ObservableValue;
@@ -38,7 +39,7 @@ public class ManageMovie extends MenuPrincipal{
     @FXML private TableColumn<String,String> cMovieName;
     @FXML private TableColumn<String,String> cDirMovie;
     @FXML private TableColumn<Genre,String> cGenre;
-    @FXML private TableColumn<String,String> cCartaz;
+    @FXML private TableColumn<Boolean, Boolean> cCartaz;
 
     /*Verificar Classes*/
     @FXML private ChoiceBox<Genre> cbGenre;
@@ -67,6 +68,20 @@ public class ManageMovie extends MenuPrincipal{
         cGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         cCartaz.setCellValueFactory(new PropertyValueFactory<>("inTheaters"));
         tableMovie.setItems(daoMovie.readAll());
+        cCartaz.setCellFactory(col -> new TableCell<Boolean, Boolean>() {
+            @Override
+            protected void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty) ;
+                setText(empty ? null : item ? "Sim" : "Não" );
+                if (getItem() != null) {
+                    if (getItem()) {
+                        this.setStyle("-fx-background-color: #93bf85; -fx-font-weight: bold;");
+                    } else {
+                        this.setStyle("-fx-background-color: #ed5765; -fx-font-weight: bold;");
+                    }
+                }
+            }
+        });
     }
 
 
