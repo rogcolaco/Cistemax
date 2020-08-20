@@ -44,7 +44,7 @@ public class NewSaleController extends MenuPrincipal{
     @FXML private TableColumn<Seats, Boolean> cStatus;
 
     ErroDbAccess erro = new ErroDbAccess();
-    //calSessionDate.setValue(java.time.LocalDate.now());
+
 
     @FXML
     public void initialize() throws SQLException {
@@ -60,12 +60,11 @@ public class NewSaleController extends MenuPrincipal{
         SessionDAO daoSession = new SessionDAO();
         listSession= daoSession.readAll(calSessionDate.getValue().toString());
         cbSessionSale.setItems(listSession);
-
         cbPromoTickets.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             try {
                 lbTotal.setText("Valor Total: R$ " + total());
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         });
 
@@ -73,7 +72,6 @@ public class NewSaleController extends MenuPrincipal{
             public void updateItem(LocalDate date, boolean empty){
                 super.updateItem(date,empty);
                 LocalDate today = LocalDate.now();
-
                 setDisable(empty || date.compareTo(today)<0);
             }
         });
@@ -210,8 +208,16 @@ public class NewSaleController extends MenuPrincipal{
 
 
         } catch (Exception e) {
-            e.printStackTrace();
-            erro.erroBdAcess();
+            //e.printStackTrace();
+            if (calSessionDate.getValue().equals("")) {
+                mostrarAlerta("Vendas", "Preencha todos os dados", "Por favor, prencha o campo 'Data'", Alert.AlertType.ERROR);
+            } else if (cbSessionSale.getValue() == null) {
+                mostrarAlerta("Vendas", "Preencha todos os dados", "Por favor, prencha o campo 'Sessões'", Alert.AlertType.ERROR);
+            } else if (cbPromoTickets.getValue() == null) {
+                mostrarAlerta("Vendas", "Preencha todos os dados", "Por favor, prencha o campo 'Total de Ingressos Promocionais'", Alert.AlertType.ERROR);
+            } else {
+                erro.erroBdAcess();
+            }
         }
     }
 
@@ -238,7 +244,13 @@ public class NewSaleController extends MenuPrincipal{
     }
 
     public void changeSessionDate(ActionEvent actionEvent) throws SQLException {
-        calSessionDate.getValue().toString();
-        fill();
+        try {
+            //calSessionDate.getValue().toString();
+            fill();
+        } catch (Exception e){
+            mostrarAlerta("Vendas", "Erro ao executar a venda.", "Por Favor Preencha o Campo 'Data' ", Alert.AlertType.ERROR);
+            cbSessionSale.getSelectionModel().clearSelection();
+            calSessionDate.setValue(java.time.LocalDate.now());
+        }
     }
 }
