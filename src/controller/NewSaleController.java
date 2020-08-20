@@ -17,6 +17,7 @@ import model.Seats;
 import model.Session;
 import model.Ticket;
 import util.ErroDbAccess;
+import util.Utils;
 
 import javax.swing.*;
 import java.awt.print.PrinterException;
@@ -24,6 +25,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static util.Utils.mostrarAlerta;
 
 public class NewSaleController extends MenuPrincipal{
 
@@ -148,6 +151,24 @@ public class NewSaleController extends MenuPrincipal{
         myTicket.print();
     }
 
+    public Boolean validSale (Session session, ArrayList<Integer> selecteds) {
+        ArrayList<String> erros = new ArrayList<>();
+        HashMap<Integer, Boolean> seatMap = new Gson().fromJson(session.getSeats(), new TypeToken<HashMap<Integer, Boolean>>() {}.getType());
+
+        for (int selected: selecteds) {
+            if(seatMap.get(selected)){
+                erros.add("Assento " + selected + " já escolhido\n");
+            }
+        }
+
+        if (erros.isEmpty()){
+            return true;
+        } else {
+            mostrarAlerta("Vendas", "Erro ao executar a venda", Utils.trataErros(erros), Alert.AlertType.ERROR);
+            return false;
+        }
+    }
+
     public void executeSale(ActionEvent actionEvent) throws SQLException, PrinterException {
         try {
             SaleDAO saleDAO = new SaleDAO();
@@ -161,21 +182,25 @@ public class NewSaleController extends MenuPrincipal{
             double totalSale = Double.parseDouble(total().replace(",","."));
 
             session = sessionDAO.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
-            session.setSeats(updatedSeats(selected));
-            Sale sale = new Sale(price,
-                    selected.toString().replace("]","").replace("[","").replace(" ",""),
-                    qtdPromotional,
-                    totalSale,
-                    session);
+            if (validSale(session, selected)){
+                session.setSeats(updatedSeats(selected));
+                Sale sale = new Sale(price,
+                        selected.toString().replace("]","").replace("[","").replace(" ",""),
+                        qtdPromotional,
+                        totalSale,
+                        session);
 
-            sessionDAO.update(session);
-            saleDAO.save(sale);
-            printTicket(saleDAO.MaxId(), calSessionDate.getValue().toString() ,session, price, selected, qtdSeats, qtdPromotional, totalSale);
-            updateSeats(new ActionEvent());
-            lbTotal.setText("Valor Total:");
-            cbPromoTickets.getSelectionModel().clearSelection();
+                sessionDAO.update(session);
+                saleDAO.save(sale);
+                printTicket(saleDAO.MaxId(), calSessionDate.getValue().toString(), session, price, selected, qtdSeats, qtdPromotional, totalSale);
+                updateSeats(new ActionEvent());
+                lbTotal.setText("Valor Total:");
+                cbPromoTickets.getSelectionModel().clearSelection();
+            }
+
 
         } catch (Exception e) {
+            e.printStackTrace();
             erro.erroBdAcess();
         }
     }
