@@ -38,6 +38,15 @@ public class ManagePrice extends MenuPrincipal{
         cSessionType.setCellValueFactory(new PropertyValueFactory<>("type"));
         cSessionPrice.setCellValueFactory(new PropertyValueFactory<>("value"));
         tableSession.setItems(dao.readAll());
+        cSessionPrice.setCellFactory(col -> new TableCell<Ticket, Double>() {
+            @Override
+            protected void updateItem(Double item, boolean empty) {
+                super.updateItem(item, empty) ;
+                if (!empty) {
+                    setText(String.format("%.2f", item));
+                }
+            }
+        });
     }
 
 
