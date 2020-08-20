@@ -26,9 +26,9 @@ public class ManageGenre extends MenuPrincipal{
 
     Regex regex = new Regex();
 
-    @FXML public void initialize(){ fill(); }
+    @FXML public void initialize() throws SQLException { fill(); }
 
-    public void fill(){
+    public void fill() throws SQLException {
         GenreDAO dao = new GenreDAO();
         cGenre.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableGenre.setItems(dao.readAll());
@@ -61,7 +61,11 @@ public class ManageGenre extends MenuPrincipal{
             /*Caso o botão de confirmação seja utilizado para alterar um gênero*/
             if (btnConfirmGenre.getText().equals("Alterar")) {
                 genre.setId(tableGenre.getSelectionModel().getSelectedItem().getId());
-                dao.update(genre);
+                if (dao.UniqueGenre(txtGenreName.getText())) {
+                    dao.update(genre);
+                } else {
+                    mostrarAlerta("Gênero", "Gênero já cadastrado'", "", Alert.AlertType.ERROR);
+                }
                 tableGenre.setItems(dao.readAll());
                 lbGenreFieldTitle.setText("Cadastrar Novo Gênero");
                 btnConfirmGenre.setText("Confirmar");
@@ -69,8 +73,13 @@ public class ManageGenre extends MenuPrincipal{
                 /*Caso o botão de confirmação seja utilizado para salvar um novo gênero*/
             } else {
                 int max = dao.MaxId();
-                genre.setId(max);
-                dao.save(genre);
+                if (dao.UniqueGenre(txtGenreName.getText())) {
+                    dao.update(genre);
+                    genre.setId(max);
+                    dao.save(genre);
+                } else {
+                    mostrarAlerta("Gênero", "Gênero já cadastrado", "", Alert.AlertType.ERROR);
+                }
                 tableGenre.setItems(dao.readAll());
             }
             txtGenreName.clear();

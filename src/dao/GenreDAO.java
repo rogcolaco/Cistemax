@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 
 import static util.Utils.mostrarAlerta;
@@ -124,6 +125,25 @@ public class GenreDAO implements DAO <Genre>{
             conn.close();
         }
         return 0;
+    }
+
+    public Boolean UniqueGenre(String name) throws SQLException {
+        Connection conn = ConnectionFactory.createConnection();
+        try {
+            String sql = "select name from genre ";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            ResultSet res = prep.executeQuery();
+            while(res.next()) {
+                if (StringUtils.getLevenshteinDistance(StringUtils.stripAccents(res.getString("name").toLowerCase()), StringUtils.stripAccents(name).toLowerCase()) < 2) {
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            erro.erroBdAcess();;
+        } finally {
+            conn.close();
+        }
+        return true;
     }
 
 }
