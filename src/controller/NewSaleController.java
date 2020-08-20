@@ -22,6 +22,7 @@ import util.Utils;
 import javax.swing.*;
 import java.awt.print.PrinterException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,6 +66,15 @@ public class NewSaleController extends MenuPrincipal{
                 lbTotal.setText("Valor Total: R$ " + total());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            }
+        });
+
+        calSessionDate.setDayCellFactory(picker -> new DateCell(){
+            public void updateItem(LocalDate date, boolean empty){
+                super.updateItem(date,empty);
+                LocalDate today = LocalDate.now();
+
+                setDisable(empty || date.compareTo(today)<0);
             }
         });
 
@@ -157,14 +167,14 @@ public class NewSaleController extends MenuPrincipal{
 
         for (int selected: selecteds) {
             if(seatMap.get(selected)){
-                erros.add("Assento " + selected + " já escolhido\n");
+                erros.add("Assento " + selected + " ocupado.\n");
             }
         }
 
         if (erros.isEmpty()){
             return true;
         } else {
-            mostrarAlerta("Vendas", "Erro ao executar a venda", Utils.trataErros(erros), Alert.AlertType.ERROR);
+            mostrarAlerta("Vendas", "Erro ao executar a venda.", Utils.trataErros(erros), Alert.AlertType.ERROR);
             return false;
         }
     }
