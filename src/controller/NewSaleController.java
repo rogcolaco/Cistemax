@@ -174,7 +174,7 @@ public class NewSaleController extends MenuPrincipal{
             ArrayList<Integer> selected = selectedSeats();
             int qtdSeats = selected.size();
             int qtdPromotional = cbPromoTickets.getSelectionModel().getSelectedItem();
-            double totalSale = Double.parseDouble(total());
+            double totalSale = Double.parseDouble(total().replace(",","."));
 
             session = sessionDAO.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
             session.setSeats(updatedSeats(selected));
