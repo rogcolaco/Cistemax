@@ -10,10 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Movie;
-import model.Session;
-import model.Theater;
-import model.Ticket;
+import model.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,7 +55,7 @@ public class ManageMovieSession extends MenuPrincipal{
     @FXML private TableColumn<Session, String> cMovieSession;
     @FXML private TableColumn<Session, String> cStartsAt;
     @FXML private TableColumn<Session, String> cEndsAt;
-    @FXML private TableColumn<Session, String> cSessionType;
+    @FXML private TableColumn<Session, Boolean> cSessionType;
     @FXML private TableColumn<Session, String> cSessionDate;
 
     @FXML
@@ -96,6 +93,13 @@ public class ManageMovieSession extends MenuPrincipal{
         cEndsAt.setCellValueFactory(new PropertyValueFactory<>("ends"));
         cSessionType.setCellValueFactory(new PropertyValueFactory<>("promotional"));
         tableSession.setItems(daoSession.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
+        cSessionType.setCellFactory(col -> new TableCell<Session, Boolean>() {
+            @Override
+            protected void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty) ;
+                setText(empty ? null : item ? "Sim" : "Não" );
+            }
+        });
     }
 
     public void updateSession(ActionEvent actionEvent) {
