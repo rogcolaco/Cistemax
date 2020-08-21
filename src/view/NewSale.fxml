@@ -58,7 +58,7 @@
                </image>
             </ImageView>
             <DatePicker fx:id="calSessionDate" layoutX="276.0" layoutY="53.0" onAction="#changeSessionDate" prefHeight="25.0" prefWidth="207.0" AnchorPane.leftAnchor="276.0" AnchorPane.topAnchor="53.0" />
-            <Label layoutX="276.0" layoutY="27.0" text="Data:" />
+            <Label fx:id="lbDate" layoutX="276.0" layoutY="27.0" text="Data:" />
          </children>
       </AnchorPane>
    </bottom>

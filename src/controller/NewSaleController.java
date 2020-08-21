@@ -23,6 +23,7 @@ import javax.swing.*;
 import java.awt.print.PrinterException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,7 @@ import static util.Utils.mostrarAlerta;
 public class NewSaleController extends MenuPrincipal{
 
     @FXML private Label lbTotal;
+    @FXML private Label lbDate;
 
     @FXML private ChoiceBox<Session> cbSessionSale;
     @FXML private ChoiceBox<Integer> cbPromoTickets;
@@ -84,6 +86,18 @@ public class NewSaleController extends MenuPrincipal{
         Session s = new Session();
         ObservableList<Seats> seats = FXCollections.observableArrayList();
         s = daoSession.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
+
+        if(!(cbSessionSale.getSelectionModel().getSelectedItem() == null)){
+            calSessionDate.setDisable(true);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String sessionDate = calSessionDate.getValue().format(formatter);
+            lbDate.setText("Data: " + sessionDate);
+        } else {
+            calSessionDate.setDisable(false);
+            lbDate.setText("Data: ");
+        }
+
+
         HashMap<Integer, Boolean> seatMap = new Gson().fromJson(s.getSeats(), new TypeToken<HashMap<Integer, Boolean>>() {}.getType());
         tableSeats.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         for(Map.Entry<Integer, Boolean> map : seatMap.entrySet()){
@@ -207,6 +221,8 @@ public class NewSaleController extends MenuPrincipal{
                 calSessionDate.setValue(java.time.LocalDate.now());
                 cbSessionSale.valueProperty().set(null);
                 tableSeats.getItems().clear();
+                calSessionDate.setDisable(false);
+                lbDate.setText("Data: ");
                 fill();
             }
 
@@ -251,8 +267,8 @@ public class NewSaleController extends MenuPrincipal{
         try {
             //calSessionDate.getValue().toString();
             if(!calSessionDate.getValue().equals(java.time.LocalDate.now())) {
-                cbSessionSale.valueProperty().set(null);
-                cbPromoTickets.valueProperty().set(null);
+                /*cbSessionSale.valueProperty().set(null);
+                cbPromoTickets.valueProperty().set(null);*/
                 tableSeats.getItems().clear();
                 fill();
             }
