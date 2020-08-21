@@ -91,12 +91,13 @@ public class NewSaleController extends MenuPrincipal{
             calSessionDate.setDisable(true);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             String sessionDate = calSessionDate.getValue().format(formatter);
-            lbDate.setText("Data: " + sessionDate);
+            lbDate.setText("Data Selecionada: " + sessionDate);
+            lbDate.setStyle("-fx-font-weight: bold;");
         } else {
             calSessionDate.setDisable(false);
             lbDate.setText("Data: ");
+            lbDate.setStyle("-fx-font-weight: normal;");
         }
-
 
         HashMap<Integer, Boolean> seatMap = new Gson().fromJson(s.getSeats(), new TypeToken<HashMap<Integer, Boolean>>() {}.getType());
         tableSeats.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -214,7 +215,9 @@ public class NewSaleController extends MenuPrincipal{
 
                 sessionDAO.update(session);
                 saleDAO.save(sale);
-                printTicket(saleDAO.MaxId(), calSessionDate.getValue().toString(), session, price, selected, qtdSeats, qtdPromotional, totalSale);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                String sessionDate = calSessionDate.getValue().format(formatter);
+                printTicket(saleDAO.MaxId(), sessionDate, session, price, selected, qtdSeats, qtdPromotional, totalSale);
                 updateSeats(new ActionEvent());
                 lbTotal.setText("Valor Total:");
                 cbPromoTickets.getSelectionModel().clearSelection();
@@ -223,6 +226,7 @@ public class NewSaleController extends MenuPrincipal{
                 tableSeats.getItems().clear();
                 calSessionDate.setDisable(false);
                 lbDate.setText("Data: ");
+                lbDate.setStyle("-fx-font-weight: normal;");
                 fill();
             }
 
