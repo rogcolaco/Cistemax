@@ -64,7 +64,7 @@ public class NewSaleController extends MenuPrincipal{
             try {
                 lbTotal.setText("Valor Total: R$ " + total());
             } catch (SQLException e) {
-                e.printStackTrace();
+                lbTotal.setText("Valor Total: R$ ");
             }
         });
 
@@ -204,6 +204,10 @@ public class NewSaleController extends MenuPrincipal{
                 updateSeats(new ActionEvent());
                 lbTotal.setText("Valor Total:");
                 cbPromoTickets.getSelectionModel().clearSelection();
+                calSessionDate.setValue(java.time.LocalDate.now());
+                cbSessionSale.valueProperty().set(null);
+                tableSeats.getItems().clear();
+                fill();
             }
 
 
@@ -246,7 +250,13 @@ public class NewSaleController extends MenuPrincipal{
     public void changeSessionDate(ActionEvent actionEvent) throws SQLException {
         try {
             //calSessionDate.getValue().toString();
-            fill();
+            if(!calSessionDate.getValue().equals(java.time.LocalDate.now())) {
+                cbSessionSale.valueProperty().set(null);
+                cbPromoTickets.valueProperty().set(null);
+                tableSeats.getItems().clear();
+                fill();
+            }
+
         } catch (Exception e){
             mostrarAlerta("Vendas", "Erro ao executar a venda.", "Por Favor Preencha o Campo 'Data' ", Alert.AlertType.ERROR);
             cbSessionSale.getSelectionModel().clearSelection();
