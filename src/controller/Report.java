@@ -4,10 +4,7 @@ import dao.GenreDAO;
 import dao.ReportDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Menu;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Sale;
@@ -18,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static util.Utils.mostrarAlerta;
@@ -34,6 +32,13 @@ public class Report extends MenuPrincipal {
     public void fill(){
         calDateEndReport.setValue(java.time.LocalDate.now());
         calDateStartReport.setValue(java.time.LocalDate.now());
+        calDateEndReport.setDayCellFactory(picker -> new DateCell(){
+            public void updateItem(LocalDate date, boolean empty){
+                super.updateItem(date,empty);
+                LocalDate today = calDateStartReport.getValue();
+                setDisable(empty || date.compareTo(today)<0);
+            }
+        });
     }
 
     public void generateReport(ActionEvent actionEvent) {
@@ -70,5 +75,16 @@ public class Report extends MenuPrincipal {
         } catch (Exception e) {
             mostrarAlerta("Relatórios","Erro ao Emitir Relatório","", Alert.AlertType.ERROR);
         }
+    }
+
+    public void changeStartDate(ActionEvent actionEvent) {
+        calDateEndReport.setValue(null);
+        calDateEndReport.setDayCellFactory(picker -> new DateCell(){
+            public void updateItem(LocalDate date, boolean empty){
+                super.updateItem(date,empty);
+                LocalDate today = calDateStartReport.getValue();
+                setDisable(empty || date.compareTo(today)<0);
+            }
+        });
     }
 }

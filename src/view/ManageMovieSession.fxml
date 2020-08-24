@@ -56,7 +56,7 @@
             <Label layoutX="25.0" layoutY="348.0" text="Nome do Filme:" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="348.0" />
             <Separator layoutY="298.0" prefHeight="3.0" prefWidth="532.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="298.0" />
             <ChoiceBox fx:id="cbMovieSession" layoutX="23.0" layoutY="378.0" prefHeight="25.0" prefWidth="433.0" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="378.0" />
-            <DatePicker fx:id="dtInitial" layoutX="496.0" layoutY="443.0" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="443.0" />
+            <DatePicker fx:id="dtInitial" layoutX="496.0" layoutY="443.0" onAction="#changeStartDate" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="443.0" />
             <DatePicker fx:id="dtFinal" layoutX="492.0" layoutY="557.0" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="557.0" />
             <Label layoutX="496.0" layoutY="419.0" text="Data Início" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="419.0" />
             <Label layoutX="492.0" layoutY="530.0" text="Data Fim" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="530.0" />

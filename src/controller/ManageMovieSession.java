@@ -196,4 +196,15 @@ public class ManageMovieSession extends MenuPrincipal{
             tableSession.setItems(dao.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
         } else { return;}
     }
+
+    public void changeStartDate(ActionEvent actionEvent) {
+        dtFinal.setValue(null);
+        dtFinal.setDayCellFactory(picker -> new DateCell(){
+            public void updateItem(LocalDate date, boolean empty){
+                super.updateItem(date,empty);
+                LocalDate today = dtInitial.getValue();
+                setDisable(empty || date.compareTo(today)<0);
+            }
+        });
+    }
 }
