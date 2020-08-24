@@ -3,10 +3,7 @@ package dao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import model.Genre;
-import model.Movie;
 import model.Theater;
-import model.Ticket;
 import util.ConnectionFactory;
 
 import java.sql.Connection;

@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.gson.Gson;
 import dao.MovieDAO;
 import dao.SessionDAO;
 import dao.TheaterDAO;
@@ -10,7 +11,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.*;
+import model.Movie;
+import model.Session;
+import model.Theater;
+import model.Ticket;
+import util.Regex;
+import util.Utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,10 +25,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
-
-import com.google.gson.Gson;
-import util.Regex;
-import util.Utils;
 
 import static util.Utils.mostrarAlerta;
 

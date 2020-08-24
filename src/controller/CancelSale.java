@@ -9,18 +9,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import model.Sale;
 import model.Session;
-import util.SwitcherDisplay;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import controller.NewSaleController.*;
 
 import static util.Utils.mostrarAlerta;
 

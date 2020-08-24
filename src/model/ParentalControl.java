@@ -3,9 +3,6 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ParentalControl {
 
     private ObservableList<String> pControl = FXCollections.observableArrayList();

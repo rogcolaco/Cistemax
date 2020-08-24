@@ -1,18 +1,16 @@
 package dao;
 
-import controller.MsgErro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import model.Genre;
+import org.apache.commons.lang3.StringUtils;
 import util.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.apache.commons.lang3.StringUtils;
-import java.util.List;
 
 import static util.Utils.mostrarAlerta;
 

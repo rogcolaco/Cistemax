@@ -1,6 +1,5 @@
 package model;
 
-import dao.MovieDAO;
 import dao.TheaterDAO;
 
 import java.sql.SQLException;

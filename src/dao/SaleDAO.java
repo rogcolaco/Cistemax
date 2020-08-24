@@ -1,11 +1,6 @@
 package dao;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import model.Genre;
-import model.Movie;
 import model.Sale;
-import model.Session;
 import util.ConnectionFactory;
 
 import java.sql.Connection;

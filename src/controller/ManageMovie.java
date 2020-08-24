@@ -1,25 +1,16 @@
 package controller;
 
-import com.oracle.webservices.internal.api.message.PropertySet;
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import dao.GenreDAO;
 import dao.MovieDAO;
-import dao.SessionDAO;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import javafx.util.Callback;
-import model.*;
+import model.Genre;
+import model.Movie;
+import model.ParentalControl;
 import util.Regex;
-import util.SwitcherDisplay;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import static util.Utils.mostrarAlerta;

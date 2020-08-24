@@ -1,18 +1,12 @@
 package controller;
 
 import dao.TheaterDAO;
-import dao.TicketDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import model.Theater;
-import model.Ticket;
-import util.Regex;
-import util.SwitcherDisplay;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import static util.Utils.mostrarAlerta;
