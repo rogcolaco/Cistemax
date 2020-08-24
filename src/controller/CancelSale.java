@@ -60,7 +60,7 @@ public class CancelSale extends MenuPrincipal{
             txtIdCancelSale.clear();
 
         } catch (Exception e) {
-            mostrarAlerta("Cancelar Venda","Erro ao Cancelar Venda","", Alert.AlertType.ERROR);
+            mostrarAlerta("Cancelar Venda","Número de venda não encontrado","", Alert.AlertType.ERROR);
         }
 
     }
