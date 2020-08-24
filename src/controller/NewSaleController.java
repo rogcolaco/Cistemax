@@ -174,16 +174,24 @@ public class NewSaleController extends MenuPrincipal{
         myTicket.print();
     }
 
+    public void validSale() {
+        ArrayList<String> erros = new ArrayList<>();
+        if (cbSessionSale.getValue() == null) {
+            erros.add("Sessão não pode ser vazia\n");
+        }
+        if (cbPromoTickets.getValue() == null) {
+            erros.add("Quantidade de tickets promocionais não pode ser vazia\n");
+        }
+        mostrarAlerta("Vendas", "Erro ao executar a venda.", Utils.trataErros(erros), Alert.AlertType.ERROR);
+    }
     public Boolean validSale (Session session, ArrayList<Integer> selecteds) {
         ArrayList<String> erros = new ArrayList<>();
         HashMap<Integer, Boolean> seatMap = new Gson().fromJson(session.getSeats(), new TypeToken<HashMap<Integer, Boolean>>() {}.getType());
-
         for (int selected: selecteds) {
             if(seatMap.get(selected)){
                 erros.add("Assento " + selected + " ocupado.\n");
             }
         }
-
         if (erros.isEmpty()){
             return true;
         } else {
@@ -229,22 +237,11 @@ public class NewSaleController extends MenuPrincipal{
                 lbDate.setStyle("-fx-font-weight: normal;");
                 fill();
             }
-
-
         } catch (Exception e) {
             //e.printStackTrace();
-            if (calSessionDate.getValue().equals("")) {
-                mostrarAlerta("Vendas", "Preencha todos os dados", "Por favor, prencha o campo 'Data'", Alert.AlertType.ERROR);
-            } else if (cbSessionSale.getValue() == null) {
-                mostrarAlerta("Vendas", "Preencha todos os dados", "Por favor, prencha o campo 'Sessões'", Alert.AlertType.ERROR);
-            } else if (cbPromoTickets.getValue() == null) {
-                mostrarAlerta("Vendas", "Preencha todos os dados", "Por favor, prencha o campo 'Total de Ingressos Promocionais'", Alert.AlertType.ERROR);
-            } else {
-                erro.erroBdAcess();
-            }
+            validSale();
         }
     }
-
 
     public String total() throws SQLException {
 
@@ -269,14 +266,10 @@ public class NewSaleController extends MenuPrincipal{
 
     public void changeSessionDate(ActionEvent actionEvent) throws SQLException {
         try {
-            //calSessionDate.getValue().toString();
             if(!calSessionDate.getValue().equals(java.time.LocalDate.now())) {
-                /*cbSessionSale.valueProperty().set(null);
-                cbPromoTickets.valueProperty().set(null);*/
                 tableSeats.getItems().clear();
                 fill();
             }
-
         } catch (Exception e){
             mostrarAlerta("Vendas", "Erro ao executar a venda.", "Por Favor Preencha o Campo 'Data' ", Alert.AlertType.ERROR);
             cbSessionSale.getSelectionModel().clearSelection();
