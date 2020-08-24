@@ -18,11 +18,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
 import com.google.gson.Gson;
+import util.Regex;
+import util.Utils;
+
+import static util.Utils.mostrarAlerta;
 
 public class ManageMovieSession extends MenuPrincipal{
 
@@ -57,6 +59,8 @@ public class ManageMovieSession extends MenuPrincipal{
     @FXML private TableColumn<Session, String> cEndsAt;
     @FXML private TableColumn<Session, Boolean> cSessionType;
     @FXML private TableColumn<Session, String> cSessionDate;
+
+    Regex regex = new Regex();
 
     @FXML
     public void initialize() throws SQLException {
@@ -125,63 +129,65 @@ public class ManageMovieSession extends MenuPrincipal{
 
     public void addSession(ActionEvent actionEvent) throws SQLException, ParseException {
         try {
-            Session session = new Session();
-            SessionDAO dao = new SessionDAO();
-            SimpleDateFormat formatoHoraMin = new SimpleDateFormat("HH:mm");
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Calendar c = Calendar.getInstance();
-            Date initialDate = formatter.parse(dtInitial.getValue().toString());
-            Date finalDate = formatter.parse(dtFinal.getValue().toString());
-            Date startsAt = formatoHoraMin.parse(txtHour.getText() + ":" + txtMin.getText());
-            int duration = cbMovieSession.getSelectionModel().getSelectedItem().getDuration();
-            int idMovie = cbMovieSession.getSelectionModel().getSelectedItem().getId();
-            int idTheater = cbTheater.getSelectionModel().getSelectedItem().getId();
-            int qtdSeat = cbTheater.getSelectionModel().getSelectedItem().getQtdSeats();
-            int idTicket = cbSession.getSelectionModel().getSelectedItem().getId();
-            c.setTime(startsAt);
-            c.add(Calendar.MINUTE, duration);
+            if(checkFill()) {
+                Session session = new Session();
+                SessionDAO dao = new SessionDAO();
+                SimpleDateFormat formatoHoraMin = new SimpleDateFormat("HH:mm");
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Calendar c = Calendar.getInstance();
+                Date initialDate = formatter.parse(dtInitial.getValue().toString());
+                Date finalDate = formatter.parse(dtFinal.getValue().toString());
+                Date startsAt = formatoHoraMin.parse(txtHour.getText() + ":" + txtMin.getText());
+                int duration = cbMovieSession.getSelectionModel().getSelectedItem().getDuration();
+                int idMovie = cbMovieSession.getSelectionModel().getSelectedItem().getId();
+                int idTheater = cbTheater.getSelectionModel().getSelectedItem().getId();
+                int qtdSeat = cbTheater.getSelectionModel().getSelectedItem().getQtdSeats();
+                int idTicket = cbSession.getSelectionModel().getSelectedItem().getId();
+                c.setTime(startsAt);
+                c.add(Calendar.MINUTE, duration);
 
-            LocalDate initialDt = initialDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate finalDt = finalDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate initialDt = initialDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate finalDt = finalDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            for (LocalDate date = initialDt; !date.isAfter(finalDt); date = date.plusDays(1)) {
-                session.setId(dao.MaxId());
-                session.setDate(date.toString());
-                session.setStarts(formatoHoraMin.format(startsAt));
-                session.setEnds(formatoHoraMin.format(c.getTime()));
-                session.setSeats(createSeatMap(qtdSeat));
-                session.setMovie(idMovie);
-                session.setTheater(idTheater);
-                session.setTicket(idTicket);
-                session.setPromotional(checkPromo.isSelected());
-                if(validSession(session)) {
-                    MsgErro msg = new MsgErro();
-                    msg.show();
-                    break;
-                }
-                if (checkMon.isSelected() && date.getDayOfWeek().toString() == "MONDAY") {
-                    dao.save(session);
-                }
-                if (checkTue.isSelected() && date.getDayOfWeek().toString() == "TUESDAY") {
-                    dao.save(session);
-                }
-                if (checkWed.isSelected() && date.getDayOfWeek().toString() == "WEDNESDAY") {
-                    dao.save(session);
-                }
-                if (checkThu.isSelected() && date.getDayOfWeek().toString() == "THURSDAY") {
-                    dao.save(session);
-                }
-                if (checkFri.isSelected() && date.getDayOfWeek().toString() == "FRIDAY") {
-                    dao.save(session);
-                }
-                if (checkSat.isSelected() && date.getDayOfWeek().toString() == "SATURDAY") {
-                    dao.save(session);
-                }
-                if (checkSun.isSelected() && date.getDayOfWeek().toString() == "SUNDAY") {
-                    dao.save(session);
-                }
-                tableSession.setItems(dao.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
+                for (LocalDate date = initialDt; !date.isAfter(finalDt); date = date.plusDays(1)) {
+                    session.setId(dao.MaxId());
+                    session.setDate(date.toString());
+                    session.setStarts(formatoHoraMin.format(startsAt));
+                    session.setEnds(formatoHoraMin.format(c.getTime()));
+                    session.setSeats(createSeatMap(qtdSeat));
+                    session.setMovie(idMovie);
+                    session.setTheater(idTheater);
+                    session.setTicket(idTicket);
+                    session.setPromotional(checkPromo.isSelected());
+                    if (validSession(session)) {
+                        MsgErro msg = new MsgErro();
+                        msg.show();
+                        break;
+                    }
+                    if (checkMon.isSelected() && date.getDayOfWeek().toString() == "MONDAY") {
+                        dao.save(session);
+                    }
+                    if (checkTue.isSelected() && date.getDayOfWeek().toString() == "TUESDAY") {
+                        dao.save(session);
+                    }
+                    if (checkWed.isSelected() && date.getDayOfWeek().toString() == "WEDNESDAY") {
+                        dao.save(session);
+                    }
+                    if (checkThu.isSelected() && date.getDayOfWeek().toString() == "THURSDAY") {
+                        dao.save(session);
+                    }
+                    if (checkFri.isSelected() && date.getDayOfWeek().toString() == "FRIDAY") {
+                        dao.save(session);
+                    }
+                    if (checkSat.isSelected() && date.getDayOfWeek().toString() == "SATURDAY") {
+                        dao.save(session);
+                    }
+                    if (checkSun.isSelected() && date.getDayOfWeek().toString() == "SUNDAY") {
+                        dao.save(session);
+                    }
+                    tableSession.setItems(dao.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
 
+                }
             }
         } catch(Exception e) {
             MsgErro msg = new MsgErro();
@@ -206,5 +212,48 @@ public class ManageMovieSession extends MenuPrincipal{
                 setDisable(empty || date.compareTo(today)<0);
             }
         });
+    }
+
+    public boolean checkFill(){
+        ArrayList<String> erros = new ArrayList<>();
+        if (cbTheater.getSelectionModel().getSelectedItem() == null) {
+            erros.add("Sala não pode ser vazia.\n");
+        }
+        if (cbMovieSession.getSelectionModel().getSelectedItem() == null) {
+            erros.add("Nome do Filme não pode ser vazio.\n");
+        }
+        if (cbSession.getSelectionModel().getSelectedItem() == null) {
+            erros.add("Tipo de Sessão não pode ser vazio.\n");
+        }
+
+        if (!regex.isInt(txtHour.getText())){
+            erros.add("Hora de Início da sessão deve conter apenas números entre 0h e 23h.\n");
+        } else if (Integer.parseInt(txtHour.getText())>23 || Integer.parseInt(txtHour.getText())<0) {
+            erros.add("Hora de Início da sessão deve ser entre 0h e 23h.\n");
+        }
+
+        if (!regex.isInt(txtHour.getText())){
+            erros.add("Minutos de Início da sessão deve conter apenas números entre 0min e 60min.\n");
+        } else if (Integer.parseInt(txtHour.getText())>59 || Integer.parseInt(txtHour.getText())<0) {
+            erros.add("Minutos de Início da sessão deve conter apenas números entre 0min e 60min.\n");
+        }
+
+        if(dtInitial.getValue()==null){
+            erros.add("Data de início da Sessão não pode ser vazio.\n");
+        }
+        if(dtFinal.getValue()==null){
+            erros.add("Data de fim da Sessão não pode ser vazio.\n");
+        }
+        if(!checkMon.isSelected() && !checkTue.isSelected() && !checkWed.isSelected() && !checkThu.isSelected() && !checkFri.isSelected()
+                && !checkSat.isSelected() && !checkSun.isSelected()){
+            erros.add("Selecione pelo menos um dia da semana para exibição da sessão.\n");
+        }
+
+        if (erros.isEmpty()){
+            return true;
+        } else {
+            mostrarAlerta("Vendas", "Erro ao executar a venda.", Utils.trataErros(erros), Alert.AlertType.ERROR);
+            return false;
+        }
     }
 }
