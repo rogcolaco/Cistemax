@@ -12,11 +12,13 @@ public class Utils {
         alert.setTitle(titleText);
         alert.setHeaderText(headerText);
         alert.setContentText(contextText);
+
+        alert.getDialogPane().setPrefWidth(500);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
 
         Image image = new Image("/Image/logoTransparente.png");
         stage.getIcons().add(image);
-
         alert.showAndWait();
     }
 

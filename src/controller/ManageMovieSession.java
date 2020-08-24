@@ -217,7 +217,7 @@ public class ManageMovieSession extends MenuPrincipal{
                         tableSession.setItems(dao.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
                     }
                 } else {
-                    mostrarAlerta("Vendas", "Erro ao cadastrar a sessão.", Utils.trataErros(errors), Alert.AlertType.ERROR);
+                    mostrarAlerta("Vendas", "Erro ao cadastrar Sessão.", Utils.trataErros(errors), Alert.AlertType.ERROR);
                 }
             }
         } catch(Exception e) {
@@ -283,7 +283,7 @@ public class ManageMovieSession extends MenuPrincipal{
         if (erros.isEmpty()){
             return true;
         } else {
-            mostrarAlerta("Vendas", "Erro ao executar a venda.", Utils.trataErros(erros), Alert.AlertType.ERROR);
+            mostrarAlerta("Sessão", "Erro ao cadastrar Sessão.", Utils.trataErros(erros), Alert.AlertType.ERROR);
             return false;
         }
     }
