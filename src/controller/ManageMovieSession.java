@@ -263,10 +263,10 @@ public class ManageMovieSession extends MenuPrincipal{
             erros.add("Hora de Início da sessão deve ser entre 0h e 23h.\n");
         }
 
-        if (!regex.isInt(txtHour.getText())){
-            erros.add("Minutos de Início da sessão deve conter apenas números entre 0min e 60min.\n");
-        } else if (Integer.parseInt(txtHour.getText())>59 || Integer.parseInt(txtHour.getText())<0) {
-            erros.add("Minutos de Início da sessão deve conter apenas números entre 0min e 60min.\n");
+        if (!regex.isInt(txtMin.getText())){
+            erros.add("Minutos de Início da sessão deve conter apenas números entre 0min e 59min.\n");
+        } else if (Integer.parseInt(txtMin.getText())>59 || Integer.parseInt(txtMin.getText())<0) {
+            erros.add("Minutos de Início da sessão deve conter apenas números entre 0min e 59min.\n");
         }
 
         if(dtInitial.getValue()==null){
