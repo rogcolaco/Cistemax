@@ -22,6 +22,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewSale.fxml"));
         this.stage = primaryStage;
         stage.setTitle("Cistemax - Gerenciar Vendas");
+        stage.setResizable(false);
 
         Image image = new Image("/Image/logoTransparente.png");
         stage.getIcons().add(image);
