@@ -14,20 +14,20 @@ import java.sql.SQLException;
 
 import static util.Utils.mostrarAlerta;
 
-public class GenreDAO implements DAO <Genre>{
+public class GenreDAO implements DAO<Genre> {
 
-    public ObservableList<Genre> readAll(){
+    public ObservableList<Genre> readAll() {
         ObservableList<Genre> list = FXCollections.observableArrayList();
         Connection conn = ConnectionFactory.createConnection();
-        try{
+        try {
             String sql = "select * from genre";
             PreparedStatement prep = conn.prepareStatement(sql);
             ResultSet res = prep.executeQuery();
-            while (res.next()){
+            while (res.next()) {
                 Genre genre = new Genre(res.getInt("id"), res.getString("name"));
                 list.add(genre);
             }
-            return  list;
+            return list;
         } catch (SQLException e) {
             erro.erroBdAcess();
         }
@@ -37,20 +37,20 @@ public class GenreDAO implements DAO <Genre>{
     public Genre getById(int id) throws SQLException {
         Genre genre = null;
         Connection conn = ConnectionFactory.createConnection();
-        try{
+        try {
             String sql = "select * from genre where id= ?";
             PreparedStatement prep = conn.prepareStatement(sql);
             prep.setInt(1, id);
             ResultSet res = prep.executeQuery();
-            if (res != null){
+            if (res != null) {
                 genre = new Genre(res.getInt("id"), res.getString("name"));
                 conn.close();
-                return  genre;
+                return genre;
             }
             return null;
         } catch (SQLException e) {
             conn.close();
-            erro.erroBdAcess();;
+            erro.erroBdAcess();
         }
         return null;
     }
@@ -78,7 +78,7 @@ public class GenreDAO implements DAO <Genre>{
     public void update(Genre f) throws SQLException {
         Connection conn = ConnectionFactory.createConnection();
         conn.setAutoCommit(false);
-        try{
+        try {
             String sql = "update genre set name = ? where id = ?";
             PreparedStatement prep = conn.prepareStatement(sql);
             prep.setString(1, f.getName());
@@ -103,7 +103,7 @@ public class GenreDAO implements DAO <Genre>{
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            mostrarAlerta("Gênero","Erro ao deletar Gênero","Existe pelo menos um filme utilizando o gênero selecionado.", Alert.AlertType.ERROR);
+            mostrarAlerta("Gênero", "Erro ao deletar Gênero", "Existe pelo menos um filme utilizando o gênero selecionado.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }
@@ -118,7 +118,7 @@ public class GenreDAO implements DAO <Genre>{
             int max = res.getInt("id") + 1;
             return max;
         } catch (SQLException e) {
-            erro.erroBdAcess();;
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }
@@ -131,13 +131,13 @@ public class GenreDAO implements DAO <Genre>{
             String sql = "select name from genre ";
             PreparedStatement prep = conn.prepareStatement(sql);
             ResultSet res = prep.executeQuery();
-            while(res.next()) {
+            while (res.next()) {
                 if (StringUtils.getLevenshteinDistance(StringUtils.stripAccents(res.getString("name").toLowerCase()), StringUtils.stripAccents(name).toLowerCase()) < 2) {
                     return false;
                 }
             }
         } catch (SQLException e) {
-            erro.erroBdAcess();;
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }

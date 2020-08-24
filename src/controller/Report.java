@@ -20,21 +20,27 @@ import static util.Utils.mostrarAlerta;
 
 public class Report extends MenuPrincipal {
 
-    @FXML private DatePicker calDateStartReport;
-    @FXML private DatePicker calDateEndReport;
-    @FXML private Button btnRequestReport;
+    @FXML
+    private DatePicker calDateStartReport;
+    @FXML
+    private DatePicker calDateEndReport;
+    @FXML
+    private Button btnRequestReport;
     //@FXML private Button btnCancelOp;
 
-    @FXML public void initialize(){ fill(); }
+    @FXML
+    public void initialize() {
+        fill();
+    }
 
-    public void fill(){
+    public void fill() {
         calDateEndReport.setValue(java.time.LocalDate.now());
         calDateStartReport.setValue(java.time.LocalDate.now());
-        calDateEndReport.setDayCellFactory(picker -> new DateCell(){
-            public void updateItem(LocalDate date, boolean empty){
-                super.updateItem(date,empty);
+        calDateEndReport.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
                 LocalDate today = calDateStartReport.getValue();
-                setDisable(empty || date.compareTo(today)<0);
+                setDisable(empty || date.compareTo(today) < 0);
             }
         });
     }
@@ -47,7 +53,7 @@ public class Report extends MenuPrincipal {
             StringBuilder sb = new StringBuilder();
             sb.append("ID Venda; Data da Venda; Preco do Ingresso; Assentos; Qtd Assentos Promocionais; Total da Venda; Id da Sessso\n");
             Files.createDirectories(Paths.get("reports/"));
-            String pathName = "reports/report-" + calDateStartReport.getValue().toString() + "-" + calDateEndReport.getValue().toString() +".csv";
+            String pathName = "reports/report-" + calDateStartReport.getValue().toString() + "-" + calDateEndReport.getValue().toString() + ".csv";
             if (sales != null) {
                 try (PrintWriter writer = new PrintWriter(new File(pathName))) {
                     for (Sale sale : sales) {
@@ -69,19 +75,19 @@ public class Report extends MenuPrincipal {
                     writer.write(sb.toString());
                 }
             }
-            mostrarAlerta("Relatórios","Relatório Emitido com Sucesso","", Alert.AlertType.INFORMATION);
+            mostrarAlerta("Relatórios", "Relatório Emitido com Sucesso", "", Alert.AlertType.INFORMATION);
         } catch (Exception e) {
-            mostrarAlerta("Relatórios","Erro ao Emitir Relatório","", Alert.AlertType.ERROR);
+            mostrarAlerta("Relatórios", "Erro ao Emitir Relatório", "", Alert.AlertType.ERROR);
         }
     }
 
     public void changeStartDate(ActionEvent actionEvent) {
         calDateEndReport.setValue(null);
-        calDateEndReport.setDayCellFactory(picker -> new DateCell(){
-            public void updateItem(LocalDate date, boolean empty){
-                super.updateItem(date,empty);
+        calDateEndReport.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
                 LocalDate today = calDateStartReport.getValue();
-                setDisable(empty || date.compareTo(today)<0);
+                setDisable(empty || date.compareTo(today) < 0);
             }
         });
     }

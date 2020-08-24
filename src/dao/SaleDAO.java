@@ -9,16 +9,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class SaleDAO implements DAO <Sale>{
+public class SaleDAO implements DAO<Sale> {
     public Sale getById(int id) throws SQLException {
         Sale sale = null;
         Connection conn = ConnectionFactory.createConnection();
-        try{
+        try {
             String sql = "select id, seats, session from sale where id= ?";
             PreparedStatement prep = conn.prepareStatement(sql);
             prep.setInt(1, id);
             ResultSet res = prep.executeQuery();
-            if (res != null){
+            if (res != null) {
                 sale = new Sale(res.getInt("id"), res.getString("seats"), res.getInt("session"));
                 conn.close();
                 return sale;

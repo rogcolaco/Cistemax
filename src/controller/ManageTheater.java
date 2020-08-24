@@ -11,27 +11,36 @@ import java.sql.SQLException;
 
 import static util.Utils.mostrarAlerta;
 
-public class ManageTheater extends MenuPrincipal{
+public class ManageTheater extends MenuPrincipal {
 
-    @FXML private Button btnUpdateTheater;
-    @FXML private Button btnConfirmTheater;
-    @FXML private Label lbTheaterFieldTitle;
-    @FXML private Button btnRemoveTheater;
-    @FXML private TextField txtTheaterName;
-    @FXML private TextField txtQtdSeats;
+    @FXML
+    private Button btnUpdateTheater;
+    @FXML
+    private Button btnConfirmTheater;
+    @FXML
+    private Label lbTheaterFieldTitle;
+    @FXML
+    private Button btnRemoveTheater;
+    @FXML
+    private TextField txtTheaterName;
+    @FXML
+    private TextField txtQtdSeats;
 
     /*Verificar Classes*/
-    @FXML private TableView<Theater> tableTheater;
-    @FXML private TableColumn<Theater, String> cTheaterName;
-    @FXML private TableColumn<Theater, Integer> cQtdSeats;
+    @FXML
+    private TableView<Theater> tableTheater;
+    @FXML
+    private TableColumn<Theater, String> cTheaterName;
+    @FXML
+    private TableColumn<Theater, Integer> cQtdSeats;
 
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         fill();
     }
 
-    public void fill(){
+    public void fill() {
         TheaterDAO dao = new TheaterDAO();
         cTheaterName.setCellValueFactory(new PropertyValueFactory<>("name"));
         cQtdSeats.setCellValueFactory(new PropertyValueFactory<>("qtdSeats"));
@@ -43,7 +52,7 @@ public class ManageTheater extends MenuPrincipal{
         lbTheaterFieldTitle.setText("Alterar Sala");
         btnConfirmTheater.setText("Alterar");
 
-        Theater theater=tableTheater.getSelectionModel().getSelectedItem();
+        Theater theater = tableTheater.getSelectionModel().getSelectedItem();
         txtTheaterName.setText(theater.getName());
         txtQtdSeats.setText(String.valueOf(theater.getQtdSeats()));
     }
@@ -56,7 +65,7 @@ public class ManageTheater extends MenuPrincipal{
             theater.setName(txtTheaterName.getText());
             theater.setQtdSeats(Integer.parseInt(txtQtdSeats.getText()));
 
-            if(!theater.getName().equals("")) {
+            if (!theater.getName().equals("")) {
 
                 /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
                 if (btnConfirmTheater.getText().equals("Alterar")) {
@@ -76,10 +85,10 @@ public class ManageTheater extends MenuPrincipal{
                 }
                 txtTheaterName.clear();
                 txtQtdSeats.clear();
-            } else{
-                    mostrarAlerta("Sala", "Nome da Sala", "Por Favor Preencha o Campo 'Nome da Sala' ", Alert.AlertType.ERROR);
+            } else {
+                mostrarAlerta("Sala", "Nome da Sala", "Por Favor Preencha o Campo 'Nome da Sala' ", Alert.AlertType.ERROR);
             }
-        } catch (NumberFormatException n){
+        } catch (NumberFormatException n) {
             mostrarAlerta("Sala", "Nome da Sala", "Por Favor Preencha o Campo 'Qtd Assentos' apenas com números", Alert.AlertType.ERROR);
         }
     }

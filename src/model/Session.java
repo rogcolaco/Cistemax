@@ -27,7 +27,7 @@ public class Session {
         this.ticket = ticket;
     }
 
-    public Session(int id, int theater, String starts, String ends,String date, boolean promotional, String movieName, String seatMap, int ticket) {
+    public Session(int id, int theater, String starts, String ends, String date, boolean promotional, String movieName, String seatMap, int ticket) {
         this.id = id;
         this.theater = theater;
         this.starts = starts;
@@ -64,9 +64,13 @@ public class Session {
         this.date = date;
     }
 
-    public int getTicket() { return ticket; }
+    public int getTicket() {
+        return ticket;
+    }
 
-    public void setTicket(int ticket) { this.ticket = ticket; }
+    public void setTicket(int ticket) {
+        this.ticket = ticket;
+    }
 
     public boolean isPromotional() {
         return promotional;
@@ -129,8 +133,8 @@ public class Session {
         TheaterDAO dao = new TheaterDAO();
         Theater theaterName;
         try {
-            theaterName = dao.getById(this.theater);
-            return  theaterName.getName() + " - " + this.movieName + " - " + this.starts + " - " + this.ends;
+            theaterName = TheaterDAO.getById(this.theater);
+            return theaterName.getName() + " - " + this.movieName + " - " + this.starts + " - " + this.ends;
         } catch (SQLException throwables) {
 
 

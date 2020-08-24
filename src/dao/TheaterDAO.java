@@ -13,7 +13,33 @@ import java.sql.SQLException;
 
 import static util.Utils.mostrarAlerta;
 
-public class TheaterDAO implements DAO<Theater>{
+public class TheaterDAO implements DAO<Theater> {
+
+    public static Theater getById(int id) throws SQLException {
+        Connection conn = ConnectionFactory.createConnection();
+        try {
+            String sql = "select * from theater where id = ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setInt(1, id);
+            ResultSet res = prep.executeQuery();
+            if (res != null) {
+
+                Theater theater = new Theater(res.getInt("id"),
+                        res.getString("name"),
+                        res.getInt("qtdSeats")
+                );
+
+                conn.close();
+                return theater;
+            }
+            conn.close();
+            return null;
+        } catch (SQLException e) {
+            conn.close();
+            erro.erroBdAcess();
+        }
+        return null;
+    }
 
     public ObservableList<Theater> readAll() {
         ObservableList<Theater> list = FXCollections.observableArrayList();
@@ -32,7 +58,6 @@ public class TheaterDAO implements DAO<Theater>{
         }
         return null;
     }
-
 
     @Override
     public void save(Theater f) throws SQLException {
@@ -57,7 +82,7 @@ public class TheaterDAO implements DAO<Theater>{
     public void update(Theater f) throws SQLException {
         Connection conn = ConnectionFactory.createConnection();
         conn.setAutoCommit(false);
-        try{
+        try {
             String sql = "update theater set name = ?, qtdSeats = ? where id = ?";
             PreparedStatement prep = conn.prepareStatement(sql);
             prep.setString(1, f.getName());
@@ -83,7 +108,7 @@ public class TheaterDAO implements DAO<Theater>{
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            mostrarAlerta("Salas","Erro ao Deletar Sala","Existe pelo menos uma sessão utilizando a sala selecionado.", Alert.AlertType.ERROR);
+            mostrarAlerta("Salas", "Erro ao Deletar Sala", "Existe pelo menos uma sessão utilizando a sala selecionado.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }
@@ -106,31 +131,5 @@ public class TheaterDAO implements DAO<Theater>{
             conn.close();
         }
         return 0;
-    }
-
-    public static Theater getById(int id) throws SQLException {
-        Connection conn = ConnectionFactory.createConnection();
-        try{
-            String sql = "select * from theater where id = ?";
-            PreparedStatement prep = conn.prepareStatement(sql);
-            prep.setInt(1,id);
-            ResultSet res = prep.executeQuery();
-            if (res != null){
-
-                Theater theater = new Theater(res.getInt("id"),
-                            res.getString("name"),
-                            res.getInt("qtdSeats")
-                );
-
-                conn.close();
-                return  theater;
-            }
-            conn.close();
-            return null;
-        } catch (SQLException e) {
-            conn.close();
-            erro.erroBdAcess();;
-        }
-        return null;
     }
 }

@@ -12,21 +12,29 @@ import java.sql.SQLException;
 
 import static util.Utils.mostrarAlerta;
 
-public class ManageGenre extends MenuPrincipal{
-
-    @FXML private Button btnUpdateGenre;
-    @FXML private Button btnConfirmGenre;
-    @FXML private Label lbGenreFieldTitle;
-    @FXML private Button btnRemoveGenre;
-    @FXML private TextField txtGenreName;
-
-    /*Confirmar Classes*/
-    @FXML private TableView<Genre> tableGenre;
-    @FXML private TableColumn<Genre, String> cGenre;
+public class ManageGenre extends MenuPrincipal {
 
     Regex regex = new Regex();
+    @FXML
+    private Button btnUpdateGenre;
+    @FXML
+    private Button btnConfirmGenre;
+    @FXML
+    private Label lbGenreFieldTitle;
+    @FXML
+    private Button btnRemoveGenre;
+    @FXML
+    private TextField txtGenreName;
+    /*Confirmar Classes*/
+    @FXML
+    private TableView<Genre> tableGenre;
+    @FXML
+    private TableColumn<Genre, String> cGenre;
 
-    @FXML public void initialize() throws SQLException { fill(); }
+    @FXML
+    public void initialize() throws SQLException {
+        fill();
+    }
 
     public void fill() throws SQLException {
         GenreDAO dao = new GenreDAO();
@@ -35,7 +43,7 @@ public class ManageGenre extends MenuPrincipal{
     }
 
     public void updateGenre(ActionEvent actionEvent) {
-        if (tableGenre.getSelectionModel().getSelectedItem() != null){
+        if (tableGenre.getSelectionModel().getSelectedItem() != null) {
             lbGenreFieldTitle.setText("Alterar Gênero");
             btnConfirmGenre.setText("Alterar");
 
@@ -49,7 +57,9 @@ public class ManageGenre extends MenuPrincipal{
         if (tableGenre.getSelectionModel().getSelectedItem() != null) {
             dao.delete(tableGenre.getSelectionModel().getSelectedItem());
             tableGenre.setItems(dao.readAll());
-        } else { return;}
+        } else {
+            return;
+        }
     }
 
     public void addGenre(ActionEvent actionEvent) throws SQLException {
@@ -87,7 +97,7 @@ public class ManageGenre extends MenuPrincipal{
             if (genre.getName().equals("")) {
                 mostrarAlerta("Gênero", "Nome do Gênero", "Por Favor Preencha o Campo 'Nome do Gênero' ", Alert.AlertType.ERROR);
             }
-            if(!regex.isText(genre.getName())){
+            if (!regex.isText(genre.getName())) {
                 mostrarAlerta("Gênero", "Nome do Gênero", "Por Favor Preencha o Campo 'Nome do Gênero' apenas com texto.", Alert.AlertType.ERROR);
             }
         }

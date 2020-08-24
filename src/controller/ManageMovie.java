@@ -15,30 +15,40 @@ import java.sql.SQLException;
 
 import static util.Utils.mostrarAlerta;
 
-public class ManageMovie extends MenuPrincipal{
-
-    @FXML private Button btnUpdateMovie;
-    @FXML private Button btnConfirmMovie;
-    //@FXML private Button btnCancelOp;
-    @FXML private Label lbMovieFieldTitle;
-    @FXML private ChoiceBox<String> cbParentalControl;
-
-    /*Verificar Classes*/
-    @FXML private TableView<Movie> tableMovie;
-    @FXML private TableColumn<String,String> cMovieName;
-    @FXML private TableColumn<String,String> cDirMovie;
-    @FXML private TableColumn<Genre,String> cGenre;
-    @FXML private TableColumn<Boolean, Boolean> cCartaz;
-
-    /*Verificar Classes*/
-    @FXML private ChoiceBox<Genre> cbGenre;
-
-    @FXML private CheckBox checkCartaz;
-    @FXML private TextField txtMovieName;
-    @FXML private TextField txtDirName;
-    @FXML private TextField txtDuration;
+public class ManageMovie extends MenuPrincipal {
 
     Regex regex = new Regex();
+    @FXML
+    private Button btnUpdateMovie;
+    @FXML
+    private Button btnConfirmMovie;
+    //@FXML private Button btnCancelOp;
+    @FXML
+    private Label lbMovieFieldTitle;
+    @FXML
+    private ChoiceBox<String> cbParentalControl;
+    /*Verificar Classes*/
+    @FXML
+    private TableView<Movie> tableMovie;
+    @FXML
+    private TableColumn<String, String> cMovieName;
+    @FXML
+    private TableColumn<String, String> cDirMovie;
+    @FXML
+    private TableColumn<Genre, String> cGenre;
+    @FXML
+    private TableColumn<Boolean, Boolean> cCartaz;
+    /*Verificar Classes*/
+    @FXML
+    private ChoiceBox<Genre> cbGenre;
+    @FXML
+    private CheckBox checkCartaz;
+    @FXML
+    private TextField txtMovieName;
+    @FXML
+    private TextField txtDirName;
+    @FXML
+    private TextField txtDuration;
 
     @FXML
     public void initialize() throws SQLException {
@@ -53,15 +63,15 @@ public class ManageMovie extends MenuPrincipal{
         cbGenre.setItems(daoGenre.readAll());
         MovieDAO daoMovie = new MovieDAO();
         cMovieName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        cDirMovie.setCellValueFactory(new  PropertyValueFactory<>("director"));
+        cDirMovie.setCellValueFactory(new PropertyValueFactory<>("director"));
         cGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         cCartaz.setCellValueFactory(new PropertyValueFactory<>("inTheaters"));
         tableMovie.setItems(daoMovie.readAll());
         cCartaz.setCellFactory(col -> new TableCell<Boolean, Boolean>() {
             @Override
             protected void updateItem(Boolean item, boolean empty) {
-                super.updateItem(item, empty) ;
-                setText(empty ? null : item ? "Sim" : "Não" );
+                super.updateItem(item, empty);
+                setText(empty ? null : item ? "Sim" : "Não");
                 if (getItem() != null) {
                     if (getItem()) {
                         this.setStyle("-fx-background-color: #93bf85; -fx-font-weight: bold;");
@@ -75,7 +85,7 @@ public class ManageMovie extends MenuPrincipal{
 
 
     public void updateMovie(ActionEvent actionEvent) {
-        if(tableMovie.getSelectionModel().getSelectedItem() != null) {
+        if (tableMovie.getSelectionModel().getSelectedItem() != null) {
             lbMovieFieldTitle.setText("Alterar Filme");
             btnConfirmMovie.setText("Alterar");
             Movie movie = tableMovie.getSelectionModel().getSelectedItem();
@@ -93,9 +103,9 @@ public class ManageMovie extends MenuPrincipal{
         MovieDAO dao = new MovieDAO();
         movie.setName(txtMovieName.getText());
         movie.setDirector(txtDirName.getText());
-        if(!txtDuration.getText().equals("") && regex.isInt(txtDuration.getText())){
+        if (!txtDuration.getText().equals("") && regex.isInt(txtDuration.getText())) {
             movie.setDuration(Integer.parseInt(txtDuration.getText()));
-        } else{
+        } else {
             mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Duração' com um valor inteiro positivo", Alert.AlertType.ERROR);
             return;
         }
@@ -136,10 +146,12 @@ public class ManageMovie extends MenuPrincipal{
         if (tableMovie.getSelectionModel().getSelectedItem() != null) {
             dao.delete(tableMovie.getSelectionModel().getSelectedItem());
             tableMovie.setItems(dao.readAll());
-        } else { return;}
+        } else {
+            return;
+        }
     }
 
-    public boolean fillError(Movie movie){
+    public boolean fillError(Movie movie) {
         if (movie.getName().equals("")) {
             mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Nome do Filme'", Alert.AlertType.ERROR);
             return true;

@@ -6,6 +6,15 @@ public class Theater {
     private String name;
     private int qtdSeats;
 
+    public Theater(int id, String name, int qtdSeats) {
+        this.id = id;
+        this.name = name;
+        this.qtdSeats = qtdSeats;
+    }
+
+    public Theater() {
+    }
+
     public int getId() {
         return id;
     }
@@ -28,15 +37,6 @@ public class Theater {
 
     public void setQtdSeats(int qtdSeats) {
         this.qtdSeats = qtdSeats;
-    }
-
-    public Theater(int id, String name, int qtdSeats) {
-        this.id = id;
-        this.name = name;
-        this.qtdSeats = qtdSeats;
-    }
-
-    public Theater() {
     }
 
     @Override

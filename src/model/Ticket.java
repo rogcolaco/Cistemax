@@ -6,16 +6,30 @@ public class Ticket {
     private double value;
     private String type;
 
+    public Ticket(double value) {
+        this.value = value;
+    }
+
+    public Ticket(int id, double value, String type) {
+        this.id = id;
+        this.value = value;
+        this.type = type;
+    }
+
+    public Ticket(int id, double value) {
+        this.id = id;
+        this.value = value;
+    }
+
+    public Ticket() {
+    }
+
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Ticket(double value) {
-        this.value = value;
     }
 
     public double getValue() {
@@ -34,21 +48,8 @@ public class Ticket {
         this.id = id;
     }
 
-    public double ApplyDiscount(){
+    public double ApplyDiscount() {
         return this.getValue() * 0.5;
-    }
-
-    public Ticket(int id, double value, String type) {
-        this.id= id;
-        this.value = value;
-        this.type = type;
-    }
-
-    public Ticket(int id, double value) {
-        this.id = id;
-        this.value = value;
-    }
-    public Ticket() {
     }
 
     @Override

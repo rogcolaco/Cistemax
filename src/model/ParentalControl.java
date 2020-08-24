@@ -5,15 +5,15 @@ import javafx.collections.ObservableList;
 
 public class ParentalControl {
 
-    private ObservableList<String> pControl = FXCollections.observableArrayList();
+    private final ObservableList<String> pControl = FXCollections.observableArrayList();
 
 
-    public ObservableList<String> loadParentalControl(){
-        pControl.add(new String("Livre"));
-        pControl.add(new String("+12 (doze) anos"));
-        pControl.add(new String("+14 (catorze) anos"));
-        pControl.add(new String("+16 (dezesseis) anos"));
-        pControl.add(new String("+18 (dezoito) anos"));
+    public ObservableList<String> loadParentalControl() {
+        pControl.add("Livre");
+        pControl.add("+12 (doze) anos");
+        pControl.add("+14 (catorze) anos");
+        pControl.add("+16 (dezesseis) anos");
+        pControl.add("+18 (dezoito) anos");
 
         return pControl;
     }

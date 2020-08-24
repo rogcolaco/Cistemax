@@ -2,12 +2,13 @@ package model;
 
 public class Seats {
 
+    private int number;
+    private boolean availability;
+
     public Seats() {
         this.number = number;
         this.availability = availability;
     }
-
-    private int number;
 
     public int getNumber() {
         return number;
@@ -24,7 +25,5 @@ public class Seats {
     public void setAvailability(boolean availability) {
         this.availability = availability;
     }
-
-    private boolean availability;
 
 }

@@ -13,35 +13,35 @@ import java.sql.SQLException;
 
 import static util.Utils.mostrarAlerta;
 
-public class TicketDAO implements  DAO<Ticket> {
+public class TicketDAO implements DAO<Ticket> {
 
     public double ticketPrice(int id) throws SQLException {
-            Connection conn = ConnectionFactory.createConnection();
-            try{
-                String sql = "select id, price from ticket where id= ?";
-                PreparedStatement prep = conn.prepareStatement(sql);
-                prep.setInt(1, id);
-                ResultSet res = prep.executeQuery();
-                if (res != null){
-                    Ticket price = new Ticket(res.getInt("id"), res.getDouble("price"));
-                    conn.close();
-                    return price.getValue();
-                }
-                return 0.0;
-            } catch (SQLException e) {
-                erro.erroBdAcess();
+        Connection conn = ConnectionFactory.createConnection();
+        try {
+            String sql = "select id, price from ticket where id= ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setInt(1, id);
+            ResultSet res = prep.executeQuery();
+            if (res != null) {
+                Ticket price = new Ticket(res.getInt("id"), res.getDouble("price"));
+                conn.close();
+                return price.getValue();
             }
             return 0.0;
+        } catch (SQLException e) {
+            erro.erroBdAcess();
         }
+        return 0.0;
+    }
 
     public Ticket ticketById(int id) throws SQLException {
         Connection conn = ConnectionFactory.createConnection();
-        try{
+        try {
             String sql = "select * from ticket where id= ?";
             PreparedStatement prep = conn.prepareStatement(sql);
             prep.setInt(1, id);
             ResultSet res = prep.executeQuery();
-            if (res != null){
+            if (res != null) {
                 Ticket ticket = new Ticket(res.getInt("id"), res.getDouble("price"), res.getString("type"));
                 conn.close();
                 return ticket;
@@ -84,7 +84,7 @@ public class TicketDAO implements  DAO<Ticket> {
             prep.execute();
             conn.commit();
         } catch (SQLException e) {
-            erro.erroBdAcess();;
+            erro.erroBdAcess();
         } finally {
             conn.close();
         }
@@ -95,7 +95,7 @@ public class TicketDAO implements  DAO<Ticket> {
     public void update(Ticket f) throws SQLException {
         Connection conn = ConnectionFactory.createConnection();
         conn.setAutoCommit(false);
-        try{
+        try {
             String sql = "update ticket set type = ?, price = ? where id = ?";
             PreparedStatement prep = conn.prepareStatement(sql);
             prep.setString(1, f.getType());
@@ -121,7 +121,7 @@ public class TicketDAO implements  DAO<Ticket> {
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            mostrarAlerta("Preço","Erro ao excluir tipo de preço","Existe pelo menos 1 sessão cadastrada com esse tipo de sessão.", Alert.AlertType.ERROR);
+            mostrarAlerta("Preço", "Erro ao excluir tipo de preço", "Existe pelo menos 1 sessão cadastrada com esse tipo de sessão.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }

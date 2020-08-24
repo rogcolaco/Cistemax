@@ -15,16 +15,18 @@ public class DatabaseBuilder {
         build();
     }
 
-    private static void clear(){
+    private static void clear() {
         System.out.println("Cleaning up...");
         try {
-            Files.deleteIfExists(Paths.get("database.db"));}
-        catch (IOException e) {e.printStackTrace();}
+            Files.deleteIfExists(Paths.get("database.db"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static void build(){
+    private static void build() {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database.db");
-            Statement stmt = conn.createStatement()) {
+             Statement stmt = conn.createStatement()) {
             StringBuilder sql = new StringBuilder();
 
             sql.append("CREATE TABLE genre (" +

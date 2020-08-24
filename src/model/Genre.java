@@ -5,7 +5,7 @@ public class Genre {
     private int id;
     private String name;
 
-    public Genre(){
+    public Genre() {
     }
 
     public Genre(int id, String name) {
@@ -30,7 +30,7 @@ public class Genre {
     }
 
     @Override
-   public String toString() {
+    public String toString() {
         return this.name;
     }
 }

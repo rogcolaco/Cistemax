@@ -28,62 +28,81 @@ import java.util.*;
 
 import static util.Utils.mostrarAlerta;
 
-public class ManageMovieSession extends MenuPrincipal{
-
-    @FXML private Button btnRemoveSession;
-    @FXML private Button btnConfirmSession;
-    @FXML private Button btnUpdateSession;
-    //@FXML private Button btnCancelOp;
-    @FXML private Label lbSessionFieldTitle;
-    @FXML private CheckBox checkPromo;
-    @FXML private CheckBox checkMon;
-    @FXML private CheckBox checkTue;
-    @FXML private CheckBox checkWed;
-    @FXML private CheckBox checkThu;
-    @FXML private CheckBox checkFri;
-    @FXML private CheckBox checkSat;
-    @FXML private CheckBox checkSun;
-    @FXML private TextField txtHour;
-    @FXML private TextField txtMin;
-    @FXML private DatePicker dtInitial;
-    @FXML private DatePicker dtFinal;
-
-
-    /*Verificar Classe*/
-    @FXML private ChoiceBox<Theater> cbTheater;
-    @FXML private ChoiceBox<Ticket> cbSession;
-    @FXML private ChoiceBox<Movie> cbMovieSession;
-
-    /*Verificar Classe*/
-    @FXML private TableView<Session> tableSession;
-    @FXML private TableColumn<Session, String> cMovieSession;
-    @FXML private TableColumn<Session, String> cStartsAt;
-    @FXML private TableColumn<Session, String> cEndsAt;
-    @FXML private TableColumn<Session, Boolean> cSessionType;
-    @FXML private TableColumn<Session, String> cSessionDate;
+public class ManageMovieSession extends MenuPrincipal {
 
     Regex regex = new Regex();
+    @FXML
+    private Button btnRemoveSession;
+    @FXML
+    private Button btnConfirmSession;
+    @FXML
+    private Button btnUpdateSession;
+    //@FXML private Button btnCancelOp;
+    @FXML
+    private Label lbSessionFieldTitle;
+    @FXML
+    private CheckBox checkPromo;
+    @FXML
+    private CheckBox checkMon;
+    @FXML
+    private CheckBox checkTue;
+    @FXML
+    private CheckBox checkWed;
+    @FXML
+    private CheckBox checkThu;
+    @FXML
+    private CheckBox checkFri;
+    @FXML
+    private CheckBox checkSat;
+    @FXML
+    private CheckBox checkSun;
+    @FXML
+    private TextField txtHour;
+    @FXML
+    private TextField txtMin;
+    @FXML
+    private DatePicker dtInitial;
+    @FXML
+    private DatePicker dtFinal;
+    /*Verificar Classe*/
+    @FXML
+    private ChoiceBox<Theater> cbTheater;
+    @FXML
+    private ChoiceBox<Ticket> cbSession;
+    @FXML
+    private ChoiceBox<Movie> cbMovieSession;
+    /*Verificar Classe*/
+    @FXML
+    private TableView<Session> tableSession;
+    @FXML
+    private TableColumn<Session, String> cMovieSession;
+    @FXML
+    private TableColumn<Session, String> cStartsAt;
+    @FXML
+    private TableColumn<Session, String> cEndsAt;
+    @FXML
+    private TableColumn<Session, Boolean> cSessionType;
+    @FXML
+    private TableColumn<Session, String> cSessionDate;
+    private ObservableList<Ticket> listTicket = FXCollections.observableArrayList();
+    private ObservableList<Theater> listTheater = FXCollections.observableArrayList();
+    private ObservableList<Movie> listMovie = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() throws SQLException {
         fill();
     }
 
-    private ObservableList<Ticket> listTicket = FXCollections.observableArrayList();
-    private ObservableList<Theater> listTheater = FXCollections.observableArrayList();
-    private ObservableList<Movie> listMovie = FXCollections.observableArrayList();
-
-
     public void fill() throws SQLException {
 
         /*Preenche o choice box com dados dos tipos de sessão cadastrados*/
         TicketDAO daoTicket = new TicketDAO();
-        listTicket = daoTicket.readAll();;
+        listTicket = daoTicket.readAll();
         cbSession.setItems(listTicket);
 
         /*Preenche o choice box com dados das salas cadastradas*/
         TheaterDAO daoTheater = new TheaterDAO();
-        listTheater = daoTheater.readAll();;
+        listTheater = daoTheater.readAll();
         cbTheater.setItems(listTheater);
 
         MovieDAO daoMovie = new MovieDAO();
@@ -102,8 +121,8 @@ public class ManageMovieSession extends MenuPrincipal{
         cSessionType.setCellFactory(col -> new TableCell<Session, Boolean>() {
             @Override
             protected void updateItem(Boolean item, boolean empty) {
-                super.updateItem(item, empty) ;
-                setText(empty ? null : item ? "Sim" : "Não" );
+                super.updateItem(item, empty);
+                setText(empty ? null : item ? "Sim" : "Não");
             }
         });
     }
@@ -118,7 +137,7 @@ public class ManageMovieSession extends MenuPrincipal{
         Gson gson = new Gson();
 
         for (int i = 1; i <= qtd; i++) {
-            seats.put(i,false);
+            seats.put(i, false);
         }
         return gson.toJson(seats);
     }
@@ -131,7 +150,7 @@ public class ManageMovieSession extends MenuPrincipal{
 
     public void addSession(ActionEvent actionEvent) throws SQLException, ParseException {
         try {
-            if(checkFill()) {
+            if (checkFill()) {
                 ArrayList<String> errors = new ArrayList<>();
                 ArrayList<Session> sessions = new ArrayList<>();
                 Session session = new Session();
@@ -222,7 +241,7 @@ public class ManageMovieSession extends MenuPrincipal{
                     mostrarAlerta("Vendas", "Erro ao cadastrar Sessão.", Utils.trataErros(errors), Alert.AlertType.ERROR);
                 }
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             MsgErro msg = new MsgErro();
             msg.show();
         }
@@ -233,21 +252,23 @@ public class ManageMovieSession extends MenuPrincipal{
         if (tableSession.getSelectionModel().getSelectedItem() != null) {
             dao.delete(tableSession.getSelectionModel().getSelectedItem());
             tableSession.setItems(dao.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
-        } else { return;}
+        } else {
+            return;
+        }
     }
 
     public void changeStartDate(ActionEvent actionEvent) {
         dtFinal.setValue(null);
-        dtFinal.setDayCellFactory(picker -> new DateCell(){
-            public void updateItem(LocalDate date, boolean empty){
-                super.updateItem(date,empty);
+        dtFinal.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
                 LocalDate today = dtInitial.getValue();
-                setDisable(empty || date.compareTo(today)<0);
+                setDisable(empty || date.compareTo(today) < 0);
             }
         });
     }
 
-    public boolean checkFill(){
+    public boolean checkFill() {
         ArrayList<String> erros = new ArrayList<>();
         if (cbTheater.getSelectionModel().getSelectedItem() == null) {
             erros.add("Sala não pode ser vazia.\n");
@@ -259,30 +280,30 @@ public class ManageMovieSession extends MenuPrincipal{
             erros.add("Tipo de Sessão não pode ser vazio.\n");
         }
 
-        if (!regex.isInt(txtHour.getText())){
+        if (!regex.isInt(txtHour.getText())) {
             erros.add("Hora de Início da sessão deve conter apenas números entre 0h e 23h.\n");
-        } else if (Integer.parseInt(txtHour.getText())>23 || Integer.parseInt(txtHour.getText())<0) {
+        } else if (Integer.parseInt(txtHour.getText()) > 23 || Integer.parseInt(txtHour.getText()) < 0) {
             erros.add("Hora de Início da sessão deve ser entre 0h e 23h.\n");
         }
 
-        if (!regex.isInt(txtMin.getText())){
+        if (!regex.isInt(txtMin.getText())) {
             erros.add("Minutos de Início da sessão deve conter apenas números entre 0min e 59min.\n");
-        } else if (Integer.parseInt(txtMin.getText())>59 || Integer.parseInt(txtMin.getText())<0) {
+        } else if (Integer.parseInt(txtMin.getText()) > 59 || Integer.parseInt(txtMin.getText()) < 0) {
             erros.add("Minutos de Início da sessão deve conter apenas números entre 0min e 59min.\n");
         }
 
-        if(dtInitial.getValue()==null){
+        if (dtInitial.getValue() == null) {
             erros.add("Data de início da Sessão não pode ser vazio.\n");
         }
-        if(dtFinal.getValue()==null){
+        if (dtFinal.getValue() == null) {
             erros.add("Data de fim da Sessão não pode ser vazio.\n");
         }
-        if(!checkMon.isSelected() && !checkTue.isSelected() && !checkWed.isSelected() && !checkThu.isSelected() && !checkFri.isSelected()
-                && !checkSat.isSelected() && !checkSun.isSelected()){
+        if (!checkMon.isSelected() && !checkTue.isSelected() && !checkWed.isSelected() && !checkThu.isSelected() && !checkFri.isSelected()
+                && !checkSat.isSelected() && !checkSun.isSelected()) {
             erros.add("Selecione pelo menos um dia da semana para exibição da sessão.\n");
         }
 
-        if (erros.isEmpty()){
+        if (erros.isEmpty()) {
             return true;
         } else {
             mostrarAlerta("Sessão", "Erro ao cadastrar Sessão.", Utils.trataErros(erros), Alert.AlertType.ERROR);

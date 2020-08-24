@@ -12,17 +12,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class SessionDAO implements DAO <Session>{
+public class SessionDAO implements DAO<Session> {
     public Session readOne(int idSession) throws SQLException {
         Connection conn = ConnectionFactory.createConnection();
-        try{
+        try {
             String sql = "select * from session where id = ?";
             PreparedStatement prep = conn.prepareStatement(sql);
             prep.setInt(1, idSession);
             ResultSet res = prep.executeQuery();
             while (res.next()) {
                 MovieDAO movieDAO = new MovieDAO();
-                Movie movieName = movieDAO.getById(res.getInt("movie"));
+                Movie movieName = MovieDAO.getById(res.getInt("movie"));
                 Session session = new Session(res.getInt("id"),
                         res.getInt("theater"),
                         res.getString("starts_at"),
@@ -34,7 +34,7 @@ public class SessionDAO implements DAO <Session>{
                         res.getInt("ticket"));
                 conn.close();
                 return session;
-            };
+            }
 
         } catch (SQLException e) {
             conn.close();
@@ -46,14 +46,14 @@ public class SessionDAO implements DAO <Session>{
     public ObservableList<Session> readAll(int idTheater) throws SQLException {
         ObservableList<Session> list = FXCollections.observableArrayList();
         Connection conn = ConnectionFactory.createConnection();
-        try{
+        try {
             String sql = "select * from session where theater = ?";
             PreparedStatement prep = conn.prepareStatement(sql);
-            prep.setInt(1,idTheater);
+            prep.setInt(1, idTheater);
             ResultSet res = prep.executeQuery();
             while (res.next()) {
                 MovieDAO movieDAO = new MovieDAO();
-                Movie movieName = movieDAO.getById(res.getInt("movie"));
+                Movie movieName = MovieDAO.getById(res.getInt("movie"));
                 Session session = new Session(res.getInt("id"),
                         res.getInt("theater"),
                         res.getString("starts_at"),
@@ -64,7 +64,7 @@ public class SessionDAO implements DAO <Session>{
                         res.getString("seat_map"),
                         res.getInt("ticket"));
                 list.add(session);
-            };
+            }
             return list;
         } catch (SQLException e) {
             conn.close();
@@ -76,14 +76,14 @@ public class SessionDAO implements DAO <Session>{
     public ObservableList<Session> readAll(String date) throws SQLException {
         ObservableList<Session> list = FXCollections.observableArrayList();
         Connection conn = ConnectionFactory.createConnection();
-        try{
+        try {
             String sql = "select * from session where date = ?";
             PreparedStatement prep = conn.prepareStatement(sql);
-            prep.setString(1,date);
+            prep.setString(1, date);
             ResultSet res = prep.executeQuery();
             while (res.next()) {
                 MovieDAO movieDAO = new MovieDAO();
-                Movie movieName = movieDAO.getById(res.getInt("movie"));
+                Movie movieName = MovieDAO.getById(res.getInt("movie"));
                 Session session = new Session(res.getInt("id"),
                         res.getInt("theater"),
                         res.getString("starts_at"),
@@ -94,7 +94,7 @@ public class SessionDAO implements DAO <Session>{
                         res.getString("seat_map"),
                         res.getInt("ticket"));
                 list.add(session);
-            };
+            }
             return list;
         } catch (SQLException e) {
             conn.close();
@@ -174,12 +174,12 @@ public class SessionDAO implements DAO <Session>{
         conn.setAutoCommit(false);
         try {
             String sql = "SELECT id " +
-                         "FROM session " +
-                         "WHERE " +
-                         "(date = ? AND theater = ? AND starts_at >= ? AND starts_at <= ?) " +
-                         "OR (date = ? AND theater = ? AND ends_at >= ? AND ends_at <= ?) " +
-                         "OR (date = ? AND theater = ? AND starts_at < ? AND ends_at > ?) " +
-                         "LIMIT 1";
+                    "FROM session " +
+                    "WHERE " +
+                    "(date = ? AND theater = ? AND starts_at >= ? AND starts_at <= ?) " +
+                    "OR (date = ? AND theater = ? AND ends_at >= ? AND ends_at <= ?) " +
+                    "OR (date = ? AND theater = ? AND starts_at < ? AND ends_at > ?) " +
+                    "LIMIT 1";
             PreparedStatement prep = conn.prepareStatement(sql);
             prep.setString(1, f.getDate());
             prep.setInt(2, f.getTheater());

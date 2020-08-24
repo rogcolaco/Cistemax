@@ -14,7 +14,37 @@ import java.sql.SQLException;
 
 import static util.Utils.mostrarAlerta;
 
-public class MovieDAO implements DAO <Movie>{
+public class MovieDAO implements DAO<Movie> {
+
+    public static Movie getById(int id) throws SQLException {
+        Connection conn = ConnectionFactory.createConnection();
+        try {
+            String sql = "select * from movie where id = ?";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            prep.setInt(1, id);
+            ResultSet res = prep.executeQuery();
+            if (res != null) {
+                GenreDAO genreDao = new GenreDAO();
+                Genre genre = genreDao.getById(res.getInt("genre"));
+                Movie movie = new Movie(res.getInt("id"),
+                        res.getInt("duration"),
+                        res.getString("name"),
+                        res.getString("director"),
+                        res.getString("parentalRating"),
+                        res.getBoolean("inTheaters"),
+                        genre
+                );
+                conn.close();
+                return movie;
+            }
+            conn.close();
+            return null;
+        } catch (SQLException e) {
+            conn.close();
+            erro.erroBdAcess();
+        }
+        return null;
+    }
 
     public ObservableList<Movie> readAll() throws SQLException {
         return readAll(false);
@@ -23,11 +53,11 @@ public class MovieDAO implements DAO <Movie>{
     public ObservableList<Movie> readAll(Boolean inTheaters) throws SQLException {
         ObservableList<Movie> list = FXCollections.observableArrayList();
         Connection conn = ConnectionFactory.createConnection();
-        try{
+        try {
             String sql = inTheaters ? "select * from movie where inTheaters = true" : "select * from movie ";
             PreparedStatement prep = conn.prepareStatement(sql);
             ResultSet res = prep.executeQuery();
-            while (res.next()){
+            while (res.next()) {
                 GenreDAO genreDao = new GenreDAO();
                 Genre genre = genreDao.getById(res.getInt("genre"));
                 Movie movie = new Movie(res.getInt("id"),
@@ -40,40 +70,10 @@ public class MovieDAO implements DAO <Movie>{
                 );
                 list.add(movie);
             }
-            return  list;
+            return list;
         } catch (SQLException e) {
             conn.close();
             erro.erroBdAcess();
-        }
-        return null;
-    }
-
-    public static Movie getById(int id) throws SQLException {
-        Connection conn = ConnectionFactory.createConnection();
-        try{
-            String sql = "select * from movie where id = ?";
-            PreparedStatement prep = conn.prepareStatement(sql);
-            prep.setInt(1,id);
-            ResultSet res = prep.executeQuery();
-            if (res != null){
-                GenreDAO genreDao = new GenreDAO();
-                Genre genre = genreDao.getById(res.getInt("genre"));
-                Movie movie = new Movie(res.getInt("id"),
-                        res.getInt("duration"),
-                        res.getString("name"),
-                        res.getString("director"),
-                        res.getString("parentalRating"),
-                        res.getBoolean("inTheaters"),
-                        genre
-                );
-                conn.close();
-                return  movie;
-            }
-            conn.close();
-            return null;
-        } catch (SQLException e) {
-            conn.close();
-            erro.erroBdAcess();;
         }
         return null;
     }
@@ -110,7 +110,7 @@ public class MovieDAO implements DAO <Movie>{
     public void update(Movie f) throws SQLException {
         Connection conn = ConnectionFactory.createConnection();
         conn.setAutoCommit(false);
-        try{
+        try {
             String sql = "update movie set duration = ?, name = ?, director = ?, parentalRating = ?, " +
                     "inTheaters = ?, genre = ? where id = ?";
             PreparedStatement prep = conn.prepareStatement(sql);
@@ -141,7 +141,7 @@ public class MovieDAO implements DAO <Movie>{
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            mostrarAlerta("Filmes","Erro ao Deletar Filme","Existe pelo menos uma sessão utilizando a sala selecionado.", Alert.AlertType.ERROR);
+            mostrarAlerta("Filmes", "Erro ao Deletar Filme", "Existe pelo menos uma sessão utilizando a sala selecionado.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }

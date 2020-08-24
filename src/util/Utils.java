@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class Utils {
-    public static void mostrarAlerta (String titleText, String headerText, String contextText, Alert.AlertType type) {
+    public static void mostrarAlerta(String titleText, String headerText, String contextText, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(titleText);
         alert.setHeaderText(headerText);
@@ -22,10 +22,10 @@ public class Utils {
         alert.showAndWait();
     }
 
-    public static String trataErros (ArrayList errors) {
+    public static String trataErros(ArrayList errors) {
         return errors.toString().
-                replace("[","").
-                replace("]","").
+                replace("[", "").
+                replace("]", "").
                 replace(", ", "");
     }
 }

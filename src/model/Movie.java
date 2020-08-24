@@ -7,7 +7,7 @@ public class Movie {
     boolean inTheaters;
     Genre genre;
 
-    public Movie(){
+    public Movie() {
     }
 
     public Movie(int id, int duration, String name, String director, String parentalRating, boolean inTheaters, Genre genre) {

@@ -30,23 +30,29 @@ import java.util.Map;
 
 import static util.Utils.mostrarAlerta;
 
-public class NewSaleController extends MenuPrincipal{
-
-    @FXML private Label lbTotal;
-    @FXML private Label lbDate;
-
-    @FXML private ChoiceBox<Session> cbSessionSale;
-    @FXML private ChoiceBox<Integer> cbPromoTickets;
-    @FXML private Button btnSetSale;
-    //@FXML private Button btnCancelOp;
-    @FXML private DatePicker calSessionDate;
-
-    @FXML private TableView<Seats> tableSeats;
-    @FXML private TableColumn<Seats, Integer> cSeat;
-    @FXML private TableColumn<Seats, Boolean> cStatus;
+public class NewSaleController extends MenuPrincipal {
 
     ErroDbAccess erro = new ErroDbAccess();
-
+    @FXML
+    private Label lbTotal;
+    @FXML
+    private Label lbDate;
+    @FXML
+    private ChoiceBox<Session> cbSessionSale;
+    @FXML
+    private ChoiceBox<Integer> cbPromoTickets;
+    @FXML
+    private Button btnSetSale;
+    //@FXML private Button btnCancelOp;
+    @FXML
+    private DatePicker calSessionDate;
+    @FXML
+    private TableView<Seats> tableSeats;
+    @FXML
+    private TableColumn<Seats, Integer> cSeat;
+    @FXML
+    private TableColumn<Seats, Boolean> cStatus;
+    private ObservableList<Session> listSession = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() throws SQLException {
@@ -54,13 +60,10 @@ public class NewSaleController extends MenuPrincipal{
         fill();
     }
 
-    private ObservableList<Session> listSession = FXCollections.observableArrayList();
-
-
     public void fill() throws SQLException {
 
         SessionDAO daoSession = new SessionDAO();
-        listSession= daoSession.readAll(calSessionDate.getValue().toString());
+        listSession = daoSession.readAll(calSessionDate.getValue().toString());
         cbSessionSale.setItems(listSession);
         cbPromoTickets.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             try {
@@ -70,11 +73,11 @@ public class NewSaleController extends MenuPrincipal{
             }
         });
 
-        calSessionDate.setDayCellFactory(picker -> new DateCell(){
-            public void updateItem(LocalDate date, boolean empty){
-                super.updateItem(date,empty);
+        calSessionDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
                 LocalDate today = LocalDate.now();
-                setDisable(empty || date.compareTo(today)<0);
+                setDisable(empty || date.compareTo(today) < 0);
             }
         });
 
@@ -87,7 +90,7 @@ public class NewSaleController extends MenuPrincipal{
         ObservableList<Seats> seats = FXCollections.observableArrayList();
         s = daoSession.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
 
-        if(!(cbSessionSale.getSelectionModel().getSelectedItem() == null)){
+        if (!(cbSessionSale.getSelectionModel().getSelectedItem() == null)) {
             calSessionDate.setDisable(true);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             String sessionDate = calSessionDate.getValue().format(formatter);
@@ -99,9 +102,10 @@ public class NewSaleController extends MenuPrincipal{
             lbDate.setStyle("-fx-font-weight: normal;");
         }
 
-        HashMap<Integer, Boolean> seatMap = new Gson().fromJson(s.getSeats(), new TypeToken<HashMap<Integer, Boolean>>() {}.getType());
+        HashMap<Integer, Boolean> seatMap = new Gson().fromJson(s.getSeats(), new TypeToken<HashMap<Integer, Boolean>>() {
+        }.getType());
         tableSeats.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        for(Map.Entry<Integer, Boolean> map : seatMap.entrySet()){
+        for (Map.Entry<Integer, Boolean> map : seatMap.entrySet()) {
             Seats seat = new Seats();
             seat.setNumber(map.getKey());
             seat.setAvailability(map.getValue());
@@ -114,8 +118,8 @@ public class NewSaleController extends MenuPrincipal{
         cStatus.setCellFactory(col -> new TableCell<Seats, Boolean>() {
             @Override
             protected void updateItem(Boolean item, boolean empty) {
-                super.updateItem(item, empty) ;
-                setText(empty ? null : item ? "Sim" : "Não" );
+                super.updateItem(item, empty);
+                setText(empty ? null : item ? "Sim" : "Não");
                 if (getItem() != null) {
                     if (getItem()) {
                         this.setStyle("-fx-background-color: #ed5765; -fx-font-weight: bold;");
@@ -150,27 +154,28 @@ public class NewSaleController extends MenuPrincipal{
         SessionDAO daoSession = new SessionDAO();
         Session s = new Session();
         s = daoSession.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
-        HashMap<Integer, Boolean> seatMap = new Gson().fromJson(s.getSeats(), new TypeToken<HashMap<Integer, Boolean>>() {}.getType());
+        HashMap<Integer, Boolean> seatMap = new Gson().fromJson(s.getSeats(), new TypeToken<HashMap<Integer, Boolean>>() {
+        }.getType());
         for (int seat : selectedSeats) {
             seatMap.put(seat, true);
         }
         return gson.toJson(seatMap);
     }
 
-    public void printTicket(int id,String date, Session session, double price, ArrayList selected, int qtdSeats, int qtdPromotional, double totalSale) throws PrinterException {
+    public void printTicket(int id, String date, Session session, double price, ArrayList selected, int qtdSeats, int qtdPromotional, double totalSale) throws PrinterException {
         String intro = "### CISTEMAX ###\n\n";
         String strId = "Número da venda: " + id + "\n";
         String strDate = "Data: " + date + "\n";
         String strSession = "Sessão: " + session.toString() + "\n";
-        String strPrice = "Valor unitário dos ingressos: R$" + String.valueOf(price).replace(".",",") + "\n";
+        String strPrice = "Valor unitário dos ingressos: R$" + String.valueOf(price).replace(".", ",") + "\n";
         String strQtdSeats = "Quantidade de assentos totais: " + qtdSeats + "\n";
         String strQtdPromocionais = "Quantidade de assentos promocionais: " + qtdPromotional + "\n";
-        String strSelected = "Assentos escolhidos: " + selected.toString().replace("[","").replace("]","") + "\n\n";
-        String strTotal = "Total da compra: R$" + String.valueOf(totalSale).replace(".",",") + "\n";
+        String strSelected = "Assentos escolhidos: " + selected.toString().replace("[", "").replace("]", "") + "\n\n";
+        String strTotal = "Total da compra: R$" + String.valueOf(totalSale).replace(".", ",") + "\n";
         String strThanks = "\n\nObrigado pela preferência!" + "\n";
         JTextArea myTicket = new JTextArea();
         myTicket.setLineWrap(true);
-        myTicket.append(intro + strId + strDate + strSession + strPrice + strQtdSeats + strQtdPromocionais +strSelected + strTotal + strThanks);
+        myTicket.append(intro + strId + strDate + strSession + strPrice + strQtdSeats + strQtdPromocionais + strSelected + strTotal + strThanks);
         myTicket.print();
     }
 
@@ -184,15 +189,17 @@ public class NewSaleController extends MenuPrincipal{
         }
         mostrarAlerta("Vendas", "Erro ao executar a venda.", Utils.trataErros(erros), Alert.AlertType.ERROR);
     }
-    public Boolean validSale (Session session, ArrayList<Integer> selecteds) {
+
+    public Boolean validSale(Session session, ArrayList<Integer> selecteds) {
         ArrayList<String> erros = new ArrayList<>();
-        HashMap<Integer, Boolean> seatMap = new Gson().fromJson(session.getSeats(), new TypeToken<HashMap<Integer, Boolean>>() {}.getType());
-        for (int selected: selecteds) {
-            if(seatMap.get(selected)){
+        HashMap<Integer, Boolean> seatMap = new Gson().fromJson(session.getSeats(), new TypeToken<HashMap<Integer, Boolean>>() {
+        }.getType());
+        for (int selected : selecteds) {
+            if (seatMap.get(selected)) {
                 erros.add("Assento " + selected + " ocupado.\n");
             }
         }
-        if (erros.isEmpty()){
+        if (erros.isEmpty()) {
             return true;
         } else {
             mostrarAlerta("Vendas", "Erro ao executar a venda.", Utils.trataErros(erros), Alert.AlertType.ERROR);
@@ -210,13 +217,13 @@ public class NewSaleController extends MenuPrincipal{
             ArrayList<Integer> selected = selectedSeats();
             int qtdSeats = selected.size();
             int qtdPromotional = cbPromoTickets.getSelectionModel().getSelectedItem();
-            double totalSale = Double.parseDouble(total().replace(",","."));
+            double totalSale = Double.parseDouble(total().replace(",", "."));
 
             session = sessionDAO.readOne(cbSessionSale.getSelectionModel().getSelectedItem().getId());
-            if (validSale(session, selected)){
+            if (validSale(session, selected)) {
                 session.setSeats(updatedSeats(selected));
                 Sale sale = new Sale(price,
-                        selected.toString().replace("]","").replace("[","").replace(" ",""),
+                        selected.toString().replace("]", "").replace("[", "").replace(" ", ""),
                         qtdPromotional,
                         totalSale,
                         session);
@@ -254,8 +261,8 @@ public class NewSaleController extends MenuPrincipal{
         int qtdSeats = selected.size();
         int qtdPromotional = cbPromoTickets.getSelectionModel().isEmpty() ? 0 : cbPromoTickets.getSelectionModel().getSelectedItem();
 
-        if(session.isPromotional()) {
-            totalSale = (qtdSeats  * (ticket.ApplyDiscount()));
+        if (session.isPromotional()) {
+            totalSale = (qtdSeats * (ticket.ApplyDiscount()));
             cbPromoTickets.setValue(qtdSeats);
         } else {
             totalSale = ((qtdSeats - qtdPromotional) * ticket.getValue()) + (qtdPromotional * ticket.ApplyDiscount());
@@ -266,11 +273,11 @@ public class NewSaleController extends MenuPrincipal{
 
     public void changeSessionDate(ActionEvent actionEvent) throws SQLException {
         try {
-            if(!calSessionDate.getValue().equals(java.time.LocalDate.now())) {
+            if (!calSessionDate.getValue().equals(java.time.LocalDate.now())) {
                 tableSeats.getItems().clear();
                 fill();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             mostrarAlerta("Vendas", "Erro ao executar a venda.", "Por Favor Preencha o Campo 'Data' ", Alert.AlertType.ERROR);
             cbSessionSale.getSelectionModel().clearSelection();
             calSessionDate.setValue(java.time.LocalDate.now());
