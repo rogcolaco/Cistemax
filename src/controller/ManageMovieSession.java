@@ -130,6 +130,8 @@ public class ManageMovieSession extends MenuPrincipal{
     public void addSession(ActionEvent actionEvent) throws SQLException, ParseException {
         try {
             if(checkFill()) {
+                ArrayList<String> errors = new ArrayList<>();
+                ArrayList<Session> sessions = new ArrayList<>();
                 Session session = new Session();
                 SessionDAO dao = new SessionDAO();
                 SimpleDateFormat formatoHoraMin = new SimpleDateFormat("HH:mm");
@@ -160,33 +162,62 @@ public class ManageMovieSession extends MenuPrincipal{
                     session.setTicket(idTicket);
                     session.setPromotional(checkPromo.isSelected());
                     if (validSession(session)) {
-                        MsgErro msg = new MsgErro();
-                        msg.show();
-                        break;
+                        if (checkMon.isSelected() && date.getDayOfWeek().toString() == "MONDAY") {
+                            errors.add("Já existe uma sessão para a data: " + date.toString() + "\n");
+                        }
+                        if (checkTue.isSelected() && date.getDayOfWeek().toString() == "TUESDAY") {
+                            errors.add("Já existe uma sessão para a data: " + date.toString() + "\n");
+                        }
+                        if (checkWed.isSelected() && date.getDayOfWeek().toString() == "WEDNESDAY") {
+                            errors.add("Já existe uma sessão para a data: " + date.toString() + "\n");
+                        }
+                        if (checkThu.isSelected() && date.getDayOfWeek().toString() == "THURSDAY") {
+                            errors.add("Já existe uma sessão para a data: " + date.toString() + "\n");
+                        }
+                        if (checkFri.isSelected() && date.getDayOfWeek().toString() == "FRIDAY") {
+                            errors.add("Já existe uma sessão para a data: " + date.toString() + "\n");
+                        }
+                        if (checkSat.isSelected() && date.getDayOfWeek().toString() == "SATURDAY") {
+                            errors.add("Já existe uma sessão para a data: " + date.toString() + "\n");
+                        }
+                        if (checkSun.isSelected() && date.getDayOfWeek().toString() == "SUNDAY") {
+                            errors.add("Já existe uma sessão para a data: " + date.toString() + "\n");
+                        }
+                    } else {
+                        sessions.add(session);
                     }
-                    if (checkMon.isSelected() && date.getDayOfWeek().toString() == "MONDAY") {
-                        dao.save(session);
-                    }
-                    if (checkTue.isSelected() && date.getDayOfWeek().toString() == "TUESDAY") {
-                        dao.save(session);
-                    }
-                    if (checkWed.isSelected() && date.getDayOfWeek().toString() == "WEDNESDAY") {
-                        dao.save(session);
-                    }
-                    if (checkThu.isSelected() && date.getDayOfWeek().toString() == "THURSDAY") {
-                        dao.save(session);
-                    }
-                    if (checkFri.isSelected() && date.getDayOfWeek().toString() == "FRIDAY") {
-                        dao.save(session);
-                    }
-                    if (checkSat.isSelected() && date.getDayOfWeek().toString() == "SATURDAY") {
-                        dao.save(session);
-                    }
-                    if (checkSun.isSelected() && date.getDayOfWeek().toString() == "SUNDAY") {
-                        dao.save(session);
-                    }
-                    tableSession.setItems(dao.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
+                }
 
+                if (false) {
+                    for (Session s : sessions) {
+                        Date date = formatter.parse(s.getDate());
+                        LocalDate d = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                        if (checkMon.isSelected() && d.getDayOfWeek().toString() == "MONDAY") {
+                            dao.save(s);
+                        }
+                        if (checkTue.isSelected() && d.getDayOfWeek().toString() == "TUESDAY") {
+                            dao.save(s);
+                        }
+                        if (checkWed.isSelected() && d.getDayOfWeek().toString() == "WEDNESDAY") {
+                            dao.save(s);
+                        }
+                        if (checkThu.isSelected() && d.getDayOfWeek().toString() == "THURSDAY") {
+                            dao.save(s);
+                        }
+                        if (checkFri.isSelected() && d.getDayOfWeek().toString() == "FRIDAY") {
+                            dao.save(s);
+                        }
+                        if (checkSat.isSelected() && d.getDayOfWeek().toString() == "SATURDAY") {
+                            dao.save(s);
+                        }
+                        if (checkSun.isSelected() && d.getDayOfWeek().toString() == "SUNDAY") {
+                            dao.save(s);
+                        }
+                        tableSession.setItems(dao.readAll(cbTheater.getSelectionModel().getSelectedItem().getId()));
+                    }
+                } else {
+                    mostrarAlerta("Vendas", "Erro ao cadastrar a sessão.", Utils.trataErros(errors), Alert.AlertType.ERROR);
                 }
             }
         } catch(Exception e) {
