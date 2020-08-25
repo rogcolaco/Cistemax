@@ -92,7 +92,7 @@ public class ManageMovie extends MenuPrincipal {
             txtMovieName.setText(movie.getName());
             txtDirName.setText(movie.getDirector());
             txtDuration.setText(String.valueOf(movie.getDuration()));
-            cbGenre.setValue(movie.getGenre());
+            cbGenre.getSelectionModel().select(movie.getGenre());
             cbParentalControl.setValue(movie.getParentalRating());
             checkCartaz.setSelected(movie.getInTheaters());
         }
