@@ -5,10 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Movie;
 import model.Ticket;
 import util.Regex;
+import util.Utils;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import static util.Utils.mostrarAlerta;
 
@@ -70,10 +73,9 @@ public class ManagePrice extends MenuPrincipal {
         Ticket ticket = new Ticket();
         TicketDAO dao = new TicketDAO();
         ticket.setType(txtSessionType.getText());
-        String s = txtSessionPrice.getText().replace(",", ".");
 
-        if (regex.isDouble(s) && !ticket.getType().equals("")) {
-            ticket.setValue(Double.parseDouble(s));
+        if (fillError(ticket)) {
+            ticket.setValue(Double.parseDouble(txtSessionPrice.getText().replace(",", ".")));
 
             /*Caso o botão de confirmação seja utilizado para alterar um ticket*/
             if (btnConfirmPrice.getText().equals("Alterar")) {
@@ -92,23 +94,35 @@ public class ManagePrice extends MenuPrincipal {
             }
             txtSessionType.clear();
             txtSessionPrice.clear();
-        } else {
-            if (ticket.getType().equals("")) {
-                mostrarAlerta("Tipos de Sessão e Preços", "Tipo de Sessão", "Por Favor Preencha o Campo 'Tipo da Sessão'", Alert.AlertType.ERROR);
-                return;
-            }
-
-            if (!regex.isDouble(s)) {
-                mostrarAlerta("Tipos de Sessão e Preços", "Tipo de Sessão", "Por Favor Preencha o Campo 'Preço' em Reais", Alert.AlertType.ERROR);
-                return;
-            }
         }
     }
 
     public void remove(ActionEvent actionEvent) throws SQLException {
         TicketDAO dao = new TicketDAO();
         dao.delete(tableSession.getSelectionModel().getSelectedItem());
+        tableSession.refresh();
         tableSession.setItems(dao.readAll());
+    }
+
+    public boolean fillError(Ticket ticket) {
+        ArrayList<String> erros = new ArrayList<>();
+        String s = txtSessionPrice.getText().replace(",", ".");
+
+        if (ticket.getType().trim().equals("")) {
+        }
+        if (!regex.isDouble(s)) {
+            erros.add("Campo 'Preço' deve ser preenchido em reais. \n");
+        }
+        if (s.trim().equals("")) {
+            erros.add("Campo 'Preço' não pode ser vazio. \n");
+        }
+
+        if (erros.isEmpty()) {
+            return true;
+        } else {
+            mostrarAlerta("Sessão", "Erro ao cadastrar Sessão.", Utils.trataErros(erros), Alert.AlertType.ERROR);
+            return false;
+        }
     }
 
 }

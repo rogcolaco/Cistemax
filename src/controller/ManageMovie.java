@@ -10,8 +10,10 @@ import model.Genre;
 import model.Movie;
 import model.ParentalControl;
 import util.Regex;
+import util.Utils;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import static util.Utils.mostrarAlerta;
 
@@ -22,12 +24,12 @@ public class ManageMovie extends MenuPrincipal {
     private Button btnUpdateMovie;
     @FXML
     private Button btnConfirmMovie;
-    //@FXML private Button btnCancelOp;
+
     @FXML
     private Label lbMovieFieldTitle;
     @FXML
     private ChoiceBox<String> cbParentalControl;
-    /*Verificar Classes*/
+
     @FXML
     private TableView<Movie> tableMovie;
     @FXML
@@ -38,7 +40,7 @@ public class ManageMovie extends MenuPrincipal {
     private TableColumn<Genre, String> cGenre;
     @FXML
     private TableColumn<Boolean, Boolean> cCartaz;
-    /*Verificar Classes*/
+
     @FXML
     private ChoiceBox<Genre> cbGenre;
     @FXML
@@ -101,10 +103,10 @@ public class ManageMovie extends MenuPrincipal {
     public void addMovie(ActionEvent actionEvent) throws SQLException {
         Movie movie = new Movie();
         MovieDAO dao = new MovieDAO();
-        movie.setName(txtMovieName.getText());
-        movie.setDirector(txtDirName.getText());
-        if (!txtDuration.getText().equals("") && regex.isInt(txtDuration.getText())) {
-            movie.setDuration(Integer.parseInt(txtDuration.getText()));
+        movie.setName(txtMovieName.getText().trim());
+        movie.setDirector(txtDirName.getText().trim());
+        if (!txtDuration.getText().trim().equals("") && regex.isInt(txtDuration.getText().trim())) {
+            movie.setDuration(Integer.parseInt(txtDuration.getText().trim()));
         } else {
             mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Duração' com um valor inteiro positivo", Alert.AlertType.ERROR);
             return;
@@ -112,9 +114,8 @@ public class ManageMovie extends MenuPrincipal {
         movie.setGenre(cbGenre.getSelectionModel().getSelectedItem());
         movie.setInTheaters(checkCartaz.isSelected());
         movie.setParentalRating(cbParentalControl.getValue());
-        boolean b = fillError(movie);
 
-        if (!b) {
+        if (fillError(movie)){
             /*Caso o botão de confirmação seja utilizado para alterar um filme*/
             if (btnConfirmMovie.getText().equals("Alterar")) {
                 movie.setId(tableMovie.getSelectionModel().getSelectedItem().getId());
@@ -125,8 +126,6 @@ public class ManageMovie extends MenuPrincipal {
 
                 /*Caso o botão de confirmação seja utilizado para salvar um filme novo*/
             } else {
-                //int max = dao.MaxId();
-                //movie.setId(max);
                 dao.save(movie);
                 tableMovie.setItems(dao.readAll());
             }
@@ -145,6 +144,7 @@ public class ManageMovie extends MenuPrincipal {
         MovieDAO dao = new MovieDAO();
         if (tableMovie.getSelectionModel().getSelectedItem() != null) {
             dao.delete(tableMovie.getSelectionModel().getSelectedItem());
+            tableMovie.refresh();
             tableMovie.setItems(dao.readAll());
         } else {
             return;
@@ -152,22 +152,24 @@ public class ManageMovie extends MenuPrincipal {
     }
 
     public boolean fillError(Movie movie) {
+        ArrayList<String> erros = new ArrayList<>();
         if (movie.getName().equals("")) {
-            mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Nome do Filme'", Alert.AlertType.ERROR);
-            return true;
+            erros.add("Campo 'Nome do Filme' não pode ser vazio. \n");
         }
         if (movie.getDirector().equals("")) {
-            mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Diretor'", Alert.AlertType.ERROR);
-            return true;
+            erros.add("Campo 'Diretor' não pode ser vazio. \n");
         }
         if (movie.getGenre() == null) {
-            mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Gênero'", Alert.AlertType.ERROR);
-            return true;
+            erros.add("Campo 'Gênero' não pode ser vazio. \n");
         }
         if (movie.getParentalRating() == null) {
-            mostrarAlerta("Filmes", "Erro no Preenchimento de Dados", "Por Favor Preencha o Campo 'Classificação Indicativa'", Alert.AlertType.ERROR);
-            return true;
+            erros.add("Campo 'Classificação Indicativa' não pode ser vazio. \n");
         }
-        return false;
+        if (erros.isEmpty()) {
+            return true;
+        } else {
+            mostrarAlerta("Sessão", "Erro ao cadastrar Sessão.", Utils.trataErros(erros), Alert.AlertType.ERROR);
+            return false;
+        }
     }
 }

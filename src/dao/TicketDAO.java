@@ -121,7 +121,7 @@ public class TicketDAO implements DAO<Ticket> {
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            mostrarAlerta("Preço", "Erro ao excluir tipo de preço", "Existe pelo menos 1 sessão cadastrada com esse tipo de sessão.", Alert.AlertType.ERROR);
+            mostrarAlerta("Preço", "Erro ao excluir tipo de preço", "Existe pelo menos uma sessão cadastrada com esse tipo de sessão.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }
