@@ -163,16 +163,22 @@ public class NewSaleController extends MenuPrincipal {
     }
 
     public void printTicket(int id, String date, Session session, double price, ArrayList selected, int qtdSeats, int qtdPromotional, double totalSale) throws PrinterException {
+        String unitPrice = String.format("%.2f",price);
+        unitPrice.replace(".", ",");
+        String total = String.format("%.2f",totalSale);
+        total.replace(".", ",");
+        System.out.println(unitPrice);
+        System.out.println(total);
         String intro = "### CISTEMAX ###\n\n";
         String strId = "Número da venda: " + id + "\n";
         String strDate = "Data: " + date + "\n";
         String strSession = "Sessão: " + session.toString() + "\n";
-        String strPrice = "Valor unitário dos ingressos: R$" + String.valueOf(price).replace(".", ",") + "\n";
+        String strPrice = "Valor unitário dos ingressos: R$ " + unitPrice + "\n";
         String strQtdSeats = "Quantidade de assentos totais: " + qtdSeats + "\n";
         String strQtdPromocionais = "Quantidade de assentos promocionais: " + qtdPromotional + "\n";
         String strSelected = "Assentos escolhidos: " + selected.toString().replace("[", "").replace("]", "") + "\n\n";
-        String strTotal = "Total da compra: R$" + String.valueOf(totalSale).replace(".", ",") + "\n";
-        String strThanks = "\n\nObrigado pela preferência!" + "\n";
+        String strTotal = "Total da compra: R$ " + total + "\n";
+        String strThanks = "\n\n Obrigado pela preferência! " + "\n";
         JTextArea myTicket = new JTextArea();
         myTicket.setLineWrap(true);
         myTicket.append(intro + strId + strDate + strSession + strPrice + strQtdSeats + strQtdPromocionais + strSelected + strTotal + strThanks);
