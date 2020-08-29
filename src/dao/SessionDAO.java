@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class SessionDAO implements DAO<Session> {
@@ -43,6 +44,35 @@ public class SessionDAO implements DAO<Session> {
         return null;
     }
 
+
+    public ObservableList<Session> readAll() throws SQLException {
+        ObservableList<Session> list = FXCollections.observableArrayList();
+        Connection conn = ConnectionFactory.createConnection();
+        try {
+            String sql = "select * from session";
+            PreparedStatement prep = conn.prepareStatement(sql);
+            ResultSet res = prep.executeQuery();
+            while (res.next()) {
+                MovieDAO movieDAO = new MovieDAO();
+                Movie movieName = MovieDAO.getById(res.getInt("movie"));
+                Session session = new Session(res.getInt("id"),
+                        res.getInt("theater"),
+                        res.getString("starts_at"),
+                        res.getString("ends_at"),
+                        res.getString("date"),
+                        res.getBoolean("promotional"),
+                        movieName.getName(),
+                        res.getString("seat_map"),
+                        res.getInt("ticket"));
+                list.add(session);
+            }
+            return list;
+        } catch (SQLException e) {
+            conn.close();
+            e.printStackTrace();
+        }
+        return null;
+    }
     public ObservableList<Session> readAll(int idTheater) throws SQLException {
         ObservableList<Session> list = FXCollections.observableArrayList();
         Connection conn = ConnectionFactory.createConnection();

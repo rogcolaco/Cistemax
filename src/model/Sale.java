@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Sale {
     int id;
     String date;
@@ -37,6 +39,26 @@ public class Sale {
         this.qtdSeatPromotional = qtdSeatPromotional;
         this.totalSale = totalSale;
         this.sessionId = sessionId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sale sale = (Sale) o;
+        return id == sale.id &&
+                Double.compare(sale.price, price) == 0 &&
+                qtdSeatPromotional == sale.qtdSeatPromotional &&
+                Double.compare(sale.totalSale, totalSale) == 0 &&
+                sessionId == sale.sessionId &&
+                date.equals(sale.date) &&
+                seats.equals(sale.seats) &&
+                session.equals(sale.session);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, date, price, seats, qtdSeatPromotional, totalSale, sessionId, session);
     }
 
     public int getSessionId() {

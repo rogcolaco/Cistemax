@@ -134,7 +134,7 @@ public class Session {
         Theater theaterName;
         try {
             theaterName = TheaterDAO.getById(this.theater);
-            return theaterName.getName() + " - " + this.movieName + " - " + this.starts + " - " + this.ends;
+            return this.getDate() + " - " + theaterName.getName() + " - " + this.movieName + " - " + this.starts + " - " + this.ends;
         } catch (SQLException throwables) {
 
 
