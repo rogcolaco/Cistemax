@@ -153,7 +153,6 @@ public class ManageMovieSession extends MenuPrincipal {
             if (checkFill()) {
                 ArrayList<String> errors = new ArrayList<>();
                 ArrayList<Session> sessions = new ArrayList<>();
-                Session session = new Session();
                 SessionDAO dao = new SessionDAO();
                 SimpleDateFormat formatoHoraMin = new SimpleDateFormat("HH:mm");
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -173,6 +172,7 @@ public class ManageMovieSession extends MenuPrincipal {
                 LocalDate finalDt = finalDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                 for (LocalDate date = initialDt; !date.isAfter(finalDt); date = date.plusDays(1)) {
+                    Session session = new Session();
                     session.setId(dao.MaxId());
                     session.setDate(date.toString());
                     session.setStarts(formatoHoraMin.format(startsAt));
@@ -211,8 +211,8 @@ public class ManageMovieSession extends MenuPrincipal {
 
                 if (errors.isEmpty()) {
                     for (Session s : sessions) {
-                        Date date = formatter.parse(s.getDate());
-                        LocalDate d = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                        Date dt = formatter.parse(s.getDate());
+                        LocalDate d = dt.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                         if (checkMon.isSelected() && d.getDayOfWeek().toString() == "MONDAY") {
                             dao.save(s);
