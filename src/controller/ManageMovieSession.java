@@ -209,7 +209,7 @@ public class ManageMovieSession extends MenuPrincipal {
                     }
                 }
 
-                if (false) {
+                if (errors.isEmpty()) {
                     for (Session s : sessions) {
                         Date date = formatter.parse(s.getDate());
                         LocalDate d = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
