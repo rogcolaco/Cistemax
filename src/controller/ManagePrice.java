@@ -110,6 +110,9 @@ public class ManagePrice extends MenuPrincipal {
 
         if (ticket.getType().trim().equals("")) {
         }
+        if(txtSessionType.getText().trim().equals("")){
+            erros.add("Campo 'Tipo da sessão' não pode ser vazio. \n");
+        }
         if (!regex.isDouble(s)) {
             erros.add("Campo 'Preço' deve ser preenchido em reais. \n");
         }

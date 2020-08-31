@@ -2,15 +2,20 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.Movie;
 import model.Session;
 import util.ConnectionFactory;
+import util.Utils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+
+import static util.Utils.mostrarAlerta;
 
 
 public class SessionDAO implements DAO<Session> {
@@ -197,7 +202,7 @@ public class SessionDAO implements DAO<Session> {
             prep.execute();
             conn.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            mostrarAlerta("Sessão", "Erro ao deletar sessão.", "Existe ao menos um ingresso vendido para essa sessão.", Alert.AlertType.ERROR);
         } finally {
             conn.close();
         }
