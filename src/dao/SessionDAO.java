@@ -32,7 +32,8 @@ public class SessionDAO implements DAO<Session> {
                         res.getBoolean("promotional"),
                         movieName.getName(),
                         res.getString("seat_map"),
-                        res.getInt("ticket"));
+                        res.getInt("ticket"),
+                        movieName);
                 conn.close();
                 return session;
             }
@@ -63,7 +64,8 @@ public class SessionDAO implements DAO<Session> {
                         res.getBoolean("promotional"),
                         movieName.getName(),
                         res.getString("seat_map"),
-                        res.getInt("ticket"));
+                        res.getInt("ticket"),
+                        movieName);
                 list.add(session);
             }
             return list;
@@ -92,7 +94,8 @@ public class SessionDAO implements DAO<Session> {
                         res.getBoolean("promotional"),
                         movieName.getName(),
                         res.getString("seat_map"),
-                        res.getInt("ticket"));
+                        res.getInt("ticket"),
+                        movieName);
                 list.add(session);
             }
             return list;
@@ -122,7 +125,8 @@ public class SessionDAO implements DAO<Session> {
                         res.getBoolean("promotional"),
                         movieName.getName(),
                         res.getString("seat_map"),
-                        res.getInt("ticket"));
+                        res.getInt("ticket"),
+                        movieName);
                 list.add(session);
             }
             return list;

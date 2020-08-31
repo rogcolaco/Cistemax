@@ -31,7 +31,7 @@ public class Sale {
         this.session = session;
     }
 
-    public Sale(int id, String date, double price, String seats, int qtdSeatPromotional, double totalSale, int sessionId) {
+    public Sale(int id, String date, double price, String seats, int qtdSeatPromotional, double totalSale, int sessionId, Session session) {
         this.id = id;
         this.date = date;
         this.price = price;
@@ -39,6 +39,7 @@ public class Sale {
         this.qtdSeatPromotional = qtdSeatPromotional;
         this.totalSale = totalSale;
         this.sessionId = sessionId;
+        this.session = session;
     }
 
     @Override

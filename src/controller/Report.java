@@ -21,8 +21,6 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -31,6 +29,8 @@ import static util.Utils.mostrarAlerta;
 
 public class Report extends MenuPrincipal {
 
+    @FXML
+    protected TabPane tbFilter;
     @FXML
     private DatePicker calDateStartReport;
     @FXML
@@ -44,9 +44,6 @@ public class Report extends MenuPrincipal {
     private ChoiceBox<Theater> cbTheaterReport;
     @FXML
     private ChoiceBox<Session> cbSessionReport;
-    @FXML
-    protected TabPane tbFilter;
-
     private ObservableList<Theater> listTheater = FXCollections.observableArrayList();
     private ObservableList<Movie> listMovie = FXCollections.observableArrayList();
     private ObservableList<Session> listSession = FXCollections.observableArrayList();
@@ -56,31 +53,68 @@ public class Report extends MenuPrincipal {
         fill();
     }
 
+    public ArrayList sessions(ArrayList<Sale> sales) {
+        ArrayList<Session> sessions = sales.
+                stream().
+                map(s -> s.getSession())
+                .collect(Collectors.toCollection(ArrayList::new));
+        return sessions;
+    }
+
     public void fillFilters() throws SQLException {
-        ReportDAO reportDAO = new ReportDAO();
-        ArrayList<Sale> sales = reportDAO.readAll(calDateStartReport.getValue().toString(), calDateEndReport.getValue().toString());
-        Set saleSesions = new HashSet();
-        saleSesions = sales.stream().map(s -> s.getSessionId()).collect(Collectors.toSet());
-        TheaterDAO daoTheater = new TheaterDAO();
-        MovieDAO   daoMovie = new MovieDAO();
-        SessionDAO daoSession = new SessionDAO();
+        try {
+            ReportDAO reportDAO = new ReportDAO();
+            TheaterDAO daoTheater = new TheaterDAO();
+            MovieDAO daoMovie = new MovieDAO();
+            SessionDAO daoSession = new SessionDAO();
+            ArrayList<Sale> sales = reportDAO.readAll(calDateStartReport.getValue().toString(), calDateEndReport.getValue().toString());
+            ArrayList<Session> sessions = sessions(sales);
 
+            Set saleSessions = sales.stream().map(s -> s.getSessionId()).collect(Collectors.toSet());
+            Set movieIds = sessions.stream().map(s -> s.getFilme().getId()).collect(Collectors.toSet());
+            Set theaterIds = sessions.stream().map(s -> s.getTheater()).collect(Collectors.toSet());
 
-        listTheater = daoTheater.readAll();
-        listMovie   = daoMovie.readAll();
-        Set finalSaleSesions = saleSesions;
-        listSession = daoSession.
-                readAll().
-                stream()
-                .filter(s -> finalSaleSesions.contains(s.getId()))
-                .collect(Collector.of(
-                        FXCollections::observableArrayList,
-                        ObservableList::add,
-                        (l1, l2) -> { l1.addAll(l2); return l1; }));
+            listTheater = daoTheater
+                    .readAll()
+                    .stream()
+                    .filter(m -> theaterIds.contains(m.getId()))
+                    .collect(Collector.of(
+                            FXCollections::observableArrayList,
+                            ObservableList::add,
+                            (l1, l2) -> {
+                                l1.addAll(l2);
+                                return l1;
+                            }));
+            listMovie = daoMovie
+                    .readAll()
+                    .stream()
+                    .filter(m -> movieIds.contains(m.getId()))
+                    .collect(Collector.of(
+                            FXCollections::observableArrayList,
+                            ObservableList::add,
+                            (l1, l2) -> {
+                                l1.addAll(l2);
+                                return l1;
+                            }));
+            listSession = daoSession.
+                    readAll().
+                    stream()
+                    .filter(s -> saleSessions.contains(s.getId()))
+                    .collect(Collector.of(
+                            FXCollections::observableArrayList,
+                            ObservableList::add,
+                            (l1, l2) -> {
+                                l1.addAll(l2);
+                                return l1;
+                            }));
 
-        cbMovieReport.setItems(listMovie);
-        cbTheaterReport.setItems(listTheater);
-        cbSessionReport.setItems(listSession);
+            cbMovieReport.setItems(listMovie);
+            cbTheaterReport.setItems(listTheater);
+            cbSessionReport.setItems(listSession);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta("Relatórios", "Erro ao Emitir Relatório", "", Alert.AlertType.ERROR);
+        }
 
     }
 
@@ -102,11 +136,10 @@ public class Report extends MenuPrincipal {
             ReportDAO reportDAO = new ReportDAO();
             ArrayList<Sale> sales = reportDAO.readAll(calDateStartReport.getValue().toString(), calDateEndReport.getValue().toString());
             StringBuilder sb = new StringBuilder();
-            sb.append("ID Venda; Data da Venda; Preco do Ingresso; Assentos; Qtd Assentos Promocionais; Total da Venda; Id da Sessso\n");
+            sb.append("ID Venda; Data da Venda; Preco do Ingresso; Assentos; Qtd Assentos Promocionais; Total da Venda; Sessão\n");
             Files.createDirectories(Paths.get("reports/"));
             String pathName = "reports/report-" + calDateStartReport.getValue().toString() + "-" + calDateEndReport.getValue().toString() + ".csv";
             if (sales != null) {
-
                 if (tbFilter.getSelectionModel().getSelectedIndex() == 0) {
                     if (!cbSessionReport.getSelectionModel().isEmpty()) {
                         Session session = cbSessionReport.getSelectionModel().getSelectedItem();
@@ -115,8 +148,6 @@ public class Report extends MenuPrincipal {
                                 .filter(s -> s.getSessionId() == session.getId())
                                 .collect(Collectors.toCollection(ArrayList::new));
                     }
-                } else {
-
                 }
 
                 try (PrintWriter writer = new PrintWriter(new File(pathName))) {
@@ -133,7 +164,7 @@ public class Report extends MenuPrincipal {
                         sb.append(";");
                         sb.append(sale.getTotalSale());
                         sb.append(";");
-                        sb.append(sale.getSessionId());
+                        sb.append(sale.getSession());
                         sb.append("\n");
                     }
                     writer.write(sb.toString());
@@ -141,6 +172,7 @@ public class Report extends MenuPrincipal {
             }
             mostrarAlerta("Relatórios", "Relatório Emitido com Sucesso", "", Alert.AlertType.INFORMATION);
         } catch (Exception e) {
+            e.printStackTrace();
             mostrarAlerta("Relatórios", "Erro ao Emitir Relatório", "", Alert.AlertType.ERROR);
         }
     }

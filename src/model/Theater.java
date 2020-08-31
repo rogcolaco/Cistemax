@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Theater {
 
     private int id;
@@ -10,6 +12,21 @@ public class Theater {
         this.id = id;
         this.name = name;
         this.qtdSeats = qtdSeats;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Theater theater = (Theater) o;
+        return id == theater.id &&
+                qtdSeats == theater.qtdSeats &&
+                Objects.equals(name, theater.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, qtdSeats);
     }
 
     public Theater() {

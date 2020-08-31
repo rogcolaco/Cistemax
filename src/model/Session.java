@@ -3,6 +3,7 @@ package model;
 import dao.TheaterDAO;
 
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class Session {
     private boolean promotional;
@@ -15,8 +16,39 @@ public class Session {
     private String seats;
     private String date;
     private String movieName;
+    private Movie filme;
 
-    public Session(int id, int theater, String starts, String ends, boolean promotional, String movieName, String seatMap, int ticket) {
+    public Movie getFilme() {
+        return filme;
+    }
+
+    public void setFilme(Movie filme) {
+        this.filme = filme;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Session session = (Session) o;
+        return promotional == session.promotional &&
+                id == session.id &&
+                movie == session.movie &&
+                theater == session.theater &&
+                ticket == session.ticket &&
+                Objects.equals(starts, session.starts) &&
+                Objects.equals(ends, session.ends) &&
+                Objects.equals(seats, session.seats) &&
+                Objects.equals(date, session.date) &&
+                Objects.equals(movieName, session.movieName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(promotional, id, movie, theater, ticket, starts, ends, seats, date, movieName);
+    }
+
+    public Session(int id, int theater, String starts, String ends, boolean promotional, String movieName, Movie movie, String seatMap, int ticket) {
         this.id = id;
         this.theater = theater;
         this.starts = starts;
@@ -27,7 +59,7 @@ public class Session {
         this.ticket = ticket;
     }
 
-    public Session(int id, int theater, String starts, String ends, String date, boolean promotional, String movieName, String seatMap, int ticket) {
+    public Session(int id, int theater, String starts, String ends, String date, boolean promotional, String movieName, String seatMap, int ticket, Movie filme) {
         this.id = id;
         this.theater = theater;
         this.starts = starts;
@@ -37,6 +69,7 @@ public class Session {
         this.movieName = movieName;
         this.seats = seatMap;
         this.ticket = ticket;
+        this.filme = filme;
     }
 
     public Session() {

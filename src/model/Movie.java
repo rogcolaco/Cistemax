@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Movie {
 
     int id, duration;
@@ -62,6 +64,25 @@ public class Movie {
 
     public Boolean getInTheaters() {
         return inTheaters;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return id == movie.id &&
+                duration == movie.duration &&
+                inTheaters == movie.inTheaters &&
+                Objects.equals(name, movie.name) &&
+                Objects.equals(director, movie.director) &&
+                Objects.equals(parentalRating, movie.parentalRating) &&
+                Objects.equals(genre, movie.genre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, duration, name, director, parentalRating, inTheaters, genre);
     }
 
     public void setInTheaters(boolean inTheaters) {

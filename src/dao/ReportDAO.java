@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class ReportDAO implements DAO<Sale> {
 
     public ArrayList<Sale> readAll(String initialDate, String finalDate) {
+        SessionDAO sessionDAO = new SessionDAO();
         ArrayList<Sale> list = new ArrayList<>();
         Connection conn = ConnectionFactory.createConnection();
         try {
@@ -27,7 +28,8 @@ public class ReportDAO implements DAO<Sale> {
                         res.getString("seats"),
                         res.getInt("qtd_seat_promotional"),
                         res.getDouble("total_sale"),
-                        res.getInt("session")
+                        res.getInt("session"),
+                        sessionDAO.readOne(res.getInt("session"))
                 );
                 list.add(sale);
             }
