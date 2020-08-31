@@ -164,8 +164,6 @@ public class NewSaleController extends MenuPrincipal {
         unitPrice.replace(".", ",");
         String total = String.format("%.2f",totalSale);
         total.replace(".", ",");
-        System.out.println(unitPrice);
-        System.out.println(total);
         String intro = "### CISTEMAX ###\n\n";
         String strId = "Número da venda: " + id + "\n";
         String strDate = "Data: " + date + "\n";
@@ -190,6 +188,9 @@ public class NewSaleController extends MenuPrincipal {
         if (cbPromoTickets.getValue() == null) {
             erros.add("Quantidade de tickets promocionais não pode ser vazia\n");
         }
+        if(calSessionDate.getValue().isBefore(java.time.LocalDate.now())){
+            erros.add("Não pode ser vendido assento para sessõe já encerradas\n");
+        }
         mostrarAlerta("Vendas", "Erro ao executar a venda.", Utils.trataErros(erros), Alert.AlertType.ERROR);
     }
 
@@ -201,6 +202,9 @@ public class NewSaleController extends MenuPrincipal {
             if (seatMap.get(selected)) {
                 erros.add("Assento " + selected + " ocupado.\n");
             }
+        }
+        if(calSessionDate.getValue().isBefore(java.time.LocalDate.now())){
+            erros.add("Não pode ser vendido assento para sessõe já encerradas\n");
         }
         if (erros.isEmpty()) {
             return true;
