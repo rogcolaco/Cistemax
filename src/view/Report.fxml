@@ -57,18 +57,6 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="filterTheaterMovie" text="Sala/Filmes">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <ChoiceBox fx:id="cbTheaterReport" layoutX="14.0" layoutY="27.0" prefWidth="150.0" />
-                              <Label layoutX="14.0" layoutY="6.0" text="Sala" />
-                              <ChoiceBox fx:id="cbMovieReport" layoutX="10.0" layoutY="86.0" prefWidth="150.0" />
-                              <Label layoutX="10.0" layoutY="61.0" text="Filme" />
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
               </tabs>
             </TabPane>
             <Button layoutX="706.0" layoutY="212.0" mnemonicParsing="false" onAction="#fillFilters" prefHeight="25.0" prefWidth="119.0" text="Atualizar Filtros" />
